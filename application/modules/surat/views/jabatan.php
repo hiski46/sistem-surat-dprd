@@ -9,7 +9,7 @@
   				</div><!-- /.col -->
   				<div class="col-sm-6">
   					<ol class="breadcrumb float-sm-right">
-  						<li class="breadcrumb-item"><a href="<?= site_url('surat/dashboard') ?>">Dashboard</a></li>
+  						<li class="breadcrumb-item"><a href="<?= site_url('dashboard') ?>">Dashboard</a></li>
   						<li class="breadcrumb-item active">Jabatan</li>
   					</ol>
   				</div><!-- /.col -->

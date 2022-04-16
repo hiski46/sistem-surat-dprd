@@ -1,11 +1,13 @@
 <?php
 
-	
-	defined('BASEPATH') OR exit('No direct script access allowed');
-	
-	class Jabatan extends CI_Controller {
-	
-		public function __construct()
+
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class Jabatan extends CI_Controller
+{
+
+
+	public function __construct()
 	{
 		parent::__construct();
 
@@ -90,11 +92,13 @@
 		}
 	}
 
-	
+
+	public function getBy($id){
+
 	}
-	
-	/* End of file Jabatan.php */
-	
 
 
-?>
+	public function updateData(){}
+}
+
+/* End of file Jabatan.php */

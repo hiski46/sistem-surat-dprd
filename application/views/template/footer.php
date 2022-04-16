@@ -57,7 +57,7 @@
 <script src="<?= base_url() ?>assets/backend/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
 
 
-<?php if (($this->uri->segment(1) == 'jabatan')) { ?>
+<?php if (($this->uri->segment(2) == 'jabatan')) { ?>
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 	<script type="text/javascript">
@@ -73,7 +73,7 @@
 				"serverSide": true,
 				"order": [],
 				"ajax": {
-					"url": "<?= site_url('jabatan/getData') ?>",
+					"url": "<?= site_url('surat/jabatan/getData') ?>",
 					"type": "POST"
 				},
 				"columnDefs": [{
@@ -111,7 +111,7 @@
 					jabatan: jabatan,
 					parent: parent
 				},
-				url: '<?php echo base_url() . 'jabatan/addData' ?>',
+				url: '<?php echo base_url() . 'surat/jabatan/addData' ?>',
 				success: function(data) {
 					let hasil = JSON.parse(data);
 					if (hasil.status == 'error') {
