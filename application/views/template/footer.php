@@ -134,6 +134,39 @@
 				}
 			});
 		}
+
+		function submit(x) {
+
+			if (x == 'tambah') {
+				$('#btn-tambah').show();
+				$('#btn-ubah').hide();
+				$(".name").html('');
+				$(".address").html('');
+				$("[name='name']").val('');
+				$("[name='address']").val('');
+			} else {
+				$('#btn-tambah').hide();
+				$('#btn-ubah').show();
+				$(".name").html('');
+				$(".address").html('');
+			}
+
+
+			$.ajax({
+				type: 'POST',
+				data: 'id=' + x,
+				url: '<?php echo base_url() . 'client/ambilId' ?>',
+				dataType: 'json',
+				success: function(hasil) {
+					// // console.log(hasil)
+					$("[name='id']").val(hasil[0].id);
+					$("[name='name']").val(hasil[0].name);
+					$("[name='address']").val(hasil[0].address);
+				}
+			});
+		}
+
+		
 	</script>
 
 <?php } ?>
