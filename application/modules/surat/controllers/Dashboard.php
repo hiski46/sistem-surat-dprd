@@ -11,10 +11,10 @@ class Dashboard extends CI_Controller
 
 		$this->load->library('ion_auth');
 		$this->ion_auth->login('admin@admin.com', 'password', TRUE);
-	   if (!$this->ion_auth->logged_in())
-	   {
-		 exit('You Must be Logged in ');
-	   } 
+	   	if (!$this->ion_auth->logged_in())
+	   	{
+			exit('You Must be Logged in ');
+	   	} 
 
 		$data = [
 			'title' => 'Dasboard'

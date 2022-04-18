@@ -1,7 +1,4 @@
 <?php
-
-
-
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ModelJabatan extends CI_Model {
