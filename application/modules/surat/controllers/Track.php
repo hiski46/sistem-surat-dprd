@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Surat extends CI_Controller
+class Track extends CI_Controller
 {
 	public function __construct()
 	{
@@ -11,10 +11,7 @@ class Surat extends CI_Controller
 
 	public function index()
 	{
-		$data["title"] = "surat masuk";
-		$this->load->view('template/header', $data);
 		$this->list();
-		$this->load->view('template/footer');
 	}
 
 	public function list()
