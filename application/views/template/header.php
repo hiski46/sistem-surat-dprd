@@ -36,8 +36,6 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 	<div class="wrapper">
 
-	
-
 		<!-- Navbar -->
 		<nav class="main-header navbar navbar-expand navbar-white navbar-light">
 			<!-- Left navbar links -->
@@ -77,10 +75,10 @@
 		<!-- /.navbar -->
 
 		<!-- Main Sidebar Container -->
-		<aside class="main-sidebar sidebar-dark-primary elevation-4">
+		<aside class="main-sidebar sidebar-light-primary elevation-4">
 			<!-- Brand Logo -->
 			<a href="index3.html" class="brand-link">
-				<center> <span class="brand-text font-font-weight-normal text-white">SISTEM SURAT</span></center>
+				<center> <span class="brand-text font-font-weight-normal">SISTEM SURAT</span></center>
 			</a>
 
 			<!-- Sidebar -->
