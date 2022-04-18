@@ -40,7 +40,7 @@ class Jabatan extends CI_Controller
 				$row[] = $result->jabatan;
 				$row[] = $result->parent;
 				$row[] = '
-				<a href="#form" class="btn btn-info btn-sm mr-1" data-toggle="modal" onclick=" (' ."'". $result->id ."', 'edit'". ')">Edit<a/>
+				<a href="#form" class="btn btn-info btn-sm mr-1" data-toggle="modal" onclick="byid(' ."'". $result->id ."', 'edit'". ')">Edit<a/>
 				';
 				$data[] = $row;
 			}

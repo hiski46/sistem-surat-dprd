@@ -60,6 +60,7 @@
   					</div>
   					<div class="modal-body form">
   						<form action="#" id="formData">
+							  <input type="hidden" id="id" name="id" value="">
   							<div class="form-group">
   								<label for="jabatan">Jabatan</label>
   								<input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Masukan Jabatan">
