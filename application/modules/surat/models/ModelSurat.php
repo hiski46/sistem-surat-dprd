@@ -7,6 +7,7 @@ class ModelSurat extends CI_Model {
 	{
 		$this->db->select("*");
 		$this->db->from("surat");
+		return $this->db->get()->result_array();
 	}
 
 }
