@@ -61,6 +61,7 @@
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 	<script type="text/javascript">
+		var saveData;
 		var modal = $('#modalData');
 		var formData = $('#formData');
 		var btnSave = $('#btnSave');
@@ -94,6 +95,7 @@
 		}
 
 		function add() {
+			saveData = 'tambah';
 			$(".jabatan").html('');
 			$(".parent").html('');
 			$("[name='jabatan']").val('');
@@ -135,6 +137,7 @@
 			});
 		}
 
+<<<<<<< HEAD
 		function submit(x) {
 
 			if (x == 'tambah') {
@@ -167,6 +170,18 @@
 		}
 
 		
+=======
+		function byid(id, type){
+			if(type == 'edit'){
+				saveData = 'edit';
+				formData[0].reset();
+			}
+			$.ajax({
+				tpye: 'GET',
+				url: "<? base_url('surat/jabatan/byid') ?>"
+			});
+		}
+>>>>>>> b015e67c94befda53d795a691a45e17385952eec
 	</script>
 
 <?php } ?>
