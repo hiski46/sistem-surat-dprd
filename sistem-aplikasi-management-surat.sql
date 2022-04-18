@@ -30,14 +30,14 @@ SET time_zone = "+00:00";
 CREATE TABLE `disposisi` (
   `id` int(11) NOT NULL,
   `id_surat` int(13) DEFAULT NULL,
-  `tanggal_disposisi` datetime DEFAULT NULL,
+  `tanggal_disposisi` datetime DEFAULT CURRENT_TIMESTAMP,
   `nama` text DEFAULT NULL,
   `jabatan` varchar(128) DEFAULT NULL,
   `disposisi` text DEFAULT NULL,
   `catatan` text DEFAULT NULL,
   `file` text DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL,
-  `is_deleted` tinyint(4) DEFAULT NULL
+  `is_deleted` tinyint(4) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -137,9 +137,9 @@ CREATE TABLE `surat` (
   `tujuan_surat` int(11) DEFAULT NULL,
   `keterangan` text DEFAULT NULL,
   `file` text DEFAULT NULL,
-  `status_surat` enum('diterima','diperoses','selesai') DEFAULT 'diterima',
+  `status_surat` enum('diterima','diproses','selesai') DEFAULT 'diterima',
   `penerima` int(11) DEFAULT NULL,
-  `is_deleted` tinyint(4) DEFAULT NULL,
+  `is_deleted` tinyint(4) DEFAULT false,
   `date_deleted` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
