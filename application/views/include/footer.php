@@ -64,12 +64,13 @@
 <script src="<?= base_url() ?>assets/backend/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
 <script src="<?= base_url() ?>assets/backend/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
 
-<script src="<?php echo site_url('assets/backend/plugins/jszip/jszip.min.js'); ?>"></script>
-<script src="<?php echo site_url('assets/backend/plugins/pdfmake/pdfmake.min.js'); ?>"></script>
-<script src="<?php echo site_url('assets/backend/plugins/pdfmake/vfs_fonts.js'); ?>"></script>
-<script src="<?php echo site_url('assets/backend/plugins/datatables-buttons/js/buttons.html5.min.js'); ?>"></script>
-<script src="<?php echo site_url('assets/backend/plugins/datatables-buttons/js/buttons.print.min.js'); ?>"></script>
-<script src="<?php echo site_url('assets/backend/plugins/datatables-buttons/js/buttons.colVis.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/backend/plugins/jszip/jszip.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/backend/plugins/pdfmake/pdfmake.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/backend/plugins/pdfmake/vfs_fonts.js'); ?>"></script>
+<script src="<?php echo base_url('assets/backend/plugins/datatables-buttons/js/buttons.html5.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/backend/plugins/datatables-buttons/js/buttons.print.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/backend/plugins/datatables-buttons/js/buttons.colVis.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/js/wizard.js') ?>"></script>
 
 
 <?php if (($this->uri->segment(2) == 'jabatan')) { ?>

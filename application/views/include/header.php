@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><?= $title ?></title>
+	<title><?php echo "Sistem Manajemen Surat"; ?></title>
 
 	<!-- Google Font: Source Sans Pro -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -31,10 +31,19 @@
 	<link rel="stylesheet" href="<?= base_url() ?>assets/backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/backend/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+	<link rel="stylesheet" href="<?= base_url('assets/css/wizard.css') ?>">
+
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini">
 	<div class="wrapper">
+		 <!-- Preloader -->
+		<div class="preloader flex-column justify-content-center align-items-center">
+    		<img src="<?php echo base_url("assets/images/logo-dprd-prov.png"); ?>" alt="DPRD PROVINSI LAMPUNG" height="80" width="80">
+			<p></p>
+			<span>SISTEM MANAJEMEN SURAT</span>
+			<span>DPRD PROVINSI LAMPUNG</span>
+		</div>
 		<!-- Navbar -->
 		<nav class="main-header navbar navbar-expand navbar-white navbar-light">
 			<!-- Left navbar links -->
@@ -76,8 +85,9 @@
 		<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-light-primary elevation-4">
 			<!-- Brand Logo -->
-			<a href="index3.html" class="brand-link text-center">
-				<span class="brand-text font-font-weight-normal">SISTEM SURAT</span>
+			<a href="<?php echo site_url("surat"); ?>" class="brand-link">
+				<img src="<?php echo base_url("assets/images/logo-dprd-prov.png"); ?>" alt="DPRD PROVINSI LAMPUNG" class="brand-image img-circle elevation-3" style="opacity: .8">			
+				<span class="">SISTEM MANAJEMEN SURAT</span>
 			</a>
 
 			<!-- Sidebar -->
@@ -171,7 +181,7 @@
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
-			<div class="content-header">
+			<!-- <div class="content-header">
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-sm-12">
@@ -179,10 +189,13 @@
 								<li class="breadcrumb-item"><a href="#">Home</a></li>
 								<li class="breadcrumb-item active">Dashboard v1</li>
 							</ol>
-						</div><!-- /.col -->
-					</div><!-- /.row -->
-				</div><!-- /.container-fluid -->
-			</div>
+						</div> -->
+						<!-- /.col -->
+					<!-- </div> -->
+					<!-- /.row -->
+				<!-- </div> -->
+				<!-- /.container-fluid -->
+			<!-- </div> -->
 			<!-- /.content-header -->
 
 			<!-- Main content -->

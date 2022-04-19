@@ -22,4 +22,12 @@ class Surat extends CI_Controller
 	{
 		$data["surat"] = $this->ModelSurat->get_surat();
 	}
+
+	public function add_surat()
+	{
+		$data["title"] = "surat masuk";
+		$this->load->view('include/header', $data);
+		$this->load->view('form_surat');
+		$this->load->view('include/footer');
+	}
 }
