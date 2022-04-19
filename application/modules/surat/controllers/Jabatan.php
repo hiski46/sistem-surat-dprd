@@ -22,9 +22,9 @@ class Jabatan extends CI_Controller
 			'title' => 'Jabatan',
 		];
 
-		$this->load->view('template/header', $data);
+		$this->load->view('include/header', $data);
 		$this->load->view('jabatan');
-		$this->load->view('template/footer');
+		$this->load->view('include/footer');
 	}
 
 	public function getData()

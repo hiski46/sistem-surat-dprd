@@ -20,9 +20,9 @@ class Dashboard extends CI_Controller
 			'title' => 'Dasboard'
 		];
 
-		$this->load->view('template/header', $data);
+		$this->load->view('include/header', $data);
 		$this->load->view('dashboard');
-		$this->load->view('template/footer');
+		$this->load->view('include/footer');
 	}
 }
 

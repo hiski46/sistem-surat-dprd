@@ -1,16 +1,24 @@
-<footer class="main-footer">
-	<strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-	All rights reserved.
-	<div class="float-right d-none d-sm-inline-block">
-		<b>Version</b> 3.2.0-rc
+				</div>
+				<!-- /.container-fluid -->
+		</section>
+		<!-- /.content -->
 	</div>
-</footer>
+	<!-- /.content-wrapper -->
 
-<!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
-	<!-- Control sidebar content goes here -->
-</aside>
-<!-- /.control-sidebar -->
+
+	<footer class="main-footer">
+		<strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+		All rights reserved.
+		<div class="float-right d-none d-sm-inline-block">
+			<b>Version</b> 3.2.0-rc
+		</div>
+	</footer>
+
+	<!-- Control Sidebar -->
+	<aside class="control-sidebar control-sidebar-dark">
+		<!-- Control sidebar content goes here -->
+	</aside>
+	<!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 
@@ -55,6 +63,13 @@
 <script src="<?= base_url() ?>assets/backend/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="<?= base_url() ?>assets/backend/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
 <script src="<?= base_url() ?>assets/backend/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+
+<script src="<?php echo site_url('assets/backend/plugins/jszip/jszip.min.js'); ?>"></script>
+<script src="<?php echo site_url('assets/backend/plugins/pdfmake/pdfmake.min.js'); ?>"></script>
+<script src="<?php echo site_url('assets/backend/plugins/pdfmake/vfs_fonts.js'); ?>"></script>
+<script src="<?php echo site_url('assets/backend/plugins/datatables-buttons/js/buttons.html5.min.js'); ?>"></script>
+<script src="<?php echo site_url('assets/backend/plugins/datatables-buttons/js/buttons.print.min.js'); ?>"></script>
+<script src="<?php echo site_url('assets/backend/plugins/datatables-buttons/js/buttons.colVis.min.js'); ?>"></script>
 
 
 <?php if (($this->uri->segment(2) == 'jabatan')) { ?>
@@ -150,6 +165,21 @@
 	</script>
 
 <?php } ?>
+
+<script>
+  $(function () {
+    $('#table-surat').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": false,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+	}).buttons().container().appendTo('#container-surat .col-md-6:eq(0)');
+  });
+</script>
 
 
 </body>

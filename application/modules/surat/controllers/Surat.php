@@ -12,14 +12,14 @@ class Surat extends CI_Controller
 	public function index()
 	{
 		$data["title"] = "surat masuk";
-		$this->load->view('template/header', $data);
-		$this->list();
-		$this->load->view('template/footer');
+		$data["surat"] = $this->ModelSurat->get_surat();
+		$this->load->view('include/header', $data);
+		$this->load->view('list_surat');
+		$this->load->view('include/footer');
 	}
 
 	public function list()
 	{
 		$data["surat"] = $this->ModelSurat->get_surat();
-		print_r($data["surat"]);
 	}
 }
