@@ -56,4 +56,4 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'auth/login';
 $route['logout'] = 'auth/logout';
 $route['dashboard'] = 'surat/dashboard';
-$route['track'] = 'surat/track';
+$route['lacak'] = 'surat/track';
