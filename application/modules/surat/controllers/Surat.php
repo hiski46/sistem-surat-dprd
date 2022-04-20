@@ -32,7 +32,18 @@ class Surat extends CI_Controller
 	public function list()
 	{
 		$data["surat"] = $this->ModelSurat->get_surat();
-		print_r($data);
+
+		if($this->input->is_ajax_request())
+		{
+			echo $this->output
+        		->set_content_type('application/json')
+        		->set_output(json_encode($data["surat"]))->_display();
+
+		} else 
+		{
+			print_r($data["surat"]);
+		}
+		
 	}
 
 	public function add_surat()

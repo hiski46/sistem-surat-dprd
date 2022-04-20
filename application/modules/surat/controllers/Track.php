@@ -11,7 +11,7 @@ class Track extends CI_Controller
 
 	public function index()
 	{
-		$this->list();
+		$this->load->view("tracking");
 	}
 
 	public function list()

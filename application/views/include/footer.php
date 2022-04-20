@@ -18,7 +18,7 @@
 </div>
 <!-- ./wrapper -->
 <?php load_js(get_base_js()); ?>
-<?php if($js) { load_js($js); }; ?>
+<?php if(isset($js)) { load_js($js); }; ?>
 
 <script>
 	$.widget.bridge('uibutton', $.ui.button)

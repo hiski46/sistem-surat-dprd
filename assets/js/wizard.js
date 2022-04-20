@@ -76,15 +76,15 @@ $(document).ready(function() {
     });
 
     // submit (ketika klik tombol submit diakhir wizard)
-    $('.f1').on('submit', function(e) {
-        // validasi form
-        $(this).find('input[type="text"], input[type="password"], textarea').each(function() {
-            if ($(this).val() == "") {
-                e.preventDefault();
-                $(this).addClass('input-error');
-            } else {
-                $(this).removeClass('input-error');
-            }
-        });
-    });
+    // $('.f1').on('submit', function(e) {
+    //     // validasi form
+    //     $(this).find('input[type="text"], input[type="password"], textarea').each(function() {
+    //         if ($(this).val() == "") {
+    //             e.preventDefault();
+    //             $(this).addClass('input-error');
+    //         } else {
+    //             $(this).removeClass('input-error');
+    //         }
+    //     });
+    // });
 });

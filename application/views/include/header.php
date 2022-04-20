@@ -12,7 +12,7 @@
 	</script>
 
 	<?php load_css(get_base_css()); ?>
-	<?php if($css) { load_css($css); } ?>
+	<?php if(isset($css)) { load_css($css); } ?>
 
 </head>
 
