@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 16, 2022 at 04:11 AM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 7.3.29
+-- Generation Time: Apr 20, 2022 at 08:33 AM
+-- Server version: 8.0.17
+-- PHP Version: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -30,15 +31,15 @@ SET time_zone = "+00:00";
 CREATE TABLE `disposisi` (
   `id` int(11) NOT NULL,
   `id_surat` int(13) DEFAULT NULL,
-  `tanggal_disposisi` datetime DEFAULT CURRENT_TIMESTAMP,
-  `nama` text DEFAULT NULL,
+  `tanggal_disposisi` datetime DEFAULT NULL,
+  `nama` text,
   `jabatan` varchar(128) DEFAULT NULL,
-  `disposisi` text DEFAULT NULL,
-  `catatan` text DEFAULT NULL,
-  `file` text DEFAULT NULL,
+  `disposisi` text,
+  `catatan` text,
+  `file` text,
   `status` tinyint(4) DEFAULT NULL,
-  `is_deleted` tinyint(4) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `is_deleted` tinyint(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -71,7 +72,7 @@ CREATE TABLE `jabatan` (
   `id` int(11) NOT NULL,
   `jabatan` varchar(255) DEFAULT NULL,
   `parent` int(3) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `jabatan`
@@ -96,14 +97,6 @@ CREATE TABLE `login_attempts` (
   `time` int(11) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `login_attempts`
---
-
-INSERT INTO `login_attempts` (`id`, `ip_address`, `login`, `time`) VALUES
-(1, '::1', 'admin@gmail.com', 1649992209),
-(4, '::1', 'admin@gmail.com', 1649998807);
-
 -- --------------------------------------------------------
 
 --
@@ -112,10 +105,10 @@ INSERT INTO `login_attempts` (`id`, `ip_address`, `login`, `time`) VALUES
 
 CREATE TABLE `setting` (
   `setting_name` varchar(64) DEFAULT NULL,
-  `setting_value` text DEFAULT NULL,
+  `setting_value` text,
   `type` varchar(32) DEFAULT NULL,
   `is_deleted` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -125,23 +118,34 @@ CREATE TABLE `setting` (
 
 CREATE TABLE `surat` (
   `id` int(11) NOT NULL,
-  `tipe_surat` enum('masuk','keluar','internal') DEFAULT 'masuk',
-  `nomor_surat` varchar(64) DEFAULT NULL,
-  `judul_surat` varchar(255) DEFAULT NULL,
-  `tanggal_surat` datetime DEFAULT NULL,
-  `perihal` text DEFAULT NULL,
-  `tanggal_terima` datetime DEFAULT CURRENT_TIMESTAMP,
-  `sifat_surat` enum('biasa','rahasia') DEFAULT NULL,
-  `kecepatan_surat` enum('biasa','segera') DEFAULT NULL,
+  `tipe_surat` enum('masuk','keluar','internal') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'masuk',
+  `nomor_surat` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `tanggal_surat` datetime DEFAULT CURRENT_TIMESTAMP,
+  `isi` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `tanggal_diterima` datetime DEFAULT CURRENT_TIMESTAMP,
+  `sifat_surat` enum('biasa','rahasia') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'biasa',
+  `kecepatan_surat` enum('biasa','segera') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'biasa',
   `asal_surat` int(11) DEFAULT NULL,
   `tujuan_surat` int(11) DEFAULT NULL,
-  `keterangan` text DEFAULT NULL,
-  `file` text DEFAULT NULL,
-  `status_surat` enum('diterima','diproses','selesai') DEFAULT 'diterima',
+  `file` text,
+  `status_surat` enum('diterima','diproses','selesai') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'diterima',
   `penerima` int(11) DEFAULT NULL,
-  `is_deleted` tinyint(4) DEFAULT false,
+  `is_deleted` tinyint(4) DEFAULT '0',
   `date_deleted` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `surat`
+--
+
+INSERT INTO `surat` (`id`, `tipe_surat`, `nomor_surat`, `tanggal_surat`, `isi`, `tanggal_diterima`, `sifat_surat`, `kecepatan_surat`, `asal_surat`, `tujuan_surat`, `file`, `status_surat`, `penerima`, `is_deleted`, `date_deleted`) VALUES
+(1, 'masuk', '21321321321', '2022-04-17 00:00:00', 'Surat ketua', '2022-04-18 00:00:00', 'biasa', 'biasa', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 'masuk', '3434323qw', '2022-04-18 16:41:33', 'assadsadsadsadsa', '2022-04-18 16:41:33', 'biasa', 'biasa', NULL, NULL, NULL, 'diterima', NULL, 0, NULL),
+(3, 'masuk', '001/DPR/04/2022', '2022-04-19 00:00:00', NULL, '2022-04-19 15:18:00', 'biasa', 'biasa', NULL, NULL, NULL, 'diterima', NULL, 0, NULL),
+(4, 'masuk', '002/DPRD/04/2022', '2022-04-17 00:00:00', 'Pemanggilan peserta diklat', '2022-04-19 15:21:37', 'rahasia', 'biasa', NULL, NULL, NULL, 'diterima', NULL, 1, NULL),
+(5, 'keluar', '002/DPRD/04/2022', '2022-04-17 00:00:00', 'Pemanggilan peserta diklat', '2022-04-19 15:22:35', 'rahasia', 'biasa', NULL, NULL, NULL, 'diterima', NULL, 0, NULL),
+(6, 'keluar', '003/DPRD/04/2022', '2022-04-15 00:00:00', 'Pemanggilan peserta diklat', '2022-04-19 15:23:43', 'biasa', 'biasa', NULL, NULL, NULL, 'diterima', NULL, 0, NULL),
+(7, 'keluar', '003/DPRD/04/2022', '2022-04-15 00:00:00', 'Inventarisasi Penyelenggaraan Kerjasama Daerah', '2022-04-19 15:28:49', 'biasa', 'biasa', NULL, NULL, NULL, 'diterima', NULL, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -176,7 +180,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'administrator', '$2y$10$5LnSYYCq/4HU6pB1eGVdY.sRv9R.xF0zL0CX2lMbHkd4AnrRDI3SG', 'admin@admin.com', NULL, '', NULL, NULL, NULL, '1c16938f3efcf1d62ad8cddd922e7bd1f9e706fd', '$2y$10$4LROt8x5jrzgK3/EVwkDP.D1.kNqde4q3cPZqvbwabI.lgthspl1y', 1268889823, 1650075050, 1, 'Admin', 'istrator', 'ADMIN', '0');
+(1, '127.0.0.1', 'administrator', '$2y$10$5LnSYYCq/4HU6pB1eGVdY.sRv9R.xF0zL0CX2lMbHkd4AnrRDI3SG', 'admin@admin.com', NULL, '', NULL, NULL, NULL, 'a96b5b91831e592cdb9f07c113247c132fab20f4', '$2y$10$mSuCz1qTf8ey8IYesp83ReuATlaXhVzZZUSpm92uy.te.I88e4LA.', 1268889823, 1650332762, 1, 'Admin', 'istrator', 'ADMIN', '0');
 
 -- --------------------------------------------------------
 
@@ -284,7 +288,7 @@ ALTER TABLE `login_attempts`
 -- AUTO_INCREMENT for table `surat`
 --
 ALTER TABLE `surat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -312,8 +316,8 @@ ALTER TABLE `disposisi`
 -- Constraints for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  ADD CONSTRAINT `fk_users_groups_groups1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_users_groups_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_users_groups_groups1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_users_groups_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

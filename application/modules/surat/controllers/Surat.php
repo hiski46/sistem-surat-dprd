@@ -21,6 +21,7 @@ class Surat extends CI_Controller
 	public function list()
 	{
 		$data["surat"] = $this->ModelSurat->get_surat();
+		print_r($data);
 	}
 
 	public function add_surat()
@@ -29,5 +30,13 @@ class Surat extends CI_Controller
 		$this->load->view('include/header', $data);
 		$this->load->view('form_surat');
 		$this->load->view('include/footer');
+	}
+
+	public function save()
+	{
+		if($this->ModelSurat->save())
+		{
+			
+		}
 	}
 }
