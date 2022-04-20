@@ -11,6 +11,17 @@ class Surat extends CI_Controller
 
 	public function index()
 	{
+		$data["css"] = array(
+			"https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback",
+			"assets/backend/plugins/fontawesome-free/css/all.min.css",
+			"https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+		);
+		$data["js"] = array(
+			""
+		);
+
+
+
 		$data["title"] = "surat masuk";
 		$data["surat"] = $this->ModelSurat->get_surat();
 		$this->load->view('include/header', $data);
@@ -26,6 +37,16 @@ class Surat extends CI_Controller
 
 	public function add_surat()
 	{
+
+		$data["js"] = array(
+			"assets/js/wizard.js",
+			"assets/app/input.surat.js"
+		);
+
+		$data["css"] = array(
+			"assets/css/wizard.css"
+		);
+
 		$data["title"] = "surat masuk";
 		$this->load->view('include/header', $data);
 		$this->load->view('form_surat');

@@ -6,32 +6,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title><?php echo "Sistem Manajemen Surat"; ?></title>
 
-	<!-- Google Font: Source Sans Pro -->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-	<!-- Font Awesome -->
-	<link rel="stylesheet" href="<?= base_url('assets/backend/plugins/fontawesome-free/css/all.min.css') ?>">
-	<!-- Ionicons -->
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<!-- Tempusdominus Bootstrap 4 -->
-	<link rel="stylesheet" href="<?= base_url() ?>assets/backend/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-	<!-- iCheck -->
-	<link rel="stylesheet" href="<?= base_url() ?>assets/backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-	<!-- JQVMap -->
-	<link rel="stylesheet" href="<?= base_url() ?>assets/backend/plugins/jqvmap/jqvmap.min.css">
-	<!-- Theme style -->
-	<link rel="stylesheet" href="<?= base_url() ?>assets/backend/dist/css/adminlte.min.css">
-	<!-- overlayScrollbars -->
-	<link rel="stylesheet" href="<?= base_url() ?>assets/backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-	<!-- Daterange picker -->
-	<link rel="stylesheet" href="<?= base_url() ?>assets/backend/plugins/daterangepicker/daterangepicker.css">
-	<!-- summernote -->
-	<link rel="stylesheet" href="<?= base_url() ?>assets/backend/plugins/summernote/summernote-bs4.min.css">
+	<script type="language/javascript">
+		var site_url = "<?php echo site_url(); ?>" ;
+		var base_url = "<?php echo base_url(); ?>" ;
+	</script>
 
-	<!-- DataTables -->
-	<link rel="stylesheet" href="<?= base_url() ?>assets/backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-	<link rel="stylesheet" href="<?= base_url() ?>assets/backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-	<link rel="stylesheet" href="<?= base_url() ?>assets/backend/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-	<link rel="stylesheet" href="<?= base_url('assets/css/wizard.css') ?>">
+	<?php load_css(get_base_css()); ?>
+	<?php if($css) { load_css($css); } ?>
 
 </head>
 
@@ -40,9 +21,7 @@
 		 <!-- Preloader -->
 		<div class="preloader flex-column justify-content-center align-items-center">
     		<img src="<?php echo base_url("assets/images/logo-dprd-prov.png"); ?>" alt="DPRD PROVINSI LAMPUNG" height="80" width="80">
-			<p></p>
 			<span>SISTEM MANAJEMEN SURAT</span>
-			<span>DPRD PROVINSI LAMPUNG</span>
 		</div>
 		<!-- Navbar -->
 		<nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -51,33 +30,24 @@
 				<li class="nav-item">
 					<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
 				</li>
-
 			</ul>
 
 			<!-- Right navbar links -->
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item dropdown">
-					<a class="nav-link" data-toggle="dropdown" href="#">
+					<a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
 						<i class="far fa-user"></i>
-
 					</a>
-					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-						<div class="dropdown-divider"></div>
-						<a href="#" class="dropdown-item text-center">
-							Profile
+					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
+						<a href="#" class="dropdown-item">
+							<i class="fas fa-file mr-2"></i>Profile
 						</a>
 						<div class="dropdown-divider"></div>
-						<div class="d-flex justify-content-center">
-							<form action="<?= site_url('auth/logout') ?>" method="POST">
-
-								<button class="btn btn-sm btn-danger mt-2 mb-2" type="submit">
-									Logout	<i class="fas fa-xs fa-sign-out-alt"></i>
-								</button>
-						</div>
-						</form>
-
+						<a href="<?php echo site_url('auth/logout') ?>" class="dropdown-item">
+							<i class="fas fa-sign-out-alt mr-2"></i>Logout
+						</a>
 					</div>
-				</li>
+      			</li>
 			</ul>
 		</nav>
 		<!-- /.navbar -->
@@ -87,7 +57,7 @@
 			<!-- Brand Logo -->
 			<a href="<?php echo site_url("surat"); ?>" class="brand-link">
 				<img src="<?php echo base_url("assets/images/logo-dprd-prov.png"); ?>" alt="DPRD PROVINSI LAMPUNG" class="brand-image img-circle elevation-3" style="opacity: .8">			
-				<span class="">SISTEM MANAJEMEN SURAT</span>
+				<span class="">MANAJEMEN SURAT</span>
 			</a>
 
 			<!-- Sidebar -->
@@ -121,7 +91,7 @@
 					<li class="nav-item menu-open">
 							<a href="#" class="nav-link active">
 								<i class="nav-icon fas fa-envelope"></i>
-								<p>SURAT MASUK<i class="right fas fa-angle-right"></i></p>
+								<p>SURAT KELUAR<i class="right fas fa-angle-right"></i></p>
 							</a>
 						<ul class="nav nav-treeview">
 							<li class="nav-item">
@@ -134,12 +104,6 @@
 								<a href="./index2.html" class="nav-link">
 									<i class="far fa-circle nav-icon"></i>
 									<p>DISPOSISI SURAT</p>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="./index3.html" class="nav-link">
-									<i class="far fa-circle nav-icon"></i>
-									<p>Dashboard v3</p>
 								</a>
 							</li>
 						</ul>
@@ -164,7 +128,7 @@
 						</li>
 
 						<li class="nav-item">
-							<a href="<?= site_url('disposisi') ?>" class="nav-link">
+							<a href="<?= site_url('surat/disposisi') ?>" class="nav-link">
 								<i class="nav-icon fas fa-arrow-right"></i>
 								<p>
 									Disposisi
@@ -179,7 +143,7 @@
 			<!-- /.sidebar -->
 		</aside>
 		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
+		<div class="content-wrapper" style="min-height: 2171px;">
 			<!-- Content Header (Page header) -->
 			<!-- <div class="content-header">
 				<div class="container-fluid">
@@ -197,6 +161,16 @@
 				<!-- /.container-fluid -->
 			<!-- </div> -->
 			<!-- /.content-header -->
+
+			<section class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h1></h1>
+						</div>
+					</div>
+				</div><!-- /.container-fluid -->
+			</section>			
 
 			<!-- Main content -->
 			<section class="content">

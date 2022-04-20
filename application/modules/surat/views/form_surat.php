@@ -1,9 +1,8 @@
 		<div class="row">
 			<div class="col-md-12">
-				<h3>MEMBUAT SURAT</h3>
                 <form action="" method="post" class="f1">
 					<input type="hidden" name="tipe_surat" value="masuk"/>
-                    <div class="f1-steps">
+                    <div class="f1-steps" style="text-align: center;">
                         <div class="f1-progress">
                             <div class="f1-progress-line" data-now-value="25" data-number-of-steps="4" style="width: 25%;"></div>
                         </div>
@@ -26,17 +25,44 @@
                     </div>
                     <!-- step 1 -->
                     <fieldset>
-                        <div class="form-group row">
+                        <div class="form-group row mx-sm-3 mb-2">
                             <label class="col-md-2">Nomor Surat</label>
-                            <input type="text" name="nomor_surat" placeholder="Nomor Surat" class="form-control col-md-4">
+							<?php
+								echo form_input(array(
+									"id" => "nomor_surat",
+									"name" => "nomor_surat",
+									"value" => "",
+									"placeholder" => "Nomor Surat",
+									"class" => "form-control col-md-4"
+								));
+							?>
+                            <!-- <input type="text" name="nomor_surat" placeholder="Nomor Surat" class="form-control col-md-4"> -->
                         </div>
-                        <div class="form-group mx-sm-3 mb-2">
-                            <label>Tanggal Surat</label>
-                            <input type="text" name="nama_akhir" placeholder="Tanggal Surat" class="form-control">
+                        <div class="form-group row mx-sm-3 mb-2">
+                            <label class="col-md-2">Tanggal Surat</label>
+							<?php
+								echo form_input(array(
+									"id" => "tanggal_surat",
+									"name" => "tanggal_surat",
+									"value" => "",
+									"placeholder" => "Tanggal Surat",
+									"class" => "form-control col-md-4 datetimepicker-input datepicker",
+									"data-target" => ""
+								));
+							?>
+
+							<!-- <input type="text" name="nama_akhir" placeholder="Tanggal Surat" class="form-control col-md-4"> -->
                         </div>
-                        <div class="form-group mx-sm-3 mb-2">
-                            <label>Tentang Kamu</label>
-                            <textarea name="tentang_kamu" placeholder="Tentang Kamu" class="form-control"></textarea>
+                        <div class="form-group row mx-sm-3 mb-2">
+                            <label class="col-md-2">Isi Surat</label>
+							<?php
+								echo form_input(array(
+									"id" => "isi_surat",
+									"name" => "isi_surat",
+									"value" => "",
+									"placeholder" => "Isi Surat",
+									"class" => "form-control col-md-4 datetimepicker-input datepicker"								));
+							?>
                         </div>
                         <div class="f1-buttons">
                             <button type="button" class="btn btn-primary btn-next">Selanjutnya <i class="fa fa-arrow-right"></i></button>
