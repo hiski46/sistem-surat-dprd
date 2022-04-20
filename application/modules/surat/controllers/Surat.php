@@ -62,11 +62,13 @@ class Surat extends CI_Controller
 
 		$data["js"] = array(
 			"assets/js/wizard.js",
+			"assets/backend/plugins/bs-stepper/js/bs-stepper.min.js",
 			"assets/app/input.surat.js"
 		);
 
 		$data["css"] = array(
-			"assets/css/wizard.css"
+			"assets/css/wizard.css",
+			"assets/backend/plugins/bs-stepper/css/bs-stepper.min.css"
 		);
 
 		$data["title"] = "surat masuk";
