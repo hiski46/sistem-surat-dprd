@@ -17,10 +17,8 @@ class Surat extends CI_Controller
 			"https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
 		);
 		$data["js"] = array(
-			""
+			"assets/app/surat.js"
 		);
-
-
 
 		$data["title"] = "surat masuk";
 		$data["surat"] = $this->ModelSurat->get_surat();
