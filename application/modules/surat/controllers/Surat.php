@@ -20,7 +20,7 @@ class Surat extends CI_Controller
 			"assets/app/surat.js"
 		);
 
-		$data["title"] = "surat masuk";
+		$data["title"] = "surat masukx";
 		$data["surat"] = $this->ModelSurat->get_surat();
 		$this->load->view('include/header', $data);
 		$this->load->view('list_surat');
@@ -29,17 +29,30 @@ class Surat extends CI_Controller
 
 	public function list()
 	{
-		$data["surat"] = $this->ModelSurat->get_surat();
+		$data = array();
+		$list_surat = $this->ModelSurat->get_surat();
+
+		foreach ($list_surat as $key => $surat) {
+			$temp_surat["no_surat"] = $surat["nomor_surat"];
+			$temp_surat["tanggal_surat"] = $surat["tanggal_surat"];
+			$temp_surat["isi_surat"] = $surat["isi_surat"];
+
+			$data[] = $temp_surat;
+		}
 
 		if($this->input->is_ajax_request())
 		{
-			echo $this->output
-        		->set_content_type('application/json')
-        		->set_output(json_encode($data["surat"]))->_display();
+
+			$response["draw"] = 1; 
+			$response["recordsTotal"] = 20; 
+			$response["recordsFiltered"] = 20; 
+			$response["data"] = $data; 
+			echo json_encode($response);
 
 		} else 
 		{
-			print_r($data["surat"]);
+			$response["data"] = $data;
+			echo json_encode($response, JSON_FORCE_OBJECT);
 		}
 		
 	}

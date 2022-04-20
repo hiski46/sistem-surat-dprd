@@ -7,8 +7,8 @@
 	<title><?php echo "Sistem Manajemen Surat"; ?></title>
 
 	<script type="language/javascript">
-		var site_url = "<?php echo site_url(); ?>" ;
-		var base_url = "<?php echo base_url(); ?>" ;
+		site_url = "<?php echo site_url(); ?>" ;
+		base_url = "<?php echo base_url(); ?>" ;
 	</script>
 
 	<?php load_css(get_base_css()); ?>
@@ -70,19 +70,19 @@
 						<li class="nav-item menu-open">
 							<a href="#" class="nav-link active">
 								<i class="nav-icon fas fa-envelope"></i>
-								<p>SURAT MASUK<i class="right fas fa-angle-right"></i></p>
+								<p>Surat Masuk<i class="right fas fa-angle-right"></i></p>
 							</a>
 						<ul class="nav nav-treeview">
 							<li class="nav-item">
 								<a href="<?php echo site_url('surat/surat'); ?>" class="nav-link active">
 									<i class="far fa-circle nav-icon"></i>
-									<p>DAFTAR SURAT</p>
+									<p>Daftar Surat</p>
 								</a>
 							</li>
 							<li class="nav-item">
 								<a href="<?php echo site_url('surat/surat/disposisi'); ?>" class="nav-link">
 									<i class="far fa-circle nav-icon"></i>
-									<p>DISPOSISI </p>
+									<p>Disposisi</p>
 								</a>
 							</li>
 						</ul>
@@ -91,19 +91,19 @@
 					<li class="nav-item menu-open">
 							<a href="#" class="nav-link active">
 								<i class="nav-icon fas fa-envelope"></i>
-								<p>SURAT KELUAR<i class="right fas fa-angle-right"></i></p>
+								<p>Surat Keluar<i class="right fas fa-angle-right"></i></p>
 							</a>
 						<ul class="nav nav-treeview">
 							<li class="nav-item">
 								<a href="./index.html" class="nav-link active">
 									<i class="far fa-circle nav-icon"></i>
-									<p>DAFTAR SURAT</p>
+									<p>Daftar SuratT</p>
 								</a>
 							</li>
 							<li class="nav-item">
 								<a href="./index2.html" class="nav-link">
 									<i class="far fa-circle nav-icon"></i>
-									<p>DISPOSISI SURAT</p>
+									<p>Disposisi</p>
 								</a>
 							</li>
 						</ul>
@@ -129,7 +129,7 @@
 
 						<li class="nav-item">
 							<a href="<?= site_url('surat/disposisi') ?>" class="nav-link">
-								<i class="nav-icon fas fa-arrow-right"></i>
+								<i class="nav-icon fas fa-solid fa-box-archive"></i>
 								<p>
 									Disposisi
 								</p>
@@ -166,7 +166,7 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1></h1>
+							
 						</div>
 					</div>
 				</div><!-- /.container-fluid -->

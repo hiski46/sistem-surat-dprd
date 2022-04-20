@@ -119,7 +119,7 @@
 
 <?php } ?>
 
-<script>
+<!-- <script>
   $(function () {
     $('#table-surat').DataTable({
       "paging": true,
@@ -133,7 +133,7 @@
 	}).buttons().container().appendTo('#container-surat .col-md-6:eq(0)');
   });
 </script>
-
+ -->
 
 </body>
 
