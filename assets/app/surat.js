@@ -1,15 +1,5 @@
 $(document).ready(function() {
     // alert(site_url);
-    // $.ajax({
-    // 	type: "GET",
-    // 	url: "http://localhost/sim-surat-dprd/surat/surat/list",
-    // 	success: function(response){
-    // 		alert(response);
-    // 	},
-    // 	fail: function(){
-    // 		alert("error");
-    // 	}
-    // });
 
     list_surat();
 
@@ -17,7 +7,7 @@ $(document).ready(function() {
         $("#table-surat").DataTable({
             "processsing": true,
             "serverSide": true,
-            "ajax": {
+            ajax: {
                 "url": "http://localhost/sim-surat-dprd/surat/surat/list",
                 "type": "GET"
             },
@@ -34,4 +24,5 @@ $(document).ready(function() {
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#container-surat .col-md-6:eq(0)');;
     }
+
 });

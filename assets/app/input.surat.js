@@ -1,4 +1,4 @@
 $(document).ready(function() {
-	// BS-Stepper Init
+    // BS-Stepper Init
     window.stepper = new Stepper(document.querySelector('.bs-stepper'))
 });
