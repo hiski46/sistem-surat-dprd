@@ -50,7 +50,7 @@ class ModelSurat extends CI_Model {
 
 	public function datatables_disposisi()
 	{
-		$this->datatables->select('d.id, d.nama, d.jabatan, d.disposisi, d.tanggal_disposisi');
+		$this->datatables->select('d.id, d.nama_instansi, d.jabatan, d.disposisi, d.tanggal_disposisi');
 		$this->datatables->from('disposisi as d');
 		$this->datatables->join('surat as s', 'd.id_surat = s.id', 'inner');
 		$this->datatables->where('d.is_deleted', 0);

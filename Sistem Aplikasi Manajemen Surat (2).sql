@@ -24,19 +24,20 @@ CREATE TABLE `disposisi` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_surat` int(13) DEFAULT NULL,
   `tanggal_disposisi` datetime DEFAULT NULL,
-  `nama` text,
+  `nama_instansi` text,
   `jabatan` varchar(128) DEFAULT NULL,
   `disposisi` text,
   `catatan` text,
-  `file` text,
-  `status` tinyint(4) DEFAULT NULL,
   `is_deleted` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_surat` (`id_surat`),
   CONSTRAINT `disposisi_ibfk_1` FOREIGN KEY (`id_surat`) REFERENCES `surat` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `disposisi` */
+
+insert  into `disposisi`(`id`,`id_surat`,`tanggal_disposisi`,`nama_instansi`,`jabatan`,`disposisi`,`catatan`,`is_deleted`) values 
+(1,1,'2022-04-21 21:48:36','Indra Hermawan, S.H.','Seketaris','Telah diterima','Sudah diterima\r\n',0);
 
 /*Table structure for table `groups` */
 
@@ -154,7 +155,7 @@ insert  into `surat`(`id`,`tipe_surat`,`nomor_surat`,`tanggal_surat`,`isi`,`tang
 (4,'masuk','002/DPRD/04/2022','2022-04-17 00:00:00','Pemanggilan peserta diklat','2022-04-19 15:21:37','rahasia','biasa',NULL,NULL,NULL,'diterima',NULL,1,NULL),
 (5,'keluar','002/DPRD/04/2022','2022-04-17 00:00:00','Pemanggilan peserta diklat','2022-04-19 15:22:35','rahasia','biasa',NULL,NULL,NULL,'diterima',NULL,0,NULL),
 (6,'keluar','003/DPRD/04/2022','2022-04-15 00:00:00','Pemanggilan peserta diklat','2022-04-19 15:23:43','biasa','biasa',NULL,NULL,NULL,'diterima',NULL,0,NULL),
-(7,'keluar','003/DPRD/04/2022','2022-04-15 00:00:00','Inventarisasi Penyelenggaraan Kerjasama Daerah','2022-04-19 15:28:49','biasa','biasa',NULL,NULL,NULL,'diterima',NULL,0,NULL);
+(7,'internal','003/DPRD/04/2022','2022-04-15 00:00:00','Inventarisasi Penyelenggaraan Kerjasama Daerah','2022-04-19 15:28:49','biasa','biasa',NULL,NULL,NULL,'diterima',NULL,0,NULL);
 
 /*Table structure for table `users` */
 
@@ -190,7 +191,7 @@ CREATE TABLE `users` (
 /*Data for the table `users` */
 
 insert  into `users`(`id`,`ip_address`,`username`,`password`,`email`,`activation_selector`,`activation_code`,`forgotten_password_selector`,`forgotten_password_code`,`forgotten_password_time`,`remember_selector`,`remember_code`,`created_on`,`last_login`,`active`,`first_name`,`last_name`,`company`,`phone`) values 
-(1,'127.0.0.1','administrator','$2y$10$5LnSYYCq/4HU6pB1eGVdY.sRv9R.xF0zL0CX2lMbHkd4AnrRDI3SG','admin@admin.com',NULL,'',NULL,NULL,NULL,'6f351860e91d31584ad7b6b1226e955e2fc67799','$2y$10$Ev/M1VPczzAyDKNaaoHDbO/i57W1nc9FinAQbUSzZwIwEDrlZk/cK',1268889823,1650525624,1,'Admin','istrator','ADMIN','0');
+(1,'127.0.0.1','administrator','$2y$10$5LnSYYCq/4HU6pB1eGVdY.sRv9R.xF0zL0CX2lMbHkd4AnrRDI3SG','admin@admin.com',NULL,'',NULL,NULL,NULL,'bb54ed43590a15c5b029537c692a0db0cf4187cd','$2y$10$kpdZOPrYZ5g5lBZiPQfzTO6L1hVpq0iHj5hmTjQrHf3f5Sr5YE8ea',1268889823,1650549632,1,'Admin','istrator','ADMIN','0');
 
 /*Table structure for table `users_groups` */
 

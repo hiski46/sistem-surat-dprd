@@ -46,7 +46,7 @@ function loadSuratDisposisi() {
 				className: "text-center align-middle",
 			},
 			{
-				data: "nama",
+				data: "nama_instansi",
 				className: "align-middle",
 			},
 			{
