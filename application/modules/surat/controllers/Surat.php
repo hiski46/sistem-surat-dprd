@@ -11,66 +11,32 @@ class Surat extends CI_Controller
 
 	public function index()
 	{
-		$data["css"] = array(
-			"https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback",
-			"assets/backend/plugins/fontawesome-free/css/all.min.css",
-			"https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
-		);
-		$data["js"] = array(
-			"assets/app/surat.js"
-		);
-
-		$data["title"] = "surat masukx";
+		$data["title"] = "surat masuk";
 		$data["surat"] = $this->ModelSurat->get_surat();
+		$data['js'] = ["assets/app/surat.js"];
 		$this->load->view('include/header', $data);
 		$this->load->view('list_surat');
 		$this->load->view('include/footer');
 	}
 
-	public function list()
+	public function datatables_surat_masuk()
 	{
-		$data = array();
-		$list_surat = $this->ModelSurat->get_surat();
+		header('Content-Type: application/json');
+		echo $this->ModelSurat->datatables_surat_masuk();
+	}
 
-		foreach ($list_surat as $key => $surat) {
-			$temp_surat["no_surat"] = $surat["nomor_surat"];
-			$temp_surat["tanggal_surat"] = $surat["tanggal_surat"];
-			$temp_surat["isi_surat"] = $surat["isi_surat"];
-
-			$data[] = $temp_surat;
-		}
-
-		if($this->input->is_ajax_request())
-		{
-
-			$response["draw"] = 1; 
-			$response["recordsTotal"] = 20; 
-			$response["recordsFiltered"] = 20; 
-			$response["data"] = $data; 
-			echo json_encode($response);
-
-		} else 
-		{
-			$response["data"] = $data;
-			echo json_encode($response, JSON_FORCE_OBJECT);
-		}
-		
+	public function detail_surat($id){
+		$id_surat = $this->secure->decrypt_url($id);
+		$data = [
+			'surat' => $this->ModelSurat->getDataById($id_surat),
+		];
+		$this->load->view('include/header', $data);
+		$this->load->view('detail_surat');
+		$this->load->view('include/footer');
 	}
 
 	public function add_surat()
 	{
-
-		$data["js"] = array(
-			"assets/js/wizard.js",
-			"assets/backend/plugins/bs-stepper/js/bs-stepper.min.js",
-			"assets/app/input.surat.js"
-		);
-
-		$data["css"] = array(
-			"assets/css/wizard.css",
-			"assets/backend/plugins/bs-stepper/css/bs-stepper.min.css"
-		);
-
 		$data["title"] = "surat masuk";
 		$this->load->view('include/header', $data);
 		$this->load->view('form_surat');

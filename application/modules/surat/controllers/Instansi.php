@@ -3,29 +3,34 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Jabatan extends CI_Controller
+class Instansi extends CI_Controller
 {
 
 	public function __construct()
 	{
 		parent::__construct();
 
-		$this->load->model('ModelJabatan');
+		$this->load->model('ModelInstansi');
 	}
 
 
 	public function index()
 	{
 		$data = [
-			'title' => 'Jabatan',
+			'title' => 'Instansi',
 			'js' => [
-				'assets/app/jabatan.js'
+				'assets/app/instansi.js'
 			],
 		];
 
 		$this->load->view('include/header', $data);
-		$this->load->view('jabatan/index', $data);
+		$this->load->view('instansi/index', $data);
 		$this->load->view('include/footer', $data);
+	}
+
+	public function datatables(){
+		header('Content-Type: application/json');
+		echo $this->ModelInstansi->datatables();
 	}
 
 

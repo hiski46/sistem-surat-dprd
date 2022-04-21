@@ -3,6 +3,52 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ModelSurat extends CI_Model {
 
+	private $table = 'surat';
+	private $id = 'id';
+
+	public function datatables_surat_masuk()
+	{
+		function callback($id){
+			return '<a href="' . site_url('surat/Surat/detail_surat/' . encrypt_url($id)) . '" class="btn btn-sm mr-2 btn-primary btn-tambah" data-id="$1" data-toggle="tooltip" title="Tambah"><i class="fas fa-search-plus"></i></a><button type="button" class="btn btn-sm mr-2 btn-warning btn-edit" data-id="' . encrypt_url($id) . '" data-toggle="tooltip" title="Edit"><i class="far fa-edit"></i></button><button type="button" class="btn btn-sm mr-2 btn-danger btn-hapus" data-id="' . encrypt_url($id) . '" data-toggle="tooltip" title="Hapus"><i class="far fa-trash-alt"></i></button>';
+		}
+		$this->datatables->select('id, nomor_surat, isi, tanggal_diterima, sifat_surat, asal_surat, tujuan_surat');
+		$this->datatables->where('is_deleted', 0);
+		$this->datatables->where('tipe_surat', 'masuk');
+		$this->datatables->from($this->table);
+		$this->datatables->add_column('action', '$1', 'callback(id)');
+
+		return $this->datatables->generate();
+	}
+
+	public function getData()
+	{
+		$query = $this->db->get($this->table);
+		return $query->result();
+	}
+
+	public function getDataById($id)
+	{
+		$this->db->where($this->id, $id);
+		return $this->db->get($this->table)->row();
+	}
+
+	public function create($data)
+	{
+		$this->db->insert($this->table, $data);
+	}
+
+	public function update($id, $data)
+	{
+		$this->db->where($this->id, $id);
+		$this->db->update($this->table, $data);
+	}
+
+	public function delete($id)
+	{
+		$this->db->where($this->id, $id);
+		$this->db->delete($this->table);
+	}
+
 	public function get_surat()
 	{
 		$this->db->select("*");

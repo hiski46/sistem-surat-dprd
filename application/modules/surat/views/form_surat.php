@@ -1,86 +1,104 @@
-<div class="row">
-          <div class="col-md-12">
-            <div class="card card-default">
-              <div class="card-header">
-                <h2 class="card-title">TAMBAH SURAT</h2>
-								<div class="card-tools">
-
-								</div>
-              </div>
-              <div class="card-body p-0">
-                <div class="bs-stepper linear">
-                  <div class="bs-stepper-header" role="tablist">
-                    <!-- your steps here -->
-                    <div class="step active" data-target="#logins-part">
-                      <button type="button" class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger" aria-selected="true">
-                        <span class="bs-stepper-circle">1</span>
-                        <span class="bs-stepper-label">Logins</span>
-                      </button>
-                    </div>
-                    <div class="line"></div>
-                    <div class="step" data-target="#logins-partx">
-                      <button type="button" class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger" aria-selected="true">
-                        <span class="bs-stepper-circle">2</span>
-                        <span class="bs-stepper-label">Loginsx</span>
-                      </button>
-                    </div>
-                    <div class="line"></div>
-                    <div class="step" data-target="#information-part">
-                      <button type="button" class="step-trigger" role="tab" aria-controls="information-part" id="information-part-trigger" aria-selected="false" disabled="disabled">
-                        <span class="bs-stepper-circle">3</span>
-                        <span class="bs-stepper-label">Various information</span>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="bs-stepper-content">
-                    <!-- your steps content here -->
-                    <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                      </div>
-                      <button class="btn btn-primary" onclick="stepper.next()">Next</button>
-                    </div>
-                    <div id="logins-partx" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                      </div>
-                      <button class="btn btn-primary" onclick="stepper.previous()">Previous</button>
-                      <button class="btn btn-primary" onclick="stepper.next()">Next</button>
-                    </div>
-                    <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
-                      <div class="form-group">
-                        <label for="exampleInputFile">File input</label>
-                        <div class="input-group">
-                          <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="exampleInputFile">
-                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                          </div>
-                          <div class="input-group-append">
-                            <span class="input-group-text">Upload</span>
-                          </div>
-                        </div>
-                      </div>
-                      <button class="btn btn-primary" onclick="stepper.previous()">Previous</button>
-                      <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /.card-body -->
-              <div class="card-footer">
-              </div>
-            </div>
-            <!-- /.card -->
-          </div>
-        </div>
-
+		<div class="row">
+			<div class="col-md-12 col-md-offset-1">
+				<h3>MEMBUAT SURAT</h3>
+				<form action="" method="post" class="f1">
+					<input type="hidden" name="tipe_surat" value="masuk" />
+					<div class="f1-steps" style="text-align: center !important;">
+						<div class="f1-progress">
+							<div class="f1-progress-line" data-now-value="25" data-number-of-steps="4" style="width: 25%;"></div>
+						</div>
+						<div class="f1-step active">
+							<div class="f1-step-icon"><i class="fa fa-envelope"></i></div>
+							<p>Surat</p>
+						</div>
+						<div class="f1-step">
+							<div class="f1-step-icon"><i class="fa fa-home"></i></div>
+							<p>Alamat</p>
+						</div>
+						<div class="f1-step">
+							<div class="f1-step-icon"><i class="fa fa-key"></i></div>
+							<p>Akun</p>
+						</div>
+						<div class="f1-step">
+							<div class="f1-step-icon"><i class="fa fa-address-book"></i></div>
+							<p>Sosial</p>
+						</div>
+					</div>
+					<!-- step 1 -->
+					<fieldset>
+						<div class="form-group row">
+							<label class="col-md-2">Nomor Surat</label>
+							<input type="text" name="nomor_surat" placeholder="Nomor Surat" class="form-control col-md-4">
+						</div>
+						<div class="form-group row">
+							<label class="col-md-2">Tanggal Surat</label>
+							<input type="text" name="nama_akhir" placeholder="Tanggal Surat" class="form-control col-md-4">
+						</div>
+						<div class="form-group row">
+							<label class="col-md-2">Tentang Kamu</label>
+							<textarea name="tentang_kamu" placeholder="Tentang Kamu" class="form-control col-md-4"></textarea>
+						</div>
+						<div class="f1-buttons">
+							<button type="button" class="btn btn-primary btn-next">Selanjutnya <i class="fa fa-arrow-right"></i></button>
+						</div>
+					</fieldset>
+					<!-- step 2 -->
+					<fieldset>
+						<div class="form-group">
+							<label>Tempat Lahir</label>
+							<input type="text" name="tempat_lahir" placeholder="Tempat Lahir" class="form-control">
+						</div>
+						<div class="form-group">
+							<label>Alamat Rumah</label>
+							<input type="text" name="alamat_rumah" placeholder="Alamat Rumah" class="form-control">
+						</div>
+						<div class="form-group">
+							<label>Alamat Kantor</label>
+							<textarea name="alamat_kantor" placeholder="Alamat Kantor" class="form-control"></textarea>
+						</div>
+						<div class="f1-buttons">
+							<button type="button" class="btn btn-warning btn-previous"><i class="fa fa-arrow-left"></i> Sebelumnya</button>
+							<button type="button" class="btn btn-primary btn-next">Selanjutnya <i class="fa fa-arrow-right"></i></button>
+						</div>
+					</fieldset>
+					<!-- step 3 -->
+					<fieldset>
+						<div class="form-group">
+							<label>Email</label>
+							<input type="text" name="email" placeholder="Email" class="form-control">
+						</div>
+						<div class="form-group">
+							<label>Password</label>
+							<input type="password" name="password" placeholder="Password" class="form-control">
+						</div>
+						<div class="form-group">
+							<label>Ulangi password</label>
+							<input type="password" name="ulangi_password" placeholder="Ulangi password" class="form-control">
+						</div>
+						<div class="f1-buttons">
+							<button type="button" class="btn btn-warning btn-previous"><i class="fa fa-arrow-left"></i> Sebelumnya</button>
+							<button type="button" class="btn btn-primary btn-next">Selanjutnya <i class="fa fa-arrow-right"></i></button>
+						</div>
+					</fieldset>
+					<!-- step 4 -->
+					<fieldset>
+						<div class="form-group">
+							<label>Facebook</label>
+							<input type="text" name="facebook" placeholder="Facebook" class="form-control">
+						</div>
+						<div class="form-group">
+							<label>Twitter</label>
+							<input type="text" name="twitter" placeholder="Twitter" class="form-control">
+						</div>
+						<div class="form-group">
+							<label>Google plus</label>
+							<input type="text" name="google_plus" placeholder="Google plus" class="form-control">
+						</div>
+						<div class="f1-buttons">
+							<button type="button" class="btn btn-warning btn-previous"><i class="fa fa-arrow-left"></i> Sebelumnya</button>
+							<button type="submit" class="btn btn-primary btn-submit"><i class="fa fa-save"></i> Submit</button>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>

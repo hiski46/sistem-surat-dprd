@@ -3,49 +3,49 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ModelJabatan extends CI_Model {
 
-	var $table = 'jabatan';
-	var $column_order = array('id', 'jabatan', 'parent', 'aksi');
-	var $order = array('id', 'jabatan', 'parent');
+	private $table = 'jabatan';
 
-	private function _get_data_query(){
-		$this->db->from($this->table);
-
-		if (isset($_POST['search']['value'])) {
-			$this->db->like('jabatan', $_POST['search']['value']);
-			$this->db->or_like('parent', $_POST['search']['value']);
-		}
-
-		if (isset($_POST['order'])) {
-			$this->db->order_by($this->order[$_POST['order'][0]['column']], $_POST['order'][0]['dir']);
-		}else{
-			$this->db->order_by('jabatan', 'ASC');
-		}
-	}
-
-
-	public function getDataTable(){
-		$this->_get_data_query();
-		if ($_POST['length'] != -1) {
-			$this->db->limit($_POST['length'], $_POST['start']);
-		}
-		$query = $this->db->get();
+	public function getData(){
+		$query = $this->db->get($this->table);
 		return $query->result();
 	}
 
-	public function count_filtered_data(){
-		$this->_get_data_query();
-		$query = $this->db->get();
-		return $query->num_rows();
+	public function getDataById($id){
+		$query = $this->db->get_where($this->table, ['id' => $id]);
+		return $query->row();
+	}
+	
+	public function create($data){
+		$this->db->insert($this->table, $data);
 	}
 
-	public function count_all_data(){
+	public function update($id, $data){
+		$this->db->where('id', $id);
+		$this->db->update($this->table, $data);
+	}
+
+	public function delete($id){
+		$this->db->where('id', $id);
+		$this->db->delete($this->table);
+	}
+
+	public function getAll()
+	{
+		$this->db->select('id, jabatan');
 		$this->db->from($this->table);
-		return $this->db->count_all_results();
+		$query = $this->db->get();
+
+		return $query;
 	}
 
+	public function getByParrent($parent_key)
+	{
+		$this->db->select('id, jabatan');
+		$this->db->from($this->table);
+		$this->db->where('parent', $parent_key);
+		$query = $this->db->get();
 
-	public function addData($data){
-		$this->db->insert('jabatan', $data);
+		return $query->result_array();
 	}
 
 }

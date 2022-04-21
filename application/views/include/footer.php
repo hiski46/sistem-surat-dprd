@@ -16,6 +16,12 @@
 	</aside>
 	<!-- /.control-sidebar -->
 </div>
+
+<script>
+	var base_url = '<?= base_url(); ?>';
+	var site_url = '<?= site_url(); ?>';
+</script>
+
 <!-- ./wrapper -->
 <?php load_js(get_base_js()); ?>
 <?php if(isset($js)) { load_js($js); }; ?>
@@ -26,3 +32,4 @@
 </body>
 
 </html>
+
