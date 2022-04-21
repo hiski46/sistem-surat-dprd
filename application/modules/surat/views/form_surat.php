@@ -2,7 +2,10 @@
           <div class="col-md-12">
             <div class="card card-default">
               <div class="card-header">
-                <h3 class="card-title">bs-stepper</h3>
+                <h2 class="card-title">TAMBAH SURAT</h2>
+								<div class="card-tools">
+
+								</div>
               </div>
               <div class="card-body p-0">
                 <div class="bs-stepper linear">
@@ -15,9 +18,16 @@
                       </button>
                     </div>
                     <div class="line"></div>
+                    <div class="step" data-target="#logins-partx">
+                      <button type="button" class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger" aria-selected="true">
+                        <span class="bs-stepper-circle">2</span>
+                        <span class="bs-stepper-label">Loginsx</span>
+                      </button>
+                    </div>
+                    <div class="line"></div>
                     <div class="step" data-target="#information-part">
                       <button type="button" class="step-trigger" role="tab" aria-controls="information-part" id="information-part-trigger" aria-selected="false" disabled="disabled">
-                        <span class="bs-stepper-circle">2</span>
+                        <span class="bs-stepper-circle">3</span>
                         <span class="bs-stepper-label">Various information</span>
                       </button>
                     </div>
@@ -33,6 +43,18 @@
                         <label for="exampleInputPassword1">Password</label>
                         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                       </div>
+                      <button class="btn btn-primary" onclick="stepper.next()">Next</button>
+                    </div>
+                    <div id="logins-partx" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                      </div>
+                      <button class="btn btn-primary" onclick="stepper.previous()">Previous</button>
                       <button class="btn btn-primary" onclick="stepper.next()">Next</button>
                     </div>
                     <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
@@ -56,7 +78,6 @@
               </div>
               <!-- /.card-body -->
               <div class="card-footer">
-                Visit <a href="https://github.com/Johann-S/bs-stepper/#how-to-use-it">bs-stepper documentation</a> for more examples and information about the plugin.
               </div>
             </div>
             <!-- /.card -->

@@ -75,7 +75,7 @@
 						<ul class="nav nav-treeview">
 							<li class="nav-item">
 								<a href="<?php echo site_url('surat/surat'); ?>" class="nav-link active">
-									<i class="far fa-circle nav-icon"></i>
+									<i class="fas fa-envelope-square nav-icon"></i>
 									<p>Daftar Surat</p>
 								</a>
 							</li>
@@ -97,7 +97,7 @@
 							<li class="nav-item">
 								<a href="./index.html" class="nav-link active">
 									<i class="far fa-circle nav-icon"></i>
-									<p>Daftar SuratT</p>
+									<p>Daftar Surat</p>
 								</a>
 							</li>
 							<li class="nav-item">
@@ -129,7 +129,7 @@
 
 						<li class="nav-item">
 							<a href="<?= site_url('surat/disposisi') ?>" class="nav-link">
-								<i class="nav-icon fas fa-solid fa-box-archive"></i>
+								<i class="nav-icon fas fa-archive"></i>
 								<p>
 									Disposisi
 								</p>
