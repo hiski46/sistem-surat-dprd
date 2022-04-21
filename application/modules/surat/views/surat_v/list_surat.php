@@ -3,14 +3,17 @@
 		<div class="card">
 			<div class="card-header" class="text-center">
 				<div class="d-flex justify-content-between align-items-center">
-					<h4>DAFTAR SURAT MASUK</h4>
-					<button type="button" class="btn btn-sm btn-primary" onclick="add()">
-						<i class="fas fa-plus"></i> Tambah Surat
+					<h4><?= $title; ?></h4>
+					<button type="button" class="btn btn-sm btn-primary" onclick="add()" data-toggle="tooltip" title="Tambah Surat">
+						<div class="row px-2">
+							<i class="fas fa-plus my-auto"></i> <span class="d-none d-sm-block ml-2"> Tambah Surat</span>
+						</div>
 					</button>
 				</div>
 			</div>
 			<div class="card-body" id="container-surat">
-				<table id="datatables" class="table table-bordered table-hover">
+				<!-- <div class="table-responsive"> -->
+				<table id="datatables" class="table table-bordered table-hover display nowrap" width="100%">
 					<thead>
 						<tr>
 							<th class="text-center align-middle">#</th>
@@ -19,11 +22,12 @@
 							<th class="text-center align-middle">Sifat Surat</th>
 							<th class="text-center align-middle">Asal Surat</th>
 							<th class="text-center align-middle">Tujuan Surat</th>
-							<th class="text-center align-middle">Isi Surat</th>
 							<th class="text-center align-middle">Action</th>
 						</tr>
 					</thead>
+					<tbody></tbody>
 				</table>
+				<!-- </div> -->
 			</div>
 		</div>
 	</div>

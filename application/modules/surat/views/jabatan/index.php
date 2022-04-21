@@ -3,9 +3,7 @@
 		<div class="card shadow">
 			<div class="card-header">
 				<div class="d-flex justify-content-between align-items-center">
-					<div class="font-weight-bold text-primary">
-						Struktur Jabatan
-					</div>
+					<h4>Struktur Jabatan</h4>
 					<button type="button" class="btn btn-sm btn-primary" onclick="add()">
 						Tambah Jabatan
 					</button>
@@ -53,4 +51,3 @@
 
 	</div>
 </div>
-

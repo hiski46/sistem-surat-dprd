@@ -5,20 +5,21 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?php echo base_url('assets/backend/plugins/fontawesome-free/css/all.min.css'); ?>">
 
-	<title>Login Akun</title>
+	<title>Login</title>
 </head>
 
-<body>
+<body style="background-image: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url('<?php echo base_url('assets/images/gedung-dprd.jpg'); ?>'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
 
-	<div class="container" style="margin-top: 150px">
+	<div class="container" style="margin-top: 100px;">
 		<div class="row">
 			<div class="col-md-5 offset-md-3">
+			<!-- <img src="<?php // echo base_url('assets/images/logo-dprd-prov.png'); ?>" class="brand-image img-circle elevation-3"/> -->
 				<div class="card">
 					<div class="card-body">
 						<label>LOGIN</label>
 						<hr>
-
 						<div class="form-group">
 							<label>Username</label>
 							<input type="text" class="form-control" name="identify" placeholder="Masukkan Username">
@@ -28,16 +29,17 @@
 							<label>Password</label>
 							<input type="password" name="password" class="form-control" name="password" id="password" placeholder="Masukkan Password">
 						</div>
-
 						<button class="btn btn-login btn-block btn-success">LOGIN</button>
-
 					</div>
 				</div>
-
-				<div class="text-center" style="margin-top: 15px">
-					Belum punya akun? <a href="<?php echo base_url() ?>index.php/register">Silahkan Register</a>
+				<p></p>
+				<div class="card">
+					<div class="card-body">
+						<a href="<?php echo site_url('surat/track'); ?>" class="btn btn-block btn-primary">
+							<i class="fa fa-search"></i> Tracking Surat
+						</a>
+					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>

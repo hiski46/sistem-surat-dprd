@@ -5,16 +5,10 @@
 	</div>
 	<!-- /.content-wrapper -->
 
-
-	<footer class="main-footer">
+	<footer class="text-center">
 		<strong>Copyright Sistem Manajemen Surat &copy; <?= date('Y'); ?> <a href="<?php echo site_url(); ?>"></a>.</strong>
 	</footer>
 
-	<!-- Control Sidebar -->
-	<aside class="control-sidebar control-sidebar-dark">
-		<!-- Control sidebar content goes here -->
-	</aside>
-	<!-- /.control-sidebar -->
 </div>
 
 <script>

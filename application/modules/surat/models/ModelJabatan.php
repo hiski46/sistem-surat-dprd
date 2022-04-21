@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class ModelJabatan extends CI_Model {
 
 	private $table = 'jabatan';
+	private $id = 'id';
 
 	public function getData(){
 		$query = $this->db->get($this->table);
@@ -11,7 +12,7 @@ class ModelJabatan extends CI_Model {
 	}
 
 	public function getDataById($id){
-		$query = $this->db->get_where($this->table, ['id' => $id]);
+		$query = $this->db->get_where($this->table, [$this->id => $id]);
 		return $query->row();
 	}
 	
@@ -20,12 +21,12 @@ class ModelJabatan extends CI_Model {
 	}
 
 	public function update($id, $data){
-		$this->db->where('id', $id);
+		$this->db->where($this->id, $id);
 		$this->db->update($this->table, $data);
 	}
 
 	public function delete($id){
-		$this->db->where('id', $id);
+		$this->db->where($this->id, $id);
 		$this->db->delete($this->table);
 	}
 

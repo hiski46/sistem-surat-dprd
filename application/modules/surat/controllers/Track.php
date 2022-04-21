@@ -6,12 +6,14 @@ class Track extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model("ModelSurat","ModelSurat");
+		$this->load->model("ModelTrack","ModelTrack");
 	}
 
 	public function index()
 	{
+		$this->load->view("frontend/header");
 		$this->load->view("tracking");
+		$this->load->view("frontend/footer");
 	}
 
 	public function list()

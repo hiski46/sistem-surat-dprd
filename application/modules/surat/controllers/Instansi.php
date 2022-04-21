@@ -18,6 +18,7 @@ class Instansi extends CI_Controller
 	{
 		$data = [
 			'title' => 'Instansi',
+			'active' => 'instansi',
 			'js' => [
 				'assets/app/instansi.js'
 			],

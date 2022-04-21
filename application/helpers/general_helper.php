@@ -103,6 +103,7 @@ if (!function_exists("get_base_js")) {
 			"assets/backend/plugins/datatables-buttons/js/buttons.colVis.min.js",
 			"//cdn.jsdelivr.net/npm/sweetalert2@11",
 			"assets/bootstrap-treeview/js/bootstrap-treeview.js",
+			"assets/app/main.js",
 		);
 	}
 }

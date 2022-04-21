@@ -12,15 +12,17 @@
 	</script>
 
 	<?php load_css(get_base_css()); ?>
-	<?php if(isset($css)) { load_css($css); } ?>
+	<?php if (isset($css)) {
+		load_css($css);
+	} ?>
 
 </head>
 
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
-		 <!-- Preloader -->
+		<!-- Preloader -->
 		<div class="preloader flex-column justify-content-center align-items-center">
-    		<img src="<?php echo base_url("assets/images/logo-dprd-prov.png"); ?>" alt="DPRD PROVINSI LAMPUNG" height="80" width="80">
+			<img src="<?php echo base_url("assets/images/logo-dprd-prov.png"); ?>" alt="DPRD PROVINSI LAMPUNG" height="80" width="80">
 			<span>SISTEM MANAJEMEN SURAT</span>
 		</div>
 		<!-- Navbar -->
@@ -47,7 +49,7 @@
 							<i class="fas fa-sign-out-alt mr-2"></i>Logout
 						</a>
 					</div>
-      			</li>
+				</li>
 			</ul>
 		</nav>
 		<!-- /.navbar -->
@@ -56,7 +58,7 @@
 		<aside class="main-sidebar sidebar-light-primary elevation-4">
 			<!-- Brand Logo -->
 			<a href="<?php echo site_url("surat"); ?>" class="brand-link">
-				<img src="<?php echo base_url("assets/images/logo-dprd-prov.png"); ?>" alt="DPRD PROVINSI LAMPUNG" class="brand-image img-circle elevation-3" style="opacity: .8">			
+				<img src="<?php echo base_url("assets/images/logo-dprd-prov.png"); ?>" alt="DPRD PROVINSI LAMPUNG" class="brand-image img-circle elevation-3" style="opacity: .8">
 				<span class="">MANAJEMEN SURAT</span>
 			</a>
 
@@ -67,62 +69,92 @@
 					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 						<!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-						<li class="nav-item menu-open">
-							<a href="#" class="nav-link active">
-								<i class="nav-icon fas fa-envelope"></i>
-								<p>Surat Masuk<i class="right fas fa-angle-right"></i></p>
-							</a>
-						<ul class="nav nav-treeview">
-							<li class="nav-item">
-								<a href="<?php echo site_url('surat/surat'); ?>" class="nav-link active">
-									<i class="fas fa-envelope-square nav-icon"></i>
-									<p>Daftar Surat</p>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="<?php echo site_url('surat/surat/disposisi'); ?>" class="nav-link">
-									<i class="far fa-circle nav-icon"></i>
-									<p>Disposisi</p>
-								</a>
-							</li>
-						</ul>
-					</li>
-
-					<li class="nav-item menu-open">
-							<a href="#" class="nav-link active">
-								<i class="nav-icon fas fa-envelope"></i>
-								<p>Surat Keluar<i class="right fas fa-angle-right"></i></p>
-							</a>
-						<ul class="nav nav-treeview">
-							<li class="nav-item">
-								<a href="./index.html" class="nav-link active">
-									<i class="far fa-circle nav-icon"></i>
-									<p>Daftar Surat</p>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="./index2.html" class="nav-link">
-									<i class="far fa-circle nav-icon"></i>
-									<p>Disposisi</p>
-								</a>
-							</li>
-						</ul>
-					</li>
-
-					<li class="nav-item">
-							<a href="<?= site_url('surat/dashboard') ?>" class="nav-link active">
+						<li class="nav-item">
+							<a href="<?= site_url('surat/dashboard') ?>" class="nav-link <?= (isset($active) && $active == 'dashboard') ? 'active' : ''; ?>">
 								<i class="nav-icon fas fa-tachometer-alt"></i>
 								<p>
 									Dashboard
 								</p>
 							</a>
 						</li>
+						<li class="nav-item menu-open">
+							<a href="#" class="nav-link <?= (isset($expand) && $expand == 'surat_masuk') ? 'active' : ''; ?>">
+								<i class="nav-icon fas fa-envelope"></i>
+								<p>Surat Masuk<i class="right fas fa-angle-right"></i></p>
+							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a href="<?php echo site_url('surat/masuk'); ?>" class="nav-link <?= (isset($active) && $active == 'surat_masuk') ? 'active' : ''; ?>">
+										<i class="fas fa-envelope-square nav-icon"></i>
+										<p>Daftar Surat</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="<?php echo site_url('surat/surat/disposisi'); ?>" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Disposisi</p>
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li class="nav-item menu-open">
+							<a href="#" class="nav-link <?= (isset($expand) && $expand == 'surat_keluar') ? 'active' : ''; ?>">
+								<i class="nav-icon fas fa-envelope"></i>
+								<p>Surat Keluar<i class="right fas fa-angle-right"></i></p>
+							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a href="<?= site_url('surat/keluar'); ?>" class="nav-link  <?= (isset($active) && $active == 'surat_keluar') ? 'active' : ''; ?>">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Daftar Surat</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="./index2.html" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Disposisi</p>
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li class="nav-item menu-open">
+							<a href="#" class="nav-link <?= (isset($expand) && $expand == 'surat_internal') ? 'active' : ''; ?>">
+								<i class="nav-icon fas fa-envelope"></i>
+								<p>Surat Internal<i class="right fas fa-angle-right"></i></p>
+							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a href="<?= site_url('surat/internal'); ?>" class="nav-link  <?= (isset($active) && $active == 'surat_internal') ? 'active' : ''; ?>">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Daftar Surat</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="./index2.html" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Disposisi</p>
+									</a>
+								</li>
+							</ul>
+						</li>
+
+
 
 						<li class="nav-item">
-							<a href="<?= site_url('surat/jabatan') ?>" class="nav-link">
+							<a href="<?= site_url('surat/Jabatan') ?>" class="nav-link <?= (isset($active) && $active == 'jabatan') ? 'active' : ''; ?>">
 								<i class="nav-icon fas fa-arrow-right"></i>
 								<p>
 									Jabatan
+								</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?= site_url('surat/Instansi') ?>" class="nav-link <?= (isset($active) && $active == 'instansi') ? 'active' : ''; ?>">
+								<i class="nav-icon fas fa-arrow-right"></i>
+								<p>
+									Instansi
 								</p>
 							</a>
 						</li>
@@ -154,11 +186,11 @@
 								<li class="breadcrumb-item active">Dashboard v1</li>
 							</ol>
 						</div> -->
-						<!-- /.col -->
-					<!-- </div> -->
-					<!-- /.row -->
-				<!-- </div> -->
-				<!-- /.container-fluid -->
+			<!-- /.col -->
+			<!-- </div> -->
+			<!-- /.row -->
+			<!-- </div> -->
+			<!-- /.container-fluid -->
 			<!-- </div> -->
 			<!-- /.content-header -->
 
@@ -166,16 +198,12 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							
+
 						</div>
 					</div>
 				</div><!-- /.container-fluid -->
-			</section>			
+			</section>
 
 			<!-- Main content -->
 			<section class="content">
 				<div class="container-fluid">
-
-
-
-
