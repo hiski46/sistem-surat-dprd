@@ -1,8 +1,6 @@
-
 $(document).ready(function () {
 	loadSuratDisposisi();
 });
-
 
 function loadSuratDisposisi() {
 	$.fn.dataTableExt.oApi.fnPagingInfo = function (oSettings) {
@@ -41,7 +39,7 @@ function loadSuratDisposisi() {
 		},
 		columns: [
 			{
-				data: "nama",
+				data: "nama_instansi",
 				orderable: false,
 				className: "text-center align-middle",
 			},
@@ -71,6 +69,9 @@ function loadSuratDisposisi() {
 			},
 		],
 		responsive: true,
+		searching: false,
+		paging: false,
+		info: false,
 		order: [],
 		rowCallback: function (row, data, iDisplayIndex) {
 			var info = this.fnPagingInfo();

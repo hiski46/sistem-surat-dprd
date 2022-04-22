@@ -27,7 +27,10 @@
 <?php if(isset($js)) { load_js($js); }; ?>
 
 <script>
-	$.widget.bridge('uibutton', $.ui.button)
+	$.widget.bridge('uibutton', $.ui.button);
+	bsCustomFileInput.init();
+	var stepper = new Stepper($(".bs-stepper")[0]);
+	// var stepper = new Stepper(document.querySelector('.bs-stepper'));
 </script>
 </body>
 

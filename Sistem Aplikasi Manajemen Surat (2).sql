@@ -68,12 +68,22 @@ CREATE TABLE `instansi` (
   `is_deleted` tinyint(1) DEFAULT '0',
   `date_deleted` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 /*Data for the table `instansi` */
 
 insert  into `instansi`(`id`,`instansi`,`alamat`,`is_deleted`,`date_deleted`) values 
-(1,'Kemenag','lbjhbajnasjhdbfad\r\n',0,NULL);
+(1,'Kementerian Agama Provinsi Lampung','Jl. Cut Mutia No.27, Gulak Galik, Teluk Betung Utara, Bandar Lampung\r\n',0,NULL),
+(2,'Kementerian Agama Kota Bandar Lampung','Jl. P. Emir Moh. Noer No.81, Sumur Putri, Kec. Telukbetung Selatan, Kota Bandar Lampung',0,'2022-04-22 04:00:19'),
+(3,'Kantor Kementerian Agama Kota Metro',' Jl. Ki Arsyad No. 06, Imopuro, Kec. Metro Pusat, Kota Metro, Lampun',0,'2022-04-22 04:00:19'),
+(4,'Dinas Pendidikan dan Kebudayaan Provinsi Lampung','Jl. Drs. Warsito No.72, Sumur Putri, Kec. Tlk. Betung Utara, Kota Bandar Lampung',0,'2022-04-22 04:01:32'),
+(5,'Dinas Pendidikan & Kebudayaan Kota Bandar Lampung','Jl. Amir Hamzah, Gotong Royong, Kec. Tj. Karang Pusat, Kota Bandar Lampung',0,'2022-04-22 04:01:32'),
+(6,'Kejaksaan Negeri Lampung Tengah','Gn. Sugih, Kec. Gn. Sugih, Kabupaten Lampung Tengah, Lampung',0,'2022-04-22 04:03:10'),
+(7,'Kejaksaan Negeri Bandar Lampung','Jl. Pulau Sebesi, Sukarame, Kec. Sukarame, Kota Bandar Lampung, Lampung',0,'2022-04-22 04:03:10'),
+(8,'Ramayana Tanjung Karang','Jl. Kota Raja No.27, Gn. Sari, Engal, Kota Bandar Lampung, Lampung',0,'2022-04-22 04:05:09'),
+(9,'PDAM Way Rilau','Jl. P. Emir Moh. Noer No.11a, Sumur Putri, Kec. Tlk. Betung Utara, Kota Bandar Lampung',0,'2022-04-22 04:05:09'),
+(10,'PDAM Tirta Jasa unit waykandis','Jl. Pdam Raya I, Way Huwi, Kec. Jati Agung, Kabupaten Lampung Selatan',0,'2022-04-22 04:07:09'),
+(11,'PDAM PRINGSEWU WAY SEKAMPUNG','Jl. A.Yani No.509, Sidoharjo, Kec. Pringsewu, Kabupaten Pringsewu, Lampung',0,'2022-04-22 04:07:09');
 
 /*Table structure for table `jabatan` */
 
@@ -84,17 +94,20 @@ CREATE TABLE `jabatan` (
   `jabatan` varchar(255) DEFAULT NULL,
   `parent` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `jabatan` */
 
 insert  into `jabatan`(`id`,`jabatan`,`parent`) values 
-(32,'Istimewa 123',0),
-(33,'qwqwe',32),
-(34,'asdasd',32),
-(35,'adasd',33),
-(36,'adada',1),
-(37,'zczxcz',34);
+(32,'Kepala Bagian Umum',0),
+(33,'KaSubBag Tata Usaha dan Kepegawaian',32),
+(34,'KaSubBag Perlengkapan dan Aset',32),
+(35,'KasSubBag Rumah Tangga',32),
+(36,'Kepala Bagian Keuangan',0),
+(37,'KaSubBag Perencanaan',36),
+(38,'KaSubBag Pembukuan dan Verifikasi',36),
+(39,'KasSubBag Perjalanan Dinas',36),
+(40,'KaSubBag Pembukuan dan Verifikasi',36);
 
 /*Table structure for table `login_attempts` */
 
@@ -144,18 +157,20 @@ CREATE TABLE `surat` (
   `is_deleted` tinyint(4) DEFAULT '0',
   `date_deleted` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `surat` */
 
 insert  into `surat`(`id`,`tipe_surat`,`nomor_surat`,`tanggal_surat`,`isi`,`tanggal_diterima`,`sifat_surat`,`kecepatan_surat`,`asal_surat`,`tujuan_surat`,`file`,`status_surat`,`penerima`,`is_deleted`,`date_deleted`) values 
-(1,'masuk','21321321321','2022-04-17 00:00:00','Surat ketua','2022-04-18 00:00:00','biasa','biasa',NULL,NULL,NULL,NULL,NULL,0,NULL),
-(2,'masuk','3434323qw','2022-04-18 16:41:33','assadsadsadsadsa','2022-04-18 16:41:33','biasa','biasa',NULL,NULL,NULL,'diterima',NULL,0,NULL),
-(3,'masuk','001/DPR/04/2022','2022-04-19 00:00:00',NULL,'2022-04-19 15:18:00','biasa','biasa',NULL,NULL,NULL,'diterima',NULL,0,NULL),
-(4,'masuk','002/DPRD/04/2022','2022-04-17 00:00:00','Pemanggilan peserta diklat','2022-04-19 15:21:37','rahasia','biasa',NULL,NULL,NULL,'diterima',NULL,1,NULL),
-(5,'keluar','002/DPRD/04/2022','2022-04-17 00:00:00','Pemanggilan peserta diklat','2022-04-19 15:22:35','rahasia','biasa',NULL,NULL,NULL,'diterima',NULL,0,NULL),
-(6,'keluar','003/DPRD/04/2022','2022-04-15 00:00:00','Pemanggilan peserta diklat','2022-04-19 15:23:43','biasa','biasa',NULL,NULL,NULL,'diterima',NULL,0,NULL),
-(7,'internal','003/DPRD/04/2022','2022-04-15 00:00:00','Inventarisasi Penyelenggaraan Kerjasama Daerah','2022-04-19 15:28:49','biasa','biasa',NULL,NULL,NULL,'diterima',NULL,0,NULL);
+(1,'masuk','B-DL.01.01/184/2022','2022-01-25 00:00:00','Pemanggilan peserta diklat Fungsional Pengangkatan Arsiparis Tingkat Ahli Angkatan 1','2022-01-26 00:00:00','biasa','biasa',NULL,NULL,NULL,'diterima',NULL,0,NULL),
+(2,'masuk','B-AK.01.01/25/2022','2022-02-02 16:41:33','Laporan Hasil Pengawasan Kearsipan','2022-02-02 16:41:33','biasa','biasa',NULL,NULL,NULL,'diterima',NULL,0,NULL),
+(3,'masuk','188/0366/03/2022','2022-01-29 00:00:00','Penyampaian Laporan Pembentukan Peraturan Kepala Daerah/Gubernur Tahun 2021','2022-02-22 15:18:00','biasa','biasa',NULL,NULL,NULL,'diterima',NULL,0,NULL),
+(4,'masuk','415.4/151/V.18/I/2022','2022-01-26 00:00:00','Inventarisasi Penyelenggaraan Kerjasama Daerah','2022-02-02 15:21:37','rahasia','biasa',NULL,NULL,NULL,'diterima',NULL,1,NULL),
+(5,'masuk','045/151/V.18/I/2021','2022-02-04 00:00:00','Penyusunan Analisis Resiko','2022-02-05 15:22:35','biasa','biasa',NULL,NULL,NULL,'diterima',NULL,0,NULL),
+(6,'masuk','041/186/V.18/IV/2022','2022-02-15 00:00:00','Undangan Menghadiri Pembukaan BimTek Pengelolaan HomeStay','2022-04-19 15:23:43','biasa','biasa',NULL,NULL,NULL,'diterima',NULL,0,NULL),
+(7,'internal','003/DPRD/04/2022','2022-04-15 00:00:00','Inventarisasi Penyelenggaraan Kerjasama Daerah','2022-04-19 15:28:49','biasa','biasa',NULL,NULL,NULL,'diterima',NULL,0,NULL),
+(8,'masuk','sfsfsf','2022-04-22 13:29:16','fsfsfsf','0000-00-00 00:00:00','biasa','biasa',0,0,NULL,'diterima',NULL,0,NULL),
+(9,'keluar','','2022-04-14 00:00:00','fsdfsdfsdf','2022-04-12 00:00:00','biasa','segera',0,0,NULL,'diterima',0,0,NULL);
 
 /*Table structure for table `users` */
 
@@ -191,7 +206,7 @@ CREATE TABLE `users` (
 /*Data for the table `users` */
 
 insert  into `users`(`id`,`ip_address`,`username`,`password`,`email`,`activation_selector`,`activation_code`,`forgotten_password_selector`,`forgotten_password_code`,`forgotten_password_time`,`remember_selector`,`remember_code`,`created_on`,`last_login`,`active`,`first_name`,`last_name`,`company`,`phone`) values 
-(1,'127.0.0.1','administrator','$2y$10$5LnSYYCq/4HU6pB1eGVdY.sRv9R.xF0zL0CX2lMbHkd4AnrRDI3SG','admin@admin.com',NULL,'',NULL,NULL,NULL,'bb54ed43590a15c5b029537c692a0db0cf4187cd','$2y$10$kpdZOPrYZ5g5lBZiPQfzTO6L1hVpq0iHj5hmTjQrHf3f5Sr5YE8ea',1268889823,1650549632,1,'Admin','istrator','ADMIN','0');
+(1,'127.0.0.1','administrator','$2y$10$5LnSYYCq/4HU6pB1eGVdY.sRv9R.xF0zL0CX2lMbHkd4AnrRDI3SG','admin@admin.com',NULL,'',NULL,NULL,NULL,'919e4ddc086359341d4408ee11dc998b67acaa6b','$2y$10$QWaHcB5.eee.reYsSsAuO.LEvwOHtP.jyBfpnjLPE3iUQzEt91w3C',1268889823,1650608253,1,'Admin','istrator','ADMIN','0');
 
 /*Table structure for table `users_groups` */
 

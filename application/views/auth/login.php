@@ -10,9 +10,9 @@
 	<title>Login</title>
 </head>
 
-<body style="background-image: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url('<?php echo base_url('assets/images/gedung-dprd.jpg'); ?>'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+<body>
 
-	<div class="container" style="margin-top: 100px;">
+	<div class="container-fluid" style="padding-top: 100px; padding-bottom: 100px; background-image: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url('<?php echo base_url('assets/images/gedung-dprd.jpg'); ?>'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
 		<div class="row">
 			<div class="col-md-5 offset-md-3">
 			<!-- <img src="<?php // echo base_url('assets/images/logo-dprd-prov.png'); ?>" class="brand-image img-circle elevation-3"/> -->

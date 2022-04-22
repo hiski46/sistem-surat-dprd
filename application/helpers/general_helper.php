@@ -101,9 +101,13 @@ if (!function_exists("get_base_js")) {
 			"assets/backend/plugins/datatables-buttons/js/buttons.html5.min.js",
 			"assets/backend/plugins/datatables-buttons/js/buttons.print.min.js",
 			"assets/backend/plugins/datatables-buttons/js/buttons.colVis.min.js",
+			"assets/backend/plugins/bs-stepper/js/bs-stepper.min.js",
+			"assets/backend/plugins/jquery-validation/jquery.validate.min.js",
+			"assets/backend/plugins/jquery-validation/additional-methods.min.js",
 			"//cdn.jsdelivr.net/npm/sweetalert2@11",
 			"assets/bootstrap-treeview/js/bootstrap-treeview.js",
 			"assets/app/main.js",
+			"assets/js/bs-custom-file-input.min.js",
 		);
 	}
 }
@@ -125,6 +129,7 @@ if (!function_exists("get_base_css")) {
 			"assets/backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css",
 			"assets/backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css",
 			"assets/backend/plugins/datatables-buttons/css/buttons.bootstrap4.min.css",
+			"assets/backend/plugins/bs-stepper/css/bs-stepper.min.css",
 			"assets/css/glyphicons.css",
 		);
 	}

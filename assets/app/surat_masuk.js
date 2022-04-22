@@ -1,6 +1,20 @@
 $(document).ready(function () {
 	loadSuratMasuk();
+	validationJquery();
 });
+
+function validationJquery() {
+	$(".btn-next1").on("click", function () {
+		// validasi form
+		
+
+		if (next_step) {
+			$('#identitas-surat').fadeOut(400, function () {
+				stepper.next();
+			});
+		}
+	});
+}
 
 function loadSuratMasuk() {
 	$.fn.dataTableExt.oApi.fnPagingInfo = function (oSettings) {
@@ -59,13 +73,17 @@ function loadSuratMasuk() {
 				className: "align-middle",
 			},
 			{
-				data: "asal_surat",
+				data: "isi",
 				className: "align-middle",
 			},
-			{
-				data: "tujuan_surat",
-				className: "align-middle",
-			},
+			// {
+			// 	data: "asal_surat",
+			// 	className: "align-middle",
+			// },
+			// {
+			// 	data: "tujuan_surat",
+			// 	className: "align-middle",
+			// },
 			{
 				data: "action",
 				orderable: false,
@@ -83,6 +101,25 @@ function loadSuratMasuk() {
 		},
 		drawCallback: function (settings) {
 			$('[data-toggle="tooltip"]').tooltip();
+		},
+	});
+}
+
+function create() {
+	$.ajax({
+		url: site_url + "Surat/create",
+		dataType: "json",
+		success: function (response) {},
+		error: function (xhr, ajaxOptions, thrownerror) {
+			Swal.fire({
+				title: "Maaf gagal load data!",
+				html: `Silahkan Cek kembali Kode Error: <strong>${
+					xhr.status + "\n"
+				}</strong> `,
+				icon: "error",
+				showConfirmButton: false,
+				timer: 3100,
+			}).then(function () {});
 		},
 	});
 }

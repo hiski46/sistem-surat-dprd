@@ -61,13 +61,17 @@ function loadSuratInternal() {
 				className: "align-middle",
 			},
 			{
-				data: "asal_surat",
+				data: "isi",
 				className: "align-middle",
 			},
-			{
-				data: "tujuan_surat",
-				className: "align-middle",
-			},
+			// {
+			// 	data: "asal_surat",
+			// 	className: "align-middle",
+			// },
+			// {
+			// 	data: "tujuan_surat",
+			// 	className: "align-middle",
+			// },
 			{
 				data: "action",
 				orderable: false,

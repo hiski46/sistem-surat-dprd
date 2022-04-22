@@ -40,9 +40,7 @@
 					</tr>
 				</table>
 
-				<button type="button" class="btn btn-sm btn-primary mt-4 float-right" onclick="add()">
-					<i class="fas fa-undo"></i> Disposisi Surat
-				</button>
+
 			</div>
 		</div>
 	</div>
@@ -54,6 +52,9 @@
 			<div class="card-header">
 				<div class="d-flex justify-content-between align-items-center">
 					<h4>Disposisi Surat</h4>
+					<button type="button" class="btn btn-sm btn-primary" onclick="add()">
+						<i class="fas fa-undo"></i> Disposisi Surat
+					</button>
 				</div>
 			</div>
 			<div class="card-body">
