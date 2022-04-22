@@ -4,16 +4,149 @@ $(document).ready(function () {
 });
 
 function validationJquery() {
-	$(".btn-next1").on("click", function () {
+	$(".btn-next1").on("click", function (e) {
 		// validasi form
+		var next_step = true;
 		
-
+		if ($("#nomor_surat").val() == '') {
+			$("#nomor_surat").addClass("is-invalid");
+			next_step = false;
+		} else {
+			$("#nomor_surat").removeClass("is-invalid");
+		}
+		if ($("#tanggal_surat").val() == '') {
+			$("#tanggal_surat").addClass("is-invalid");
+			next_step = false;
+		} else {
+			$("#tanggal_surat").removeClass("is-invalid");
+		}
+		if ($("#tanggal_diterima").val() == '') {
+			$("#tanggal_diterima").addClass("is-invalid");
+			next_step = false;
+		} else {
+			$("#tanggal_diterima").removeClass("is-invalid");
+		}
+		if ($("#asal_surat").val() == '') {
+			$("#asal_surat").addClass("is-invalid");
+			next_step = false;
+		} else {
+			$("#asal_surat").removeClass("is-invalid");
+		}
+		if ($("#penerima").val() == '') {
+			$("#penerima").addClass("is-invalid");
+			next_step = false;
+		} else {
+			$("#penerima").removeClass("is-invalid");
+		}
+		
 		if (next_step) {
+			$("#identitas-surat").css("display", "none");
+			$("#jenis-surat").css("display", "block");
 			$('#identitas-surat').fadeOut(400, function () {
 				stepper.next();
 			});
 		}
 	});
+
+	$('.btn-prev1').on("click", function (e) {
+		$("#identitas-surat").fadeOut(400, function () {
+			$("#identitas-surat").css('display', 'block');
+			$("#jenis-surat").css('display', 'none');
+			$("#isi-surat").css('display', 'none');
+			$("#file-surat").css('display', 'none');
+			stepper.previous();
+		});
+	});
+
+	$(".btn-next2").on("click", function (e) {
+		e.preventDefault();
+		// validasi form
+		var next_step = true;
+		
+		if ($("#tipe_surat option:selected").val() == '') {
+			$("#tipe_surat").addClass("is-invalid");
+			next_step = false;
+		} else {
+			$("#tipe_surat").removeClass("is-invalid");
+		}
+		if ($("#sifat_surat option:selected").val() == "") {
+			$("#sifat_surat").addClass("is-invalid");
+			next_step = false;
+		} else {
+			$("#sifat_surat").removeClass("is-invalid");
+		}
+		if ($("#kecepatan_surat option:selected").val() == "") {
+			$("#kecepatan_surat").addClass("is-invalid");
+			next_step = false;
+		} else {
+			$("#kecepatan_surat").removeClass("is-invalid");
+		}
+
+		if (next_step) {
+			$("#jenis-surat").css("display", "none");
+			$("#isi-surat").css("display", "block");
+			$('#jenis-surat').fadeOut(400, function () {
+				stepper.next();
+			});
+		}
+	});
+
+	$(".btn-prev2").on("click", function (e) {
+		$("#jenis-surat").fadeOut(400, function () {
+			$("#identitas-surat").css("display", "none");
+			$("#jenis-surat").css("display", "block");
+			$("#isi-surat").css("display", "none");
+			$("#file-surat").css("display", "none");
+			stepper.previous();
+		});
+	});
+
+	$(".btn-next3").on("click", function (e) {
+		e.preventDefault();
+		// validasi form
+		var next_step = true;
+		
+		if ($("#tujuan_surat").val() == "") {
+			$("#tujuan_surat").addClass("is-invalid");
+			next_step = false;
+		} else {
+			$("#tujuan_surat").removeClass("is-invalid");
+		}
+		if ($("#isi").val() == "") {
+			$("#isi").addClass("is-invalid");
+			next_step = false;
+		} else {
+			$("#isi").removeClass("is-invalid");
+		}
+
+		if (next_step) {
+			$("#jenis-surat").css("display", "none");
+			$("#file-surat").css("display", "block");
+			$('#isi-surat').fadeOut(400, function () {
+				stepper.next();
+			});
+		}
+	});
+
+	$(".btn-prev3").on("click", function (e) {
+		$("#isi-surat").fadeOut(400, function () {
+			$("#identitas-surat").css("display", "none");
+			$("#jenis-surat").css("display", "none");
+			$("#isi-surat").css("display", "block");
+			$("#file-surat").css("display", "none");
+			stepper.previous();
+		});
+	});
+
+	$('.btn-simpan').on('click', function (e) {
+		if ($("#file")[0].files.length === 0) {
+			$("#file").addClass("is-invalid");
+			
+		} else {
+			$("#file").removeClass("is-invalid");
+		}
+	});
+
 }
 
 function loadSuratMasuk() {

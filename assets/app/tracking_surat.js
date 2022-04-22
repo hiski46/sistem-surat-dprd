@@ -1,5 +1,8 @@
-$(document).ready(function() {
-    alert(base_url + "aaaa");
+$(document).ready(function(){
+	$("#form-track").submit(function(event){
+		
+		alert(JSON.stringify($(this)));
 
-	// Swal.fire("Good job!", "You clicked the button!", "success");
+		event.preventDefault();
+	});
 });

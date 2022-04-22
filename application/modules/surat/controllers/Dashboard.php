@@ -19,6 +19,7 @@ class Dashboard extends CI_Controller
 		$data = [
 			'title' => 'Dasboard'
 		];
+		$data["js"] = array("assets/app/tracking_surat.js");
 
 		$this->load->view('include/header', $data);
 		$this->load->view('dashboard');

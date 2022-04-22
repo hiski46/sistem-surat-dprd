@@ -16,12 +16,6 @@
 	$.widget.bridge('uibutton', $.ui.button)
 </script>
 
-<script>
-	$(document).ready(function(){
-		alert("dddddddd");
-	});
-</script>
-
 
 </body>
 
