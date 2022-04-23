@@ -6,7 +6,7 @@ class ModelJabatan extends CI_Model {
 	private $table = 'jabatan';
 	private $id = 'id';
 
-	public function getData(){
+	public function getAll(){
 		$query = $this->db->get($this->table);
 		return $query->result();
 	}
@@ -27,10 +27,11 @@ class ModelJabatan extends CI_Model {
 
 	public function delete($id){
 		$this->db->where($this->id, $id);
+		$this->db->or_where('parent', $id);
 		$this->db->delete($this->table);
 	}
 
-	public function getAll()
+	public function getData()
 	{
 		$this->db->select('id, jabatan');
 		$this->db->from($this->table);

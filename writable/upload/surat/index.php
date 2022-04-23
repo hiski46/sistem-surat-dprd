@@ -1,3 +1,3 @@
 <?php
-
+ echo "Not Permited !";
 ?>

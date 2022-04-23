@@ -12,7 +12,7 @@ class Track extends CI_Controller
 	public function index()
 	{
 		$data['js'] = array(
-			"assets/app/tracking_surat.js"
+			"assets/app/surat/tracking_surat.js"
 		);
 
 		$this->load->view("frontend/header",$data);

@@ -1,59 +1,80 @@
 $(document).ready(function () {
 	loadSuratMasuk();
 	validationJquery();
+	alert();
 });
+
+function alert() {
+	const flashSuccess = $(".flash-success").data("flashdata");
+	const flashError = $(".flash-error").data("flashdata");
+
+	if (flashSuccess) {
+		Swal.fire({
+			icon: "success",
+			title: "Berhasil",
+			text: flashSuccess,
+		});
+	}
+	if (flashError) {
+		Swal.fire({
+			icon: "error",
+			title: "Gagal",
+			text: flashError,
+		});
+	}
+}
 
 function validationJquery() {
 	$(".btn-next1").on("click", function (e) {
 		// validasi form
 		var next_step = true;
-		
-		if ($("#nomor_surat").val() == '') {
+
+		if ($("#nomor_surat").val() == "") {
 			$("#nomor_surat").addClass("is-invalid");
 			next_step = false;
 		} else {
 			$("#nomor_surat").removeClass("is-invalid");
 		}
-		if ($("#tanggal_surat").val() == '') {
+		if ($("#tanggal_surat").val() == "") {
 			$("#tanggal_surat").addClass("is-invalid");
 			next_step = false;
 		} else {
 			$("#tanggal_surat").removeClass("is-invalid");
 		}
-		if ($("#tanggal_diterima").val() == '') {
+		if ($("#tanggal_diterima").val() == "") {
 			$("#tanggal_diterima").addClass("is-invalid");
 			next_step = false;
 		} else {
 			$("#tanggal_diterima").removeClass("is-invalid");
 		}
-		if ($("#asal_surat").val() == '') {
+		if ($("#asal_surat").val() == "") {
 			$("#asal_surat").addClass("is-invalid");
 			next_step = false;
 		} else {
 			$("#asal_surat").removeClass("is-invalid");
 		}
-		if ($("#penerima").val() == '') {
+		if ($("#penerima").val() == "") {
 			$("#penerima").addClass("is-invalid");
 			next_step = false;
 		} else {
 			$("#penerima").removeClass("is-invalid");
 		}
-		
+
 		if (next_step) {
 			$("#identitas-surat").css("display", "none");
 			$("#jenis-surat").css("display", "block");
-			$('#identitas-surat').fadeOut(400, function () {
+			$("#identitas-surat").fadeOut(400, function () {
 				stepper.next();
 			});
 		}
 	});
 
-	$('.btn-prev1').on("click", function (e) {
+	$(".btn-prev1").on("click", function (e) {
 		$("#identitas-surat").fadeOut(400, function () {
-			$("#identitas-surat").css('display', 'block');
-			$("#jenis-surat").css('display', 'none');
-			$("#isi-surat").css('display', 'none');
-			$("#file-surat").css('display', 'none');
+			$("#identitas-surat").css("display", "block");
+			$("#jenis-surat").css("display", "none");
+			$("#isi-surat").css("display", "none");
+			$("#file-surat").css("display", "none");
 			stepper.previous();
 		});
 	});
@@ -62,8 +83,8 @@ function validationJquery() {
 		e.preventDefault();
 		// validasi form
 		var next_step = true;
-		
-		if ($("#tipe_surat option:selected").val() == '') {
+
+		if ($("#tipe_surat option:selected").val() == "") {
 			$("#tipe_surat").addClass("is-invalid");
 			next_step = false;
 		} else {
@@ -85,7 +106,7 @@ function validationJquery() {
 		if (next_step) {
 			$("#jenis-surat").css("display", "none");
 			$("#isi-surat").css("display", "block");
-			$('#jenis-surat').fadeOut(400, function () {
+			$("#jenis-surat").fadeOut(400, function () {
 				stepper.next();
 			});
 		}
@@ -105,7 +126,7 @@ function validationJquery() {
 		e.preventDefault();
 		// validasi form
 		var next_step = true;
-		
+
 		if ($("#tujuan_surat").val() == "") {
 			$("#tujuan_surat").addClass("is-invalid");
 			next_step = false;
@@ -122,7 +143,7 @@ function validationJquery() {
 		if (next_step) {
 			$("#jenis-surat").css("display", "none");
 			$("#file-surat").css("display", "block");
-			$('#isi-surat').fadeOut(400, function () {
+			$("#isi-surat").fadeOut(400, function () {
 				stepper.next();
 			});
 		}
@@ -138,15 +159,17 @@ function validationJquery() {
 		});
 	});
 
-	$('.btn-simpan').on('click', function (e) {
+	$(".btn-submit").on("click", function (e) {
+		e.preventDefault();
 		if ($("#file")[0].files.length === 0) {
+			$("#show-error-file").addClass("is-invalid");
 			$("#file").addClass("is-invalid");
-			
 		} else {
+			$("#show-error-file").removeClass("is-invalid");
 			$("#file").removeClass("is-invalid");
+			$("#form-tambah").submit();
 		}
 	});
-
 }
 
 function loadSuratMasuk() {

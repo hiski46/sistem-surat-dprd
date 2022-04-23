@@ -25,52 +25,123 @@ class Jabatan extends CI_Controller
 		];
 
 		$this->load->view('include/header', $data);
-		$this->load->view('jabatan/index', $data);
-		$this->load->view('include/footer', $data);
+		$this->load->view('jabatan/index');
+		$this->load->view('include/footer');
+	}
+
+	public function form_tambah()
+	{
+		$parent = $this->secure->decrypt_url($this->input->post('parent'));
+		$jabatan = $this->ModelJabatan->getDataById($parent);
+
+		$data = [
+			'title' => 'Tambah Jabatan',
+			'parent' => ($parent == '') ? $this->secure->encrypt_url(0) : $this->secure->encrypt_url($parent),
+			'jabatan' => $jabatan,
+		];
+
+		$msg = [
+			'message' => $this->load->view('jabatan/form_tambah', $data, true),
+		];
+
+		echo json_encode($msg);
+	}
+
+	public function form_edit()
+	{
+		$id = $this->secure->decrypt_url($this->input->post('id'));
+		$jabatan = $this->ModelJabatan->getDataById($id);
+		$list_jabatan = $this->ModelJabatan->getAll();
+
+		$data = [
+			'title' => 'Edit Jabatan',
+			'jabatan' => $jabatan,
+			'list_jabatan' => $list_jabatan,
+		];
+
+		$msg = [
+			'message' => $this->load->view('jabatan/form_edit', $data, true),
+		];
+
+		echo json_encode($msg);
 	}
 
 
-	public function addData()
+	public function create()
 	{
 		$this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
-		$this->form_validation->set_rules('parent', 'Parent', 'required');
-		
+
 		if ($this->form_validation->run() == FALSE) {
-			$error = [
-				'jabatan' => form_error('jabatan'),
-				'parent' => form_error('parent')
+			$msg = [
+				'error' => [
+					'jabatan' => form_error('jabatan'),
+				],
 			];
-			echo json_encode([
-				'status' => 'error',
-				'data' => $error
-			], true);
 		} else {
 
 			$data = [
 				'jabatan' => htmlspecialchars($this->input->post('jabatan')),
-				'parent' => htmlspecialchars($this->input->post('parent'))
+				'parent' => htmlspecialchars($this->secure->decrypt_url($this->input->post('parent')))
 			];
 
-			$this->ModelJabatan->addData($data);
+			$this->ModelJabatan->create($data);
 
-			echo json_encode([
+			$msg = [
 				'status' => 'success',
-				'message' => 'Data berhasil ditambahkan'
-			], true);
+				'message' => 'Data berhasil di simpan!',
+			];
 		}
+
+		echo json_encode($msg);
 	}
 
+	public function update()
+	{
+		$this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
+		$this->form_validation->set_rules('parent', 'Parent', 'required');
 
-	public function getBy($id){
+		if ($this->form_validation->run() == FALSE) {
+			$msg = [
+				'error' => [
+					'jabatan' => form_error('jabatan'),
+					'parent' => form_error('parent'),
+				],
+			];
+		} else {
+			$id = $this->secure->decrypt_url($this->input->post('id'));
+			$data = [
+				'jabatan' => htmlspecialchars($this->input->post('jabatan')),
+				'parent' => $this->secure->decrypt_url($this->input->post('parent'))
+			];
 
+			$this->ModelJabatan->update($id, $data);
+
+			$msg = [
+				'status' => 'success',
+				'message' => 'Data berhasil di simpan!',
+			];
+		}
+
+		echo json_encode($msg);
 	}
 
+	public function delete()
+	{
+		$id = $this->secure->decrypt_url($this->input->post('id'));
+		$this->ModelJabatan->delete($id);
 
-	public function updateData(){}
+		$msg = [
+			'status' => 'success',
+			'message' => 'Data berhasil di hapus!',
+		];
+
+
+		echo json_encode($msg);
+	}
 
 	public function get_ajax()
 	{
-		$row = $this->ModelJabatan->getAll();
+		$row = $this->ModelJabatan->getData();
 		$data = [];
 		$parent_key = '0';
 		// $row = $this->db->query('SELECT id, name from item');
@@ -94,7 +165,7 @@ class Jabatan extends CI_Controller
 			// $id = $value['id'];
 			$row1[$key]['id'] = $value['id'];
 			$row1[$key]['name'] = $value['jabatan'];
-			$row1[$key]['text'] = $value['jabatan'] . '<div class="float-right"><button data-id="' . $value['id'] . '" class="btn btn-xs btn-primary ml-2 mr-2 btn-tambah"><i class="glyphicon glyphicon-plus"></i></button><button data-id="' . $value['id'] . '" class="btn btn-xs btn-warning ml-2 mr-2 btn-edit"><i class="glyphicon glyphicon-pencil"></i></button><button data-id="' . $value['id'] . '" class="btn btn-xs btn-danger ml-2 mr-2 btn-hapus"><i class="glyphicon glyphicon-trash"></i></button></div>';
+			$row1[$key]['text'] = $value['jabatan'] . '<div class="float-right"><button data-id="' . $this->secure->encrypt_url($value['id']) . '" onclick="form_tambah(this)" class="btn btn-xs btn-primary ml-2 mr-2 btn-tambah"><i class="glyphicon glyphicon-plus"></i></button><button data-id="' . $this->secure->encrypt_url($value['id']) . '" onclick="form_edit(this)" class="btn btn-xs btn-warning ml-2 mr-2 btn-edit"><i class="glyphicon glyphicon-pencil"></i></button><button data-id="' . $this->secure->encrypt_url($value['id']) . '" onclick="hapus(this)" class="btn btn-xs btn-danger ml-2 mr-2 btn-hapus"><i class="glyphicon glyphicon-trash"></i></button></div>';
 			$row1[$key]['nodes'] = array_values($this->membersTree($value['id']));
 		}
 

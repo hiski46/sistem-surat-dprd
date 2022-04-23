@@ -160,10 +160,10 @@
 						</li>
 
 						<li class="nav-item">
-							<a href="<?= site_url('surat/disposisi') ?>" class="nav-link">
-								<i class="nav-icon fas fa-archive"></i>
+							<a href="<?= site_url('surat/Users') ?>" class="nav-link">
+								<i class="nav-icon fas fa-users"></i>
 								<p>
-									Disposisi
+									Manajemen Users
 								</p>
 							</a>
 						</li>

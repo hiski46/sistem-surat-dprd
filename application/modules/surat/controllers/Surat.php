@@ -14,7 +14,7 @@ class Surat extends CI_Controller
 	// {
 	// 	$data["title"] = "surat masuk";
 	// 	$data["surat"] = $this->ModelSurat->get_surat();
-	// 	$data['js'] = ["assets/app/surat.js"];
+	// 	$data['js'] = ["assets/app/surat/surat.js"];
 	// 	$this->load->view('include/header', $data);
 	// 	$this->load->view('surat_masuk/list_surat');
 	// 	$this->load->view('include/footer');
@@ -23,7 +23,7 @@ class Surat extends CI_Controller
 	public function masuk()
 	{
 		$data["title"] = "Surat Masuk";
-		$data['js'] = ["assets/app/surat_masuk.js"];
+		$data['js'] = ["assets/app/surat/surat_masuk.js"];
 		$data['expand'] = 'surat_masuk';
 		$data['active'] = 'surat_masuk';
 		$this->load->view('include/header', $data);
@@ -34,7 +34,7 @@ class Surat extends CI_Controller
 	public function keluar()
 	{
 		$data["title"] = "Surat Keluar";
-		$data['js'] = ["assets/app/surat_keluar.js"];
+		$data['js'] = ["assets/app/surat/surat_keluar.js"];
 		$data['expand'] = 'surat_keluar';
 		$data['active'] = 'surat_keluar';
 		$this->load->view('include/header', $data);
@@ -44,7 +44,7 @@ class Surat extends CI_Controller
 
 	public function internal(){
 		$data["title"] = "Surat Internal";
-		$data['js'] = ["assets/app/surat_internal.js"];
+		$data['js'] = ["assets/app/surat/surat_internal.js"];
 		$data['expand'] = 'surat_internal';
 		$data['active'] = 'surat_internal';
 		$this->load->view('include/header', $data);
@@ -79,7 +79,7 @@ class Surat extends CI_Controller
 	public function add(){
 		$data = [
 			'title' => 'Tambah Surat',
-			'js' => ["assets/app/surat_masuk.js"]
+			'js' => ["assets/app/surat/surat_masuk.js"]
 		];
 
 		$this->load->view('include/header', $data);
@@ -93,7 +93,7 @@ class Surat extends CI_Controller
 		$id_surat = $this->secure->decrypt_url($id);
 		$data = [
 			'surat' => $this->ModelSurat->getDataById($id_surat),
-			'js' => ["assets/app/surat_detail.js"],
+			'js' => ["assets/app/surat/surat_detail.js"],
 		];
 		$this->load->view('include/header', $data);
 		$this->load->view('surat_v/detail_surat');
@@ -108,37 +108,41 @@ class Surat extends CI_Controller
 		if ($this->form_validation->run() == false) {
 			$this->add();
 		}else {
-			$data = [
-				'tipe_surat' => $this->input->post('tipe_surat'),
-				'nomor_surat' => $this->input->post('nomor_surat'),
-				'tanggal_surat' => $this->input->post('tanggal_surat') . ' 00:00:00',
-				'isi' => $this->input->post('isi'),
-				'tanggal_diterima' => $this->input->post('tanggal_diterima') . ' 00:00:00',
-				'sifat_surat' => $this->input->post('sifat_surat'),
-				'kecepatan_surat' => $this->input->post('kecepatan_surat'),
-				'asal_surat' => $this->input->post('asal_surat'),
-				'tujuan_surat' => $this->input->post('tujuan_surat'),
-				'file' => $this->input->post('file'),
-				'status_surat' => 'diterima',
-				'penerima' => $this->input->post('penerima'),
-			];
+			$config['upload_path']          = FCPATH . '/writable/upload/surat/';
+			$config['allowed_types']        = 'pdf|jpg|png|jpeg';
+			$config['file_name']            = strtotime("now");
+			$config['max_size']             = 2048;
+			$this->load->library('upload', $config);
 
+			if ($this->upload->do_upload('file')) {
+				$uploaded_data = $this->upload->data();
+				$data = [
+					'tipe_surat' => 'masuk',
+					'nomor_surat' => $this->input->post('nomor_surat'),
+					'tanggal_surat' => $this->input->post('tanggal_surat') . ' 00:00:00',
+					'isi' => $this->input->post('isi'),
+					'tanggal_diterima' => $this->input->post('tanggal_diterima') . ' 00:00:00',
+					'sifat_surat' => $this->input->post('sifat_surat'),
+					'kecepatan_surat' => $this->input->post('kecepatan_surat'),
+					'asal_surat' => $this->input->post('asal_surat'),
+					'tujuan_surat' => $this->input->post('tujuan_surat'),
+					'file' => $uploaded_data['file_name'],
+					'status_surat' => 'diterima',
+					'penerima' => $this->input->post('penerima'),
+				];
+	
+				$this->ModelSurat->create($data);
 
-			$this->ModelSurat->create($data);
-
-			if ($this->input->post('tipe_surat') == 'masuk') {
-				redirect('surat/masuk');
-			} else if (($this->input->post('tipe_surat') == 'keluar')) {
-				redirect('surat/keluar');
-			} else {
-				redirect('surat/internal');
+				$this->session->set_flashdata('message', 'Data berhasil di simpan!');
+	
+				redirect(site_url('surat/masuk'));
 			}
+
 		}
 
 	}
 
 	private function validation(){
-		$this->form_validation->set_rules('tipe_surat', 'Tipe Surat', 'trim|required');
 		$this->form_validation->set_rules('nomor_surat', 'Nomor Surat', 'trim|required');
 		$this->form_validation->set_rules('tanggal_surat', 'Tanggal Surat', 'trim|required');
 		$this->form_validation->set_rules('isi', 'Isi Surat', 'trim|required');
@@ -147,7 +151,7 @@ class Surat extends CI_Controller
 		$this->form_validation->set_rules('kecepatan_surat', 'Kecepatan Surat', 'trim|required');
 		$this->form_validation->set_rules('asal_surat', 'Asal Surat', 'trim|required');
 		$this->form_validation->set_rules('tujuan_surat', 'Tujuan Surat', 'trim|required');
-		$this->form_validation->set_rules('file', 'File Surat', 'trim|required');
+		// $this->form_validation->set_rules('file', 'File Surat', 'required');
 		$this->form_validation->set_rules('penerima', 'Penerima Surat', 'trim|required');
 		$this->form_validation->set_error_delimiters('<small><span class="text-danger">', '</span></small>');
 	}

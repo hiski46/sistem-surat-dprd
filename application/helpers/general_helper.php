@@ -61,9 +61,9 @@ if (!function_exists("load_js")) {
 	{
 		foreach ($list_js as $key => $js) {
 			if (strpos($js, "http") !== false || strpos($js, "cdn") !== false) {
-				echo '<script src="' . $js . '"></script>';
+				echo '<script type="text/javascript" src="' . $js . '"></script>';
 			} else {
-				echo '<script src="' . base_url($js) . '"></script>';
+				echo '<script type="text/javascript" src="' . base_url($js) . '"></script>';
 			}
 		}
 	}

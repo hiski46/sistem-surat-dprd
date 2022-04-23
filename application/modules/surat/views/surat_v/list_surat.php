@@ -1,3 +1,10 @@
+<?php if ($this->session->flashdata('message')): ?>
+<div class="flash-success" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
+<?php endif; ?>
+<?php if ($this->session->flashdata('error')): ?>
+<div class="flash-error" data-flashdata="<?= $this->session->flashdata('error'); ?>"></div>
+<?php endif; ?>
+
 <div class="row">
 	<div class="col-12">
 		<div class="card">
