@@ -11,7 +11,7 @@
 			<div class="card-header" class="text-center">
 				<div class="d-flex justify-content-between align-items-center">
 					<h4><?= $title; ?></h4>
-					<a href="<?= site_url('Surat/add'); ?>" class="btn btn-sm btn-primary" onclick="add()" data-toggle="tooltip" title="Tambah Surat">
+					<a href="<?= site_url('Surat/add?type='. $this->uri->segment(2)); ?>" class="btn btn-sm btn-primary" onclick="add()" data-toggle="tooltip" title="Tambah Surat">
 						<div class="row px-2">
 							<i class="fas fa-plus my-auto"></i> <span class="d-none d-sm-block ml-2"> Tambah Surat</span>
 						</div>

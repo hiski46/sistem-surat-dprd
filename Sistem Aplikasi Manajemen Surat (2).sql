@@ -166,7 +166,7 @@ CREATE TABLE `surat` (
   `is_deleted` tinyint(4) DEFAULT '0',
   `date_deleted` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `surat` */
 
@@ -177,12 +177,7 @@ insert  into `surat`(`id`,`tipe_surat`,`nomor_surat`,`tanggal_surat`,`isi`,`tang
 (4,'masuk','415.4/151/V.18/I/2022','2022-01-26 00:00:00','Inventarisasi Penyelenggaraan Kerjasama Daerah','2022-02-02 15:21:37','rahasia','biasa',NULL,NULL,NULL,'diterima',NULL,1,NULL),
 (5,'masuk','045/151/V.18/I/2021','2022-02-04 00:00:00','Penyusunan Analisis Resiko','2022-02-05 15:22:35','biasa','biasa',NULL,NULL,NULL,'diterima',NULL,0,NULL),
 (6,'masuk','041/186/V.18/IV/2022','2022-02-15 00:00:00','Undangan Menghadiri Pembukaan BimTek Pengelolaan HomeStay','2022-04-19 15:23:43','biasa','biasa',NULL,NULL,NULL,'diterima',NULL,0,NULL),
-(7,'internal','003/DPRD/04/2022','2022-04-15 00:00:00','Inventarisasi Penyelenggaraan Kerjasama Daerah','2022-04-19 15:28:49','biasa','biasa',NULL,NULL,NULL,'diterima',NULL,0,NULL),
-(8,'masuk','sfsfsf','2022-04-22 13:29:16','fsfsfsf','0000-00-00 00:00:00','biasa','biasa',0,0,NULL,'diterima',NULL,0,NULL),
-(9,'keluar','','2022-04-14 00:00:00','fsdfsdfsdf','2022-04-12 00:00:00','biasa','segera',0,0,NULL,'diterima',0,0,NULL),
-(10,'masuk','sfsfsf','2022-04-16 00:00:00','hj','2022-03-31 00:00:00','biasa','biasa',0,0,'1650656469.png','diterima',0,0,NULL),
-(11,'masuk','bchfjghj','2022-04-22 00:00:00','gfhjhk','2022-04-01 00:00:00','rahasia','biasa',0,0,'1650657761.png','diterima',0,0,NULL),
-(12,'masuk','sfsfsf','2022-04-09 00:00:00','sfsfsfsf','2022-03-29 00:00:00','biasa','segera',0,0,'1650694523.png','diterima',0,0,NULL);
+(7,'internal','003/DPRD/04/2022','2022-04-15 00:00:00','Inventarisasi Penyelenggaraan Kerjasama Daerah','2022-04-19 15:28:49','biasa','biasa',NULL,NULL,NULL,'diterima',NULL,0,NULL);
 
 /*Table structure for table `users` */
 
@@ -206,8 +201,8 @@ CREATE TABLE `users` (
 
 insert  into `users`(`id`,`username`,`password`,`nama_lengkap`,`nip`,`id_jabatan`,`level`,`blokir`,`is_deleted`,`date_deleted`) values 
 (1,'ade','$2y$10$oriATDnGkazaYdmEchuDCOZ1R4h3gTBh.0dnhZRggqPkDpt2AZtZy','Ade Rahman1','sdad',33,'admin',0,0,NULL),
-(2,'jabrik_007','123','Shawn C. Graham','353534535',32,'admin',0,0,NULL),
-(3,'8954762663300082','123','Faeyza Armada','dfdfdf',32,'admin',0,1,'2022-04-23 20:28:17');
+(2,'jabrik_007','$2y$10$oriATDnGkazaYdmEchuDCOZ1R4h3gTBh.0dnhZRggqPkDpt2AZtZy','Shawn C. Graham','353534535',32,'admin',0,0,NULL),
+(3,'cinda','$2y$10$oriATDnGkazaYdmEchuDCOZ1R4h3gTBh.0dnhZRggqPkDpt2AZtZy','Faeyza Armada','dfdfdf',32,'admin',0,1,'2022-04-23 20:28:17');
 
 /*Table structure for table `users_back` */
 

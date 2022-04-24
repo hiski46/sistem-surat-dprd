@@ -77,9 +77,13 @@ class Surat extends CI_Controller
 	}
 
 	public function add(){
+		$this->load->model(['ModelInstansi', 'ModelJabatan']);
+		
 		$data = [
 			'title' => 'Tambah Surat',
-			'js' => ["assets/app/surat/surat_masuk.js"]
+			'js' => ["assets/app/surat/surat_create.js"],
+			'jabatan' => $this->ModelJabatan->getAll(),
+			'instansi' => $this->ModelInstansi->getAll(),
 		];
 
 		$this->load->view('include/header', $data);
@@ -117,7 +121,7 @@ class Surat extends CI_Controller
 			if ($this->upload->do_upload('file')) {
 				$uploaded_data = $this->upload->data();
 				$data = [
-					'tipe_surat' => 'masuk',
+					'tipe_surat' => $this->input->post('tipe_surat'),
 					'nomor_surat' => $this->input->post('nomor_surat'),
 					'tanggal_surat' => $this->input->post('tanggal_surat') . ' 00:00:00',
 					'isi' => $this->input->post('isi'),
@@ -135,11 +139,24 @@ class Surat extends CI_Controller
 
 				$this->session->set_flashdata('message', 'Data berhasil di simpan!');
 	
-				redirect(site_url('surat/masuk'));
+				if ($this->input->post('tipe_surat') == 'masuk') {
+					redirect(site_url('surat/masuk'));
+				}elseif ($this->input->post('tipe_surat') == 'keluar') {
+					redirect(site_url('surat/keluar'));
+				}else {
+					redirect(site_url('surat/internal'));
+				}
 			}
 
 		}
 
+	}
+
+	public function ubah_status_surat($id, $status){
+		$data = [
+			'status_surat' => $status,
+		];
+		$this->ModelSurat->update($id, $data);
 	}
 
 	private function validation(){

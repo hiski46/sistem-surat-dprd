@@ -5,19 +5,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Dashboard extends CI_Controller
 {
+	public function __construct()
+	{
+		parent::__construct();
+		if (logged_in() == false) {
+			redirect(site_url('login'));
+		}
+	}
 
 	public function index()
 	{
-
-		$this->load->library('ion_auth');
-		$this->ion_auth->login('admin@admin.com', 'password', TRUE);
-	   	if (!$this->ion_auth->logged_in())
-	   	{
-			exit('You Must be Logged in ');
-	   	} 
-
 		$data = [
-			'title' => 'Dasboard'
+			'title' => 'Dashboard'
 		];
 		$data["js"] = array("assets/app/tracking_surat.js");
 

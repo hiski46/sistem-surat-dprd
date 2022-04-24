@@ -104,6 +104,7 @@ if (!function_exists("get_base_js")) {
 			"assets/backend/plugins/bs-stepper/js/bs-stepper.min.js",
 			"assets/backend/plugins/jquery-validation/jquery.validate.min.js",
 			"assets/backend/plugins/jquery-validation/additional-methods.min.js",
+			"assets/backend/plugins/select2/js/select2.full.min.js",
 			"//cdn.jsdelivr.net/npm/sweetalert2@11",
 			"assets/bootstrap-treeview/js/bootstrap-treeview.js",
 			"assets/app/main.js",
@@ -130,8 +131,31 @@ if (!function_exists("get_base_css")) {
 			"assets/backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css",
 			"assets/backend/plugins/datatables-buttons/css/buttons.bootstrap4.min.css",
 			"assets/backend/plugins/bs-stepper/css/bs-stepper.min.css",
+			'assets/backend/plugins/select2/css/select2.min.css',
+			'assets/backend/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css',
 			"assets/css/glyphicons.css",
 		);
+	}
+}
+
+if (!function_exists("logged_in")) {
+	function logged_in(){
+		if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+}
+
+if (!function_exists("level")) {
+	function level($level)
+	{
+		if (isset($_SESSION['level']) && $_SESSION['level'] == $level) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
 

@@ -1,6 +1,27 @@
 $(document).ready(function () {
 	loadSuratKeluar();
+	alert();
 });
+
+function alert() {
+	const flashSuccess = $(".flash-success").data("flashdata");
+	const flashError = $(".flash-error").data("flashdata");
+
+	if (flashSuccess) {
+		Swal.fire({
+			icon: "success",
+			title: "Berhasil",
+			text: flashSuccess,
+		});
+	}
+	if (flashError) {
+		Swal.fire({
+			icon: "error",
+			title: "Gagal",
+			text: flashError,
+		});
+	}
+}
 
 function loadSuratKeluar() {
 	$.fn.dataTableExt.oApi.fnPagingInfo = function (oSettings) {
@@ -56,6 +77,13 @@ function loadSuratKeluar() {
 			},
 			{
 				data: "sifat_surat",
+				render: function (data) {
+					if (data == 'biasa') {
+						return '<span class="badge badge-success">'+data.charAt(0).toUpperCase() + data.slice(1)+'</span>';
+					} else {
+						return '<span class="badge badge-danger">'+data.charAt(0).toUpperCase() + data.slice(1)+'</span>';
+					}
+				},
 				className: "align-middle",
 			},
 			{

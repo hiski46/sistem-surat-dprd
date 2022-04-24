@@ -37,8 +37,9 @@
 						</div>
 					</div>
 					<div class="bs-stepper-content">
-						<form action="<?= site_url('surat/Surat/create'); ?>" method="post" enctype="multipart/form-data" id="form-tambah">
+						<form action="<?= site_url('surat/Surat/create?type=' . $_GET['type']); ?>" method="post" enctype="multipart/form-data" id="form-tambah">
 							<div id="identitas-surat" class="content" role="tabpanel" aria-labelledby="identitas-surat-trigger">
+								<input type="hidden" name="tipe_surat" value="<?= $_GET['type']; ?>">
 								<div class="form-group">
 									<label>Nomor Surat <?= form_error('nomor_surat'); ?></label>
 									<?php
@@ -97,16 +98,20 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label>Asal Surat <?= form_error('asal_surat'); ?></label>
+									<label>Asal Surat <?= form_error('asal_surat'); ?> <small class="text-warning">Jika Instansi/Jabatan Asal belum ada silahkan tambahkan dengan klik link berikut <a href="<?= site_url('surat/Instansi'); ?>" target="_blank">Instansi</a>/<a href="<?= site_url('surat/Jabatan'); ?>" target="_blank">Jabatan</a></small></label>
 									<?php
-									echo form_input(array(
-										"id" => "asal_surat",
-										"name" => "asal_surat",
-										"type" => "text",
-										"value" => set_value('asal_surat'),
-										"placeholder" => "Asal Surat",
-										"class" => "form-control"
-									));
+									if (isset($jabatan) && isset($instansi)) {
+										foreach ($jabatan as $val) {
+											$list_jabatan[$val->jabatan] = $val->jabatan;
+										}
+
+										foreach ($instansi as $val) {
+											$list_instansi[$val->instansi] = $val->instansi;
+										}
+
+										$fix_list = array_merge(['' => 'Pilih Asal Surat'], $list_jabatan, $list_instansi);
+									}
+									echo form_dropdown('asal_surat', $fix_list, set_value('asal_surat'), ['class' => 'form-control', 'id' => 'asal_surat']);
 									?>
 									<div class="invalid-feedback">
 										Asal surat harus diisi.
@@ -117,8 +122,8 @@
 									<?php
 									echo form_input(array(
 										"id" => "penerima",
-										"name" => "penerima",
 										"type" => "text",
+										"name" => "penerima",
 										"value" => set_value('penerima'),
 										"placeholder" => "Penerima Surat",
 										"class" => "form-control"
@@ -158,16 +163,21 @@
 							</div>
 							<div id="isi-surat" class="content" role="tabpanel" aria-labelledby="isi-surat-trigger">
 								<div class="form-group">
-									<label>Tujuan Surat <?= form_error('tujuan_surat'); ?></label>
+									<label>Tujuan Surat <?= form_error('tujuan_surat'); ?> <small class="text-warning">Jika Instansi/Jabatan Tujuan belum ada silahkan tambahkan dengan klik link berikut <a href="<?= site_url('surat/Instansi'); ?>" target="_blank">Instansi</a>/<a href="<?= site_url('surat/Jabatan'); ?>" target="_blank">Jabatan</a></small></label>
 									<?php
-									echo form_input(array(
-										"id" => "tujuan_surat",
-										"type" => "text",
-										"name" => "tujuan_surat",
-										"value" => set_value('tujuan_surat'),
-										"placeholder" => "Tujuan Surat",
-										"class" => "form-control"
-									));
+									if (isset($jabatan) && isset($instansi)) {
+										foreach ($jabatan as $val) {
+											$list_jabatan[$val->jabatan] = $val->jabatan;
+										}
+
+										foreach ($instansi as $val) {
+											$list_instansi[$val->instansi] = $val->instansi;
+										}
+
+										$fix_list = array_merge(['' => 'Pilih Tujuan Surat'], $list_jabatan, $list_instansi);
+									}
+									echo form_dropdown('tujuan_surat', $fix_list, set_value('tujuan_surat'), ['class' => 'form-control', 'id' => 'tujuan_surat']);
+
 									?>
 									<div class="invalid-feedback">
 										Tujuan surat harus diisi.
