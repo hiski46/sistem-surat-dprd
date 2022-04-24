@@ -8,15 +8,19 @@ class ModelInstansi extends CI_Model
 	private $id = 'id';
 
 	public function datatables(){
+		function callback($id)
+		{
+			return '<button type="button" class="btn btn-sm mr-2 btn-warning btn-edit" data-toggle="tooltip" title="Edit" data-id="' . encrypt_url($id) . '" onclick="form_edit(this)"><i class="fas fa-edit"></i></button><button type="button" class="btn btn-sm mr-2 btn-danger btn-hapus" data-toggle="tooltip" title="Hapus" data-id="' . encrypt_url($id) . '" onclick="hapus(this)"><i class="fas fa-trash-alt"></i></button>';
+		}
 		$this->datatables->select('id, instansi, alamat');
 		$this->datatables->where('is_deleted', 0);
 		$this->datatables->from($this->table);
-		$this->datatables->add_column('action', '<button type="button" class="btn btn-sm mr-2 btn-primary btn-tambah" data-toggle="tooltip" title="Tambah"><i class="fas fa-search-plus"></i></button><button type="button" class="btn btn-sm mr-2 btn-warning btn-edit" data-toggle="tooltip" title="Edit"><i class="fas fa-edit"></i></button><button type="button" class="btn btn-sm mr-2 btn-danger btn-hapus" data-toggle="tooltip" title="Hapus"><i class="fas fa-trash-alt"></i></button>', 'id');
+		$this->datatables->add_column('action', '$1', 'callback(id)');
 
 		return $this->datatables->generate();
 	}
 
-	public function getData()
+	public function getAll()
 	{
 		$query = $this->db->get($this->table);
 		return $query->result();
@@ -39,10 +43,10 @@ class ModelInstansi extends CI_Model
 		$this->db->update($this->table, $data);
 	}
 
-	public function delete($id)
+	public function delete($id, $data)
 	{
 		$this->db->where($this->id, $id);
-		$this->db->delete($this->table);
+		$this->db->update($this->table, $data);
 	}
 
 }

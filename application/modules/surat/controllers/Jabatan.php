@@ -31,12 +31,12 @@ class Jabatan extends CI_Controller
 
 	public function form_tambah()
 	{
-		$parent = $this->secure->decrypt_url($this->input->post('parent'));
+		$parent = decrypt_url($this->input->post('parent'));
 		$jabatan = $this->ModelJabatan->getDataById($parent);
 
 		$data = [
 			'title' => 'Tambah Jabatan',
-			'parent' => ($parent == '') ? $this->secure->encrypt_url(0) : $this->secure->encrypt_url($parent),
+			'parent' => ($parent == '') ? encrypt_url(0) : encrypt_url($parent),
 			'jabatan' => $jabatan,
 		];
 
@@ -49,7 +49,7 @@ class Jabatan extends CI_Controller
 
 	public function form_edit()
 	{
-		$id = $this->secure->decrypt_url($this->input->post('id'));
+		$id = decrypt_url($this->input->post('id'));
 		$jabatan = $this->ModelJabatan->getDataById($id);
 		$list_jabatan = $this->ModelJabatan->getAll();
 
@@ -81,7 +81,7 @@ class Jabatan extends CI_Controller
 
 			$data = [
 				'jabatan' => htmlspecialchars($this->input->post('jabatan')),
-				'parent' => htmlspecialchars($this->secure->decrypt_url($this->input->post('parent')))
+				'parent' => htmlspecialchars(decrypt_url($this->input->post('parent')))
 			];
 
 			$this->ModelJabatan->create($data);
@@ -108,10 +108,10 @@ class Jabatan extends CI_Controller
 				],
 			];
 		} else {
-			$id = $this->secure->decrypt_url($this->input->post('id'));
+			$id = decrypt_url($this->input->post('id'));
 			$data = [
 				'jabatan' => htmlspecialchars($this->input->post('jabatan')),
-				'parent' => $this->secure->decrypt_url($this->input->post('parent'))
+				'parent' => decrypt_url($this->input->post('parent'))
 			];
 
 			$this->ModelJabatan->update($id, $data);
@@ -127,8 +127,12 @@ class Jabatan extends CI_Controller
 
 	public function delete()
 	{
-		$id = $this->secure->decrypt_url($this->input->post('id'));
-		$this->ModelJabatan->delete($id);
+		$id = decrypt_url($this->input->post('id'));
+		$data = [
+			'is_deleted' => 1,
+			'date_deleted' => date('Y-m-d H:i:s'),
+		];
+		$this->ModelJabatan->delete($id, $data);
 
 		$msg = [
 			'status' => 'success',
@@ -165,7 +169,7 @@ class Jabatan extends CI_Controller
 			// $id = $value['id'];
 			$row1[$key]['id'] = $value['id'];
 			$row1[$key]['name'] = $value['jabatan'];
-			$row1[$key]['text'] = $value['jabatan'] . '<div class="float-right"><button data-id="' . $this->secure->encrypt_url($value['id']) . '" onclick="form_tambah(this)" class="btn btn-xs btn-primary ml-2 mr-2 btn-tambah"><i class="glyphicon glyphicon-plus"></i></button><button data-id="' . $this->secure->encrypt_url($value['id']) . '" onclick="form_edit(this)" class="btn btn-xs btn-warning ml-2 mr-2 btn-edit"><i class="glyphicon glyphicon-pencil"></i></button><button data-id="' . $this->secure->encrypt_url($value['id']) . '" onclick="hapus(this)" class="btn btn-xs btn-danger ml-2 mr-2 btn-hapus"><i class="glyphicon glyphicon-trash"></i></button></div>';
+			$row1[$key]['text'] = $value['jabatan'] . '<div class="float-right"><button data-id="' . encrypt_url($value['id']) . '" onclick="form_tambah(this)" class="btn btn-xs btn-primary ml-2 mr-2 btn-tambah"><i class="glyphicon glyphicon-plus"></i></button><button data-id="' . encrypt_url($value['id']) . '" onclick="form_edit(this)" class="btn btn-xs btn-warning ml-2 mr-2 btn-edit"><i class="glyphicon glyphicon-pencil"></i></button><button data-id="' . encrypt_url($value['id']) . '" onclick="hapus(this)" class="btn btn-xs btn-danger ml-2 mr-2 btn-hapus"><i class="glyphicon glyphicon-trash"></i></button></div>';
 			$row1[$key]['nodes'] = array_values($this->membersTree($value['id']));
 		}
 

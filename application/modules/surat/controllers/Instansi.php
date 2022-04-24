@@ -17,7 +17,7 @@ class Instansi extends CI_Controller
 	public function index()
 	{
 		$data = [
-			'title' => 'Instansi',
+			'title' => 'Manajemen Instansi',
 			'active' => 'instansi',
 			'js' => [
 				'assets/app/instansi.js'
@@ -35,75 +35,113 @@ class Instansi extends CI_Controller
 	}
 
 
-	public function addData()
+	public function form_tambah()
 	{
-		$this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
-		$this->form_validation->set_rules('parent', 'Parent', 'required');
-		
+		$data = [
+			'title' => 'Tambah Instansi',
+		];
+
+		$msg = [
+			'message' => $this->load->view('instansi/form_tambah', $data, true),
+		];
+
+		echo json_encode($msg);
+	}
+
+	public function form_edit()
+	{
+		$id = decrypt_url($this->input->post('id'));
+		$instansi = $this->ModelInstansi->getDataById($id);
+
+		$data = [
+			'title' => 'Edit Instansi',
+			'instansi' => $instansi,
+		];
+
+		$msg = [
+			'message' => $this->load->view('instansi/form_edit', $data, true),
+		];
+
+		echo json_encode($msg);
+	}
+
+
+	public function create()
+	{
+		$this->form_validation->set_rules('instansi', 'instansi', 'required');
+		$this->form_validation->set_rules('alamat', 'alamat', 'required');
+
 		if ($this->form_validation->run() == FALSE) {
-			$error = [
-				'jabatan' => form_error('jabatan'),
-				'parent' => form_error('parent')
+			$msg = [
+				'error' => [
+					'instansi' => form_error('instansi'),
+					'alamat' => form_error('alamat'),
+				],
 			];
-			echo json_encode([
-				'status' => 'error',
-				'data' => $error
-			], true);
 		} else {
 
 			$data = [
-				'jabatan' => htmlspecialchars($this->input->post('jabatan')),
-				'parent' => htmlspecialchars($this->input->post('parent'))
+				'instansi' => htmlspecialchars($this->input->post('instansi')),
+				'alamat' => htmlspecialchars($this->input->post('alamat')),
 			];
 
-			$this->ModelJabatan->addData($data);
+			$this->ModelInstansi->create($data);
 
-			echo json_encode([
+			$msg = [
 				'status' => 'success',
-				'message' => 'Data berhasil ditambahkan'
-			], true);
+				'message' => 'Data berhasil di simpan!',
+			];
 		}
+
+		echo json_encode($msg);
 	}
 
-
-	public function getBy($id){
-
-	}
-
-
-	public function updateData(){}
-
-	public function get_ajax()
+	public function update()
 	{
-		$row = $this->ModelJabatan->getAll();
-		$data = [];
-		$parent_key = '0';
-		// $row = $this->db->query('SELECT id, name from item');
+		$this->form_validation->set_rules('instansi', 'instansi', 'required');
+		$this->form_validation->set_rules('alamat', 'alamat', 'required');
 
-		if ($row->num_rows() > 0) {
-			$data = $this->membersTree($parent_key);
+		if ($this->form_validation->run() == FALSE) {
+			$msg = [
+				'error' => [
+					'instansi' => form_error('instansi'),
+					'alamat' => form_error('alamat'),
+				],
+			];
 		} else {
-			$data = ["id" => "0", "name" => "No Members presnt in list", "text" => "No Members is presnt in list", "nodes" => []];
+			$id = decrypt_url($this->input->post('id'));
+			$data = [
+				'instansi' => htmlspecialchars($this->input->post('instansi')),
+				'alamat' => htmlspecialchars($this->input->post('alamat')),
+			];
+
+			$this->ModelInstansi->update($id, $data);
+
+			$msg = [
+				'status' => 'success',
+				'message' => 'Data berhasil di simpan!',
+			];
 		}
 
-		echo json_encode(array_values($data));
+		echo json_encode($msg);
 	}
 
-	public function membersTree($parent_key)
+	public function delete()
 	{
-		$row1 = [];
-		// $row = $this->db->query('SELECT id, name from item WHERE parent_id="' . $parent_key . '"')->result_array();
-		$row = $this->ModelJabatan->getByParrent($parent_key);
+		$id = decrypt_url($this->input->post('id'));
+		$data = [
+			'is_deleted' => 1,
+			'date_deleted' => date('Y-m-d H:i:s'),
+		];
+		$this->ModelInstansi->delete($id, $data);
 
-		foreach ($row as $key => $value) {
-			// $id = $value['id'];
-			$row1[$key]['id'] = $value['id'];
-			$row1[$key]['name'] = $value['jabatan'];
-			$row1[$key]['text'] = $value['jabatan'] . '<div class="float-right"><button data-id="' . $value['id'] . '" class="btn btn-xs btn-primary ml-2 mr-2 btn-tambah"><i class="glyphicon glyphicon-plus"></i></button><button data-id="' . $value['id'] . '" class="btn btn-xs btn-warning ml-2 mr-2 btn-edit"><i class="glyphicon glyphicon-pencil"></i></button><button data-id="' . $value['id'] . '" class="btn btn-xs btn-danger ml-2 mr-2 btn-hapus"><i class="glyphicon glyphicon-trash"></i></button></div>';
-			$row1[$key]['nodes'] = array_values($this->membersTree($value['id']));
-		}
+		$msg = [
+			'status' => 'success',
+			'message' => 'Data berhasil di hapus!',
+		];
 
-		return $row1;
+
+		echo json_encode($msg);
 	}
 }
 

@@ -85,7 +85,7 @@
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
 									<a href="<?php echo site_url('surat/masuk'); ?>" class="nav-link <?= (isset($active) && $active == 'surat_masuk') ? 'active' : ''; ?>">
-										<i class="fas fa-envelope-square nav-icon"></i>
+										<i class="far fa-circle nav-icon"></i>
 										<p>Daftar Surat</p>
 									</a>
 								</li>
@@ -144,7 +144,7 @@
 
 						<li class="nav-item">
 							<a href="<?= site_url('surat/Jabatan') ?>" class="nav-link <?= (isset($active) && $active == 'jabatan') ? 'active' : ''; ?>">
-								<i class="nav-icon fas fa-arrow-right"></i>
+								<i class="nav-icon fas fa-id-card"></i>
 								<p>
 									Jabatan
 								</p>
@@ -152,7 +152,7 @@
 						</li>
 						<li class="nav-item">
 							<a href="<?= site_url('surat/Instansi') ?>" class="nav-link <?= (isset($active) && $active == 'instansi') ? 'active' : ''; ?>">
-								<i class="nav-icon fas fa-arrow-right"></i>
+								<i class="nav-icon fas fa-university"></i>
 								<p>
 									Instansi
 								</p>
@@ -160,7 +160,7 @@
 						</li>
 
 						<li class="nav-item">
-							<a href="<?= site_url('surat/Users') ?>" class="nav-link">
+							<a href="<?= site_url('Users') ?>" class="nav-link <?= (isset($active) && $active == 'users') ? 'active' : ''; ?>">
 								<i class="nav-icon fas fa-users"></i>
 								<p>
 									Manajemen Users

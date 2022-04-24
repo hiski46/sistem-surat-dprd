@@ -25,16 +25,17 @@ class ModelJabatan extends CI_Model {
 		$this->db->update($this->table, $data);
 	}
 
-	public function delete($id){
+	public function delete($id, $data){
 		$this->db->where($this->id, $id);
 		$this->db->or_where('parent', $id);
-		$this->db->delete($this->table);
+		$this->db->update($this->table, $data);
 	}
 
 	public function getData()
 	{
 		$this->db->select('id, jabatan');
 		$this->db->from($this->table);
+		$this->db->where('is_deleted', 0);
 		$query = $this->db->get();
 
 		return $query;
@@ -45,6 +46,7 @@ class ModelJabatan extends CI_Model {
 		$this->db->select('id, jabatan');
 		$this->db->from($this->table);
 		$this->db->where('parent', $parent_key);
+		$this->db->where('is_deleted', 0);
 		$query = $this->db->get();
 
 		return $query->result_array();

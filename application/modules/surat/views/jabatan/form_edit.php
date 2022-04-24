@@ -9,7 +9,7 @@
 			</div>
 			<div class="modal-body">
 				<form action="#" id="my-form">
-					<input type="hidden" id="id" name="id" value="<?= $this->secure->encrypt_url($jabatan->id); ?>">
+					<input type="hidden" id="id" name="id" value="<?= encrypt_url($jabatan->id); ?>">
 					<div class="form-group">
 						<label for="jabatan">Jabatan</label>
 						<input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Masukan Jabatan" value="<?= $jabatan->jabatan; ?>">
@@ -18,11 +18,13 @@
 					<div class="form-group">
 						<label for="parent">Dibawah Bagian</label>
 						<?php
-						foreach ($list_jabatan as $key => $val) {
-							$list_fix[$this->secure->encrypt_url($val->id)] = $val->jabatan;
-						}
+						if(!empty($jabatan)){
+							foreach ($list_jabatan as $key => $val) {
+								$list_fix[$this->secure->encrypt_url($val->id)] = $val->jabatan;
+							}
 
-						echo form_dropdown('parent', $list_fix, $this->secure->encrypt_url($jabatan->parent), ['class' => 'form-control']);
+							echo form_dropdown('parent', $list_fix, encrypt_url($jabatan->parent), ['class' => 'form-control']);
+						}
 
 						?>
 					</div>
