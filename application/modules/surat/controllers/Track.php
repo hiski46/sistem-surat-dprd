@@ -23,7 +23,7 @@ class Track extends CI_Controller
 	public function ajax_track()
 	{
 		$data["surat"] = $this->ModelTrack->get_surat();
-		echo json_encode($data["surat"]);
+		echo json_encode($data);
 	}
 
 	public function tracking()

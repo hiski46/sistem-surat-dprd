@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title><?php echo "Sistem Manajemen Surat"; ?></title>
 
-	<script type="language/javascript">
+	<script type="text/javascript">
 		site_url = "<?php echo site_url(); ?>" ;
 		base_url = "<?php echo base_url(); ?>" ;
 	</script>
