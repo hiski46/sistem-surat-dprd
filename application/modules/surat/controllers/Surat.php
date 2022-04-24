@@ -110,8 +110,9 @@ class Surat extends CI_Controller
 		}else {
 			$config['upload_path']          = FCPATH . '/writable/upload/surat/';
 			$config['allowed_types']        = 'pdf|jpg|png|jpeg';
-			$config['file_name']            = strtotime("now");
+			// $config['file_name']            = strtotime("now");
 			$config['max_size']             = 2048;
+			$config['encrypt_name'] 		= TRUE;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('file')) {

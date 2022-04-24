@@ -108,7 +108,6 @@ class ModelSurat extends CI_Model {
 		$surat["kecepatan_surat"] = $this->input->post("kecepatan_surat");
 		$surat["tanggal_diterima"] = $this->input->post("tanggal_diterima");
 
-
 		if($this->db->insert("surat", $surat))
 		{
 			return TRUE;			
