@@ -25,8 +25,45 @@ class ModelDisposisi extends CI_Model
 
 	public function getDataById($id)
 	{
-		$query = $this->db->get_where($this->table, [$this->id => $id]);
-		return $query->row();
+		$this->db->where($this->id, $id);
+		return $this->db->get($this->table)->row();
+	}
+
+	public function getSuratById($id)
+	{
+		$this->db->where('id', $id);
+		return $this->db->get('surat')->row();
+	}
+
+	public function get_tipe_disposisi(){
+		$query = $this->db->get('tipe_disposisi');
+		return $query->result();
+	}
+
+	public function disposisi_surat($id_surat)
+	{
+		$row_surat = $this->getSuratById($id_surat);
+		if ($row_surat->tipe_surat == 'masuk') {
+			$this->db->select('s.id as id_surat, s.tipe_surat, s.nomor_surat, s.tanggal_surat, s.isi, s.tanggal_diterima, s.sifat_surat, s.kecepatan_surat, i.instansi as asal_surat, j.jabatan as tujuan_surat, s.file, s.status_surat, u.nama_lengkap as penerima');
+			$this->db->from('surat as s');
+			$this->db->join('instansi as i', 'i.id = s.asal_surat');
+			$this->db->join('jabatan as j', 'j.id = s.tujuan_surat');
+			$this->db->join('users as u', 'u.id = s.penerima');
+		} elseif ($row_surat->tipe_surat == 'keluar') {
+			$this->db->select('s.id as id_surat, s.tipe_surat, s.nomor_surat, s.tanggal_surat, s.isi, s.tanggal_diterima, s.sifat_surat, s.kecepatan_surat, j.jabatan as asal_surat, i.instansi as tujuan_surat, s.file, s.status_surat, u.nama_lengkap as penerima');
+			$this->db->from('surat as s');
+			$this->db->join('jabatan as j', 'j.id = s.asal_surat');
+			$this->db->join('instansi as i', 'i.id = s.tujuan_surat');
+			$this->db->join('users as u', 'u.id = s.penerima');
+		} else {
+			$this->db->select('s.id as id_surat, s.tipe_surat, s.nomor_surat, s.tanggal_surat, s.isi, s.tanggal_diterima, s.sifat_surat, s.kecepatan_surat, j.jabatan as asal_surat, jb.jabatan as tujuan_surat, s.file, s.status_surat, u.nama_lengkap as penerima');
+			$this->db->from('surat as s');
+			$this->db->join('jabatan as j', 'j.id = s.asal_surat');
+			$this->db->join('jabatan as jb', 'jb.id = s.tujuan_surat');
+			$this->db->join('users as u', 'u.id = s.penerima');
+		}
+		$this->db->where('s.id', $id_surat);
+		return $this->db->get()->row();
 	}
 
 	public function create($data)

@@ -120,19 +120,6 @@ class Surat extends CI_Controller
 			'instansi' => $this->ModelInstansi->getAll(),
 		);
 
-		if ($tipe_surat == "masuk") {
-			$data["tujuan_surat"] = $this->ModelJabatan->getAll();
-			$data["asal_surat"] = $this->ModelInstansi->getAll();
-		} else if ($tipe_surat == "keluar") {
-			$data["tujuan_surat"] = $this->ModelInstansi->getAll();
-			$data["asal_surat"] = $this->ModelJabatan->getAll();
-		} else
-		{
-			$data["tujuan_surat"] = $this->ModelInstansi->getAll();
-			$data["asal_surat"] = $this->ModelInstansi->getAll();
-		}
-
-
 		$this->load->view('include/header',$data);
 		$this->load->view('surat_v/form_tambah');
 		$this->load->view('include/footer');
@@ -169,7 +156,6 @@ class Surat extends CI_Controller
 		$this->load->view('surat_v/detail_surat');
 		$this->load->view('include/footer');
 	}
-
 
 	public function create()
 	{

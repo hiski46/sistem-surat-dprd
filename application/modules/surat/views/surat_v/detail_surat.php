@@ -52,9 +52,9 @@
 			<div class="card-header">
 				<div class="d-flex justify-content-between align-items-center">
 					<h4>Disposisi Surat</h4>
-					<button type="button" class="btn btn-sm btn-primary" onclick="add()">
+					<a href="<?= site_url('surat/Disposisi/disposisi_surat/' . encrypt_url($surat->id_surat)); ?>" class="btn btn-sm btn-primary">
 						<i class="fas fa-undo"></i> Disposisi Surat
-					</button>
+					</a>
 				</div>
 			</div>
 			<div class="card-body">
