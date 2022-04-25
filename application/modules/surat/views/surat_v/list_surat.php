@@ -11,7 +11,7 @@
 			<div class="card-header" class="text-center">
 				<div class="d-flex justify-content-between align-items-center">
 					<h4><?= $title; ?></h4>
-					<a href="<?= site_url('Surat/add?type='. $this->uri->segment(2)); ?>" class="btn btn-sm btn-primary" onclick="add()" data-toggle="tooltip" title="Tambah Surat">
+					<a href="<?php echo site_url('surat/add_surat/'.$tipe_surat); ?>" class="btn btn-sm btn-primary" onclick="add()" data-toggle="tooltip" title="Tambah Surat">
 						<div class="row px-2">
 							<i class="fas fa-plus my-auto"></i> <span class="d-none d-sm-block ml-2"> Tambah Surat</span>
 						</div>
@@ -25,7 +25,7 @@
 						<tr>
 							<th class="text-center align-middle">#</th>
 							<th class="text-center align-middle">Nomor Surat</th>
-							<th class="text-center align-middle">Tanggal Diterima</th>
+							<th class="text-center align-middle">Diterima</th>
 							<th class="text-center align-middle">Sifat Surat</th>
 							<th class="text-center align-middle">Isi Surat</th>
 							<!-- <th class="text-center align-middle">Asal Surat</th>

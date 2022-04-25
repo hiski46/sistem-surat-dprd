@@ -5,14 +5,15 @@ class Auth extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		if (logged_in() == true) {
-			redirect(site_url('dashboard'));
-		}
+		
 		$this->load->model('ModelAuth', 'Auth');
 	}
 
 	public function index()
 	{
+		if (logged_in() == true) {
+			redirect(site_url('dashboard'));
+		}
 		$data = [
 			'title' => 'Authentication',
 		];
@@ -35,15 +36,13 @@ class Auth extends CI_Controller
 			$password = $this->input->post('password');
 
 			//cek login via model
-			$cek = $this->Auth->login($username, $password);
+			$user = $this->Auth->login($username);
 
-			if (!empty($cek)) {
-
-				foreach ($cek as $user) {
-
-					//looping data user
+			if (!empty($user)) {
+				$cek_password = password_verify($password, $user->password);
+				if ($cek_password) {
 					$session_data = array(
-						'id_user'   => $user->id,
+						'id_user'   => encrypt_url($user->user_id),
 						'username'  => $user->username,
 						'nama_lengkap' => $user->nama_lengkap,
 						'jabatan' => $user->jabatan,
@@ -52,19 +51,25 @@ class Auth extends CI_Controller
 					);
 					//buat session berdasarkan user yang login
 					$this->session->set_userdata($session_data);
+
+					$msg = [
+						'status' => 'success',
+						'message' => 'Berhasil login!',
+					];
+				}else {
+					$msg = [
+						'status' => 'error',
+						'message' => 'Password salah!',
+					];
 				}
-
-				$msg = [
-					'status' => 'success',
-					'message' => 'Berhasil login!',
-				];
-			} else {
-
+			}else {
 				$msg = [
 					'status' => 'error',
-					'message' => 'Gagal login!',
+					'message' => 'Username tidak ditemukan!',
 				];
 			}
+
+			
 		}
 		echo json_encode($msg);
 	}

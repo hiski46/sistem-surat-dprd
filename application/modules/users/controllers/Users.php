@@ -141,6 +141,23 @@ class Users extends CI_Controller
 		echo json_encode($msg);
 	}
 
+	public function detail($id_user){
+		$id = decrypt_url($id_user);
+		$user = $this->ModelUsers->getDataById($id);
+
+		$data = [
+			'title' => 'Detail User',
+			'user' => $user,
+			'js' => [
+				'assets/app/users/users.js'
+			],
+		];
+
+		$this->load->view('include/header', $data);
+		$this->load->view('users_v/detail');
+		$this->load->view('include/footer');
+	}
+
 	public function create()
 	{
 		$this->_validation('create');

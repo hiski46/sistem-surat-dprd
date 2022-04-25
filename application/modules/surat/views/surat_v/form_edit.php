@@ -38,9 +38,10 @@
 						</div>
 					</div>
 					<div class="bs-stepper-content">
-						<form action="<?= site_url('surat/surat/create'); ?>" method="post" enctype="multipart/form-data" id="form-tambah">
+						<form action="<?= site_url('surat/surat/update'); ?>" method="post" enctype="multipart/form-data" id="form-tambah">
 							<div id="identitas-surat" class="content" role="tabpanel" aria-labelledby="identitas-surat-trigger">
 								<input type="hidden" name="tipe_surat" value="<?= $tipe_surat; ?>">
+								<input type="hidden" name="id_surat" value="<?= encrypt_url($surat->id); ?>">
 								<div class="form-group">
 									<label>Nomor Surat <?= form_error('nomor_surat'); ?></label>
 									<?php
@@ -48,7 +49,7 @@
 										"id" => "nomor_surat",
 										"name" => "nomor_surat",
 										"type" => "text",
-										"value" => set_value('nomor_surat'),
+										"value" => set_value('nomor_surat', $surat->nomor_surat),
 										"placeholder" => "Nomor Surat",
 										"class" => "form-control",
 										"required" => "required",
@@ -67,7 +68,7 @@
 												"id" => "tanggal_surat",
 												"name" => "tanggal_surat",
 												"type" => "date",
-												"value" => set_value('tanggal_surat'),
+												"value" => set_value('tanggal_surat',date('Y-m-d', strtotime($surat->tanggal_surat))),
 												"placeholder" => "Tanggal Surat",
 												"class" => "form-control",
 												"data-target" => ""
@@ -86,7 +87,7 @@
 												"id" => "tanggal_diterima",
 												"name" => "tanggal_diterima",
 												"type" => "date",
-												"value" => set_value('tanggal_diterima'),
+												"value" => set_value('tanggal_diterima', date('Y-m-d', strtotime($surat->tanggal_diterima))),
 												"placeholder" => "Tanggal Diterima",
 												"class" => "form-control",
 												"data-target" => ""
@@ -116,9 +117,9 @@
 												$list_asal[$val->id] = $val->jabatan;
 											}
 										}
+
 									}
-									$fix_list = array_merge(['' => 'Pilih Asal Surat'], $list_asal);
-									echo form_dropdown('asal_surat', $list_asal, set_value('asal_surat'), ['class' => 'form-control', 'id' => 'asal_surat']);
+									echo form_dropdown('asal_surat', $list_asal, set_value('asal_surat', $surat->asal_surat), ['class' => 'form-control', 'id' => 'asal_surat']);
 									?>
 									<div class="invalid-feedback">
 										Asal surat harus diisi.
@@ -142,9 +143,8 @@
 												$list_tujuan[$val->id] = $val->jabatan;
 											}
 										}
-
 									}
-									echo form_dropdown('tujuan_surat', $list_tujuan, set_value('tujuan_surat'), ['class' => 'form-control', 'id' => 'tujuan_surat']);
+									echo form_dropdown('tujuan_surat', $list_tujuan, set_value('tujuan_surat', $surat->tujuan_surat), ['class' => 'form-control', 'id' => 'tujuan_surat']);
 
 									?>
 									<div class="invalid-feedback">
@@ -158,8 +158,8 @@
 									<label>Sifat Surat <?= form_error('sifat_surat'); ?></label>
 									<select name="sifat_surat" id="sifat_surat" class="form-control">
 										<option value="">Pilih Sifat Surat</option>
-										<option value="biasa" <?= set_select('sifat_surat', 'biasa'); ?>>Surat Biasa</option>
-										<option value="rahasia" <?= set_select('sifat_surat', 'rahasia'); ?>>Surat Rahasia</option>
+										<option value="biasa" <?= ($surat->kecepatan_surat == 'biasa') ? 'selected' : ''; ?>>Surat Biasa</option>
+										<option value="rahasia" <?= ($surat->kecepatan_surat == 'rahasia') ? 'selected' : ''; ?>>Surat Rahasia</option>
 									</select>
 									<div class="invalid-feedback">
 										Sifat surat harus diisi.
@@ -169,8 +169,8 @@
 									<label>Kecepatan Surat <?= form_error('kecepatan_surat'); ?></label>
 									<select name="kecepatan_surat" id="kecepatan_surat" class="form-control">
 										<option value="">Pilih Kecepatan Surat</option>
-										<option value="biasa" <?= set_select('kecepatan_surat', 'biasa'); ?>>Surat Biasa</option>
-										<option value="segera" <?= set_select('kecepatan_surat', 'segera'); ?>>Surat Segera</option>
+										<option value="biasa" <?= ($surat->kecepatan_surat == 'biasa') ? 'selected' : '' ; ?>>Surat Biasa</option>
+										<option value="segera" <?= ($surat->kecepatan_surat == 'segera') ? 'selected' : '' ; ?>>Surat Segera</option>
 									</select>
 									<div class="invalid-feedback">
 										Kecepatan surat harus diisi.
@@ -188,7 +188,7 @@
 										"id" => "isi",
 										"name" => "isi",
 										"type" => "text",
-										"value" => set_value('isi'),
+										"value" => set_value('isi', $surat->isi),
 										"rows" => 4,
 										"placeholder" => "Isi Surat",
 										"class" => "form-control"

@@ -106,7 +106,7 @@
 							Swal.fire({
 								icon: "error",
 								title: "Gagal",
-								text: "Kesalahan Server Silahkan Hubungi Admin",
+								text: response.message,
 							});
 						}
 					},

@@ -24,6 +24,45 @@ function alert() {
 	}
 }
 
+function hapus(event) {
+	var id = $(event).data("id");
+	Swal.fire({
+		title: "Apakah anda yakin?",
+		text: "Proses ini akan menghapus data anda!",
+		icon: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#3085d6",
+		cancelButtonColor: "#d33",
+		confirmButtonText: "Ya, hapus!",
+	}).then((result) => {
+		if (result.isConfirmed) {
+			$.ajax({
+				url: site_url + "surat/Surat/delete",
+				method: "post",
+				data: { id: id },
+				dataType: "json",
+				success: function (response) {
+					if (response.status == "success") {
+						Swal.fire({
+							icon: "success",
+							title: "Berhasil",
+							text: response.message,
+						});
+						loadSuratInternal();
+					} else {
+						Swal.fire({
+							icon: "error",
+							title: "Gagal",
+							text: "Data gagal di hapus!",
+						});
+					}
+				},
+			});
+		}
+	});
+}
+
+
 function loadSuratInternal() {
 	$.fn.dataTableExt.oApi.fnPagingInfo = function (oSettings) {
 		return {
@@ -53,6 +92,7 @@ function loadSuratInternal() {
 		oLanguage: {
 			sProcessing: "loading...",
 		},
+		bDestroy: true,
 		processing: true,
 		serverSide: true,
 		ajax: {
@@ -74,15 +114,25 @@ function loadSuratInternal() {
 				render: function (data) {
 					return convertTanggal(data);
 				},
-				className: "text-center align-middle",
+				className: "align-middle",
 			},
 			{
 				data: "sifat_surat",
 				render: function (data) {
-					if (data == 'biasa') {
-						return '<span class="badge badge-success">'+data.charAt(0).toUpperCase() + data.slice(1)+'</span>';
+					if (data == "biasa") {
+						return (
+							'<span class="badge badge-success">' +
+							data.charAt(0).toUpperCase() +
+							data.slice(1) +
+							"</span>"
+						);
 					} else {
-						return '<span class="badge badge-danger">'+data.charAt(0).toUpperCase() + data.slice(1)+'</span>';
+						return (
+							'<span class="badge badge-danger">' +
+							data.charAt(0).toUpperCase() +
+							data.slice(1) +
+							"</span>"
+						);
 					}
 				},
 				className: "align-middle",
@@ -119,3 +169,4 @@ function loadSuratInternal() {
 		},
 	});
 }
+

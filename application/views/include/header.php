@@ -41,11 +41,11 @@
 						<i class="far fa-user"></i>
 					</a>
 					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
-						<a href="#" class="dropdown-item">
+						<a href="<?= site_url('users/detail/' . $this->session->userdata('id_user')); ?>" class="dropdown-item">
 							<i class="fas fa-file mr-2"></i>Profile
 						</a>
 						<div class="dropdown-divider"></div>
-						<a href="<?php echo site_url('auth/logout') ?>" class="dropdown-item">
+						<a href="#" class="dropdown-item" onclick="logout()">
 							<i class="fas fa-sign-out-alt mr-2"></i>Logout
 						</a>
 					</div>
@@ -84,7 +84,7 @@
 							</a>
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
-									<a href="<?php echo site_url('surat/masuk'); ?>" class="nav-link <?= (isset($active) && $active == 'surat_masuk') ? 'active' : ''; ?>">
+									<a href="<?php echo site_url('surat/view/masuk'); ?>" class="nav-link <?= (isset($active) && $active == 'surat_masuk') ? 'active' : ''; ?>">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Daftar Surat</p>
 									</a>
@@ -105,7 +105,7 @@
 							</a>
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
-									<a href="<?= site_url('surat/keluar'); ?>" class="nav-link  <?= (isset($active) && $active == 'surat_keluar') ? 'active' : ''; ?>">
+									<a href="<?= site_url('surat/view/keluar'); ?>" class="nav-link  <?= (isset($active) && $active == 'surat_keluar') ? 'active' : ''; ?>">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Daftar Surat</p>
 									</a>
@@ -126,7 +126,7 @@
 							</a>
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
-									<a href="<?= site_url('surat/internal'); ?>" class="nav-link  <?= (isset($active) && $active == 'surat_internal') ? 'active' : ''; ?>">
+									<a href="<?= site_url('surat/view/internal'); ?>" class="nav-link  <?= (isset($active) && $active == 'surat_internal') ? 'active' : ''; ?>">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Daftar Surat</p>
 									</a>
@@ -140,32 +140,53 @@
 							</ul>
 						</li>
 
-
-
-						<li class="nav-item">
-							<a href="<?= site_url('surat/Jabatan') ?>" class="nav-link <?= (isset($active) && $active == 'jabatan') ? 'active' : ''; ?>">
-								<i class="nav-icon fas fa-id-card"></i>
-								<p>
-									Jabatan
-								</p>
+						<li class="nav-item menu-open">
+							<a href="#" class="nav-link <?= (isset($expand) && $expand == 'surat_internal') ? 'active' : ''; ?>">
+								<i class="nav-icon fas fa-envelope"></i>
+								<p>Laporan<i class="right fas fa-angle-right"></i></p>
 							</a>
-						</li>
-						<li class="nav-item">
-							<a href="<?= site_url('surat/Instansi') ?>" class="nav-link <?= (isset($active) && $active == 'instansi') ? 'active' : ''; ?>">
-								<i class="nav-icon fas fa-university"></i>
-								<p>
-									Instansi
-								</p>
-							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a href="<?= site_url('surat/laporan'); ?>" class="nav-link  <?= (isset($active) && $active == 'surat_internal') ? 'active' : ''; ?>">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Laporan</p>
+									</a>
+								</li>
+							</ul>
 						</li>
 
-						<li class="nav-item">
-							<a href="<?= site_url('Users') ?>" class="nav-link <?= (isset($active) && $active == 'users') ? 'active' : ''; ?>">
-								<i class="nav-icon fas fa-users"></i>
-								<p>
-									Manajemen Users
-								</p>
+						<li class="nav-item menu-open">
+							<a href="#" class="nav-link <?= (isset($expand) && $expand == 'surat_internal') ? 'active' : ''; ?>">
+								<i class="nav-icon fas fa-envelope"></i>
+								<p>Master Data<i class="right fas fa-angle-right"></i></p>
 							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a href="<?= site_url('surat/Jabatan') ?>" class="nav-link <?= (isset($active) && $active == 'jabatan') ? 'active' : ''; ?>">
+										<i class="nav-icon fas fa-id-card"></i>
+										<p>
+											Jabatan
+										</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="<?= site_url('surat/Instansi') ?>" class="nav-link <?= (isset($active) && $active == 'instansi') ? 'active' : ''; ?>">
+										<i class="nav-icon fas fa-university"></i>
+										<p>
+											Instansi
+										</p>
+									</a>
+								</li>
+
+								<li class="nav-item">
+									<a href="<?= site_url('Users') ?>" class="nav-link <?= (isset($active) && $active == 'users') ? 'active' : ''; ?>">
+										<i class="nav-icon fas fa-users"></i>
+										<p>
+											Manajemen Users
+										</p>
+									</a>
+								</li>
+							</ul>
 						</li>
 
 					</ul>

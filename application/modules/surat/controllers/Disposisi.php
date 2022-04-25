@@ -8,6 +8,9 @@ class Disposisi extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		if (logged_in() == false) {
+			redirect(site_url('login'));
+		}
 
 		$this->load->model('ModelDisposisi');
 	}

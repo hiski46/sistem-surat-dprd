@@ -16,7 +16,7 @@ function loadSuratDisposisi() {
 			),
 		};
 	};
-
+	var id_surat = $("#nomor-surat").data("idsurat");
 	$("#surat-disposisi").dataTable({
 		initComplete: function () {
 			var api = this.api();
@@ -36,6 +36,8 @@ function loadSuratDisposisi() {
 		ajax: {
 			url: site_url + "surat/Surat/datatables_disposisi",
 			type: "POST",
+			data: { id_surat: id_surat },
+			dataType: 'json',
 		},
 		columns: [
 			{
@@ -60,11 +62,6 @@ function loadSuratDisposisi() {
 				render: function (data) {
 					return convertTanggal(data);
 				},
-				className: "text-center align-middle",
-			},
-			{
-				data: "action",
-				orderable: false,
 				className: "text-center align-middle",
 			},
 		],

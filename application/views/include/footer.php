@@ -29,8 +29,45 @@
 <script>
 	$.widget.bridge('uibutton', $.ui.button);
 	bsCustomFileInput.init();
-	var stepper = new Stepper($(".bs-stepper")[0]);
-	// var stepper = new Stepper(document.querySelector('.bs-stepper'));
+	
+
+	function logout() {
+	Swal.fire({
+		title: "Apakah anda yakin?",
+		text: "Anda akan logout dari sistem!",
+		icon: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#3085d6",
+		cancelButtonColor: "#d33",
+		confirmButtonText: "Ya, logout!",
+	}).then((result) => {
+		if (result.isConfirmed) {
+			$.ajax({
+				url: site_url + "Auth/logout",
+				method: "post",
+				dataType: "json",
+				success: function (response) {
+					if (response.status == "success") {
+						Swal.fire({
+							icon: "success",
+							title: "Berhasil",
+							text: response.message,
+						});
+						window.setTimeout(() => {
+							window.location.href = site_url;
+						}, 1500);
+					} else {
+						Swal.fire({
+							icon: "error",
+							title: "Gagal",
+							text: response.message,
+						});
+					}
+				},
+			});
+		}
+	});
+}
 </script>
 </body>
 

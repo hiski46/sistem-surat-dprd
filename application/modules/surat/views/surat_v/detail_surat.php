@@ -10,7 +10,7 @@
 				<table id="detail" class="table table-sm table-bordered table-hover">
 					<tr>
 						<th class="align-middle">Nomor Surat</th>
-						<td class="align-middle"><?= $surat->nomor_surat; ?></td>
+						<td class="align-middle" id="nomor-surat" data-idsurat="<?= encrypt_url($surat->id_surat); ?>"><?= $surat->nomor_surat; ?></td>
 						<th class="align-middle">Tipe Surat</th>
 						<td class="align-middle"><?= 'Surat ' . ucwords($surat->tipe_surat); ?></td>
 					</tr>
@@ -66,7 +66,6 @@
 							<th class="text-center align-middle">Jabatan</th>
 							<th class="text-center align-middle">Disposisi</th>
 							<th class="text-center align-middle">Tanggal</th>
-							<th class="text-center align-middle">Action</th>
 						</thead>
 						<tbody>
 						</tbody>
@@ -88,12 +87,22 @@
 			</div>
 			<div class="card-body" id="container-surat">
 				<div class="priview-surat border-dark">
-					<img width="600px" height="750px" src="<?= base_url('assets/images/surat/surat.jpg'); ?>" class="rounded mx-auto d-block" alt="Preview surat">
-				</div>
+					<?php if (!empty($surat->file)) : ?>
+						<?php $file_parts = pathinfo($surat->file); ?>
+						<?php if (isset($file_parts['extension']) && $file_parts['extension'] == 'pdf') : ?>
+							<div class="text-center">
 
-				<button type="button" class="btn btn-sm btn-primary mt-4 float-right" onclick="add()">
-					<i class="fas fa-print"></i> Print Surat
-				</button>
+								<iframe src='<?= base_url('writable/upload/surat/' . $surat->file); ?>' width="500" height="678">
+									<p class="text-center">This browser does not support PDF!</p>
+								</iframe>
+							</div>
+						<?php else : ?>
+							<img width="600px" height="750px" src="<?= base_url('writable/upload/surat/' . $surat->file); ?>" class="rounded mx-auto d-block" alt="Preview surat">
+						<?php endif; ?>
+					<?php else : ?>
+						<p class="text-center">Tidak ada file surat!</p>
+					<?php endif; ?>
+				</div>
 			</div>
 		</div>
 	</div>

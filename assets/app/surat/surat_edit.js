@@ -157,14 +157,33 @@ function validationJquery() {
 
 	$(".btn-submit").on("click", function (e) {
 		e.preventDefault();
-		if ($("#file")[0].files.length === 0) {
-			$("#show-error-file").addClass("is-invalid");
-			$("#file").addClass("is-invalid");
-		} else {
-			$("#show-error-file").removeClass("is-invalid");
-			$("#file").removeClass("is-invalid");
-			$("#form-tambah").submit();
-		}
+		// if ($("#file")[0].files.length === 0) {
+		// 	$("#show-error-file").addClass("is-invalid");
+		// 	$("#file").addClass("is-invalid");
+		// } else {
+		// 	$("#show-error-file").removeClass("is-invalid");
+		// 	$("#file").removeClass("is-invalid");
+		// 	$("#form-tambah").submit();
+		// }
+		$("#form-tambah").submit();
 	});
 }
 
+function create() {
+	$.ajax({
+		url: site_url + "Surat/create",
+		dataType: "json",
+		success: function (response) {},
+		error: function (xhr, ajaxOptions, thrownerror) {
+			Swal.fire({
+				title: "Maaf gagal load data!",
+				html: `Silahkan Cek kembali Kode Error: <strong>${
+					xhr.status + "\n"
+				}</strong> `,
+				icon: "error",
+				showConfirmButton: false,
+				timer: 3100,
+			}).then(function () {});
+		},
+	});
+}

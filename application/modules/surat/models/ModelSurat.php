@@ -9,7 +9,7 @@ class ModelSurat extends CI_Model {
 	public function datatables_surat_masuk()
 	{
 		function callback_one($id){
-			return '<a href="' . site_url('surat/Surat/detail_surat/' . encrypt_url($id)) . '" class="btn btn-sm mr-2 mb-2 btn-primary btn-detail" data-id="$1" data-toggle="tooltip" title="Detail"><i class="fas fa-search-plus"></i></a><button type="button" class="btn btn-sm mr-2 mb-2 btn-warning btn-edit" data-id="' . encrypt_url($id) . '" data-toggle="tooltip" title="Edit"><i class="far fa-edit"></i></button><button type="button" class="btn btn-sm mr-2 mb-2 btn-danger btn-hapus" data-id="' . encrypt_url($id) . '" data-toggle="tooltip" title="Hapus"><i class="far fa-trash-alt"></i></button>';
+			return '<a href="' . site_url('surat/Surat/detail_surat/' . encrypt_url($id)) . '" class="btn btn-sm mr-2 mb-2 btn-primary btn-detail" data-toggle="tooltip" title="Detail"><i class="fas fa-search-plus"></i></a><a href="' . site_url('surat/Surat/edit_surat/masuk/' . encrypt_url($id)) . '" class="btn btn-sm mr-2 mb-2 btn-warning btn-edit" data-toggle="tooltip" title="Edit"><i class="far fa-edit"></i></a><button type="button" class="btn btn-sm mr-2 mb-2 btn-danger btn-hapus" data-id="' . encrypt_url($id) . '" data-toggle="tooltip" title="Hapus" onclick="hapus(this)"><i class="far fa-trash-alt"></i></button>';
 		}
 		$this->datatables->select('id, nomor_surat, isi, tanggal_diterima, sifat_surat, asal_surat, tujuan_surat');
 		$this->datatables->where('is_deleted', 0);
@@ -23,7 +23,7 @@ class ModelSurat extends CI_Model {
 	public function datatables_surat_keluar()
 	{
 		function callback_two($id){
-			return '<a href="' . site_url('surat/Surat/detail_surat/' . encrypt_url($id)) . '" class="btn btn-sm mr-2 mb-2 btn-primary btn-detail" data-id="$1" data-toggle="tooltip" title="Detail"><i class="fas fa-search-plus"></i></a><button type="button" class="btn btn-sm mr-2 mb-2 btn-warning btn-edit" data-id="' . encrypt_url($id) . '" data-toggle="tooltip" title="Edit"><i class="far fa-edit"></i></button><button type="button" class="btn btn-sm mr-2 mb-2 btn-danger btn-hapus" data-id="' . encrypt_url($id) . '" data-toggle="tooltip" title="Hapus"><i class="far fa-trash-alt"></i></button>';
+			return '<a href="' . site_url('surat/Surat/detail_surat/' . encrypt_url($id)) . '" class="btn btn-sm mr-2 mb-2 btn-primary btn-detail" data-toggle="tooltip" title="Detail"><i class="fas fa-search-plus"></i></a><a href="' . site_url('surat/Surat/edit_surat/keluar/' . encrypt_url($id)) . '" class="btn btn-sm mr-2 mb-2 btn-warning btn-edit" data-toggle="tooltip" title="Edit"><i class="far fa-edit"></i></a><button type="button" class="btn btn-sm mr-2 mb-2 btn-danger btn-hapus" data-id="' . encrypt_url($id) . '" data-toggle="tooltip" title="Hapus" onclick="hapus(this)"><i class="far fa-trash-alt"></i></button>';
 		}
 		$this->datatables->select('id, nomor_surat, isi, tanggal_diterima, sifat_surat, asal_surat, tujuan_surat');
 		$this->datatables->where('is_deleted', 0);
@@ -37,7 +37,7 @@ class ModelSurat extends CI_Model {
 	public function datatables_surat_internal()
 	{
 		function callback_three($id){
-			return '<a href="' . site_url('surat/Surat/detail_surat/' . encrypt_url($id)) . '" class="btn btn-sm mr-2 mb-2 btn-primary btn-detail" data-id="$1" data-toggle="tooltip" title="Detail"><i class="fas fa-search-plus"></i></a><button type="button" class="btn btn-sm mr-2 mb-2 btn-warning btn-edit" data-id="' . encrypt_url($id) . '" data-toggle="tooltip" title="Edit"><i class="far fa-edit"></i></button><button type="button" class="btn btn-sm mr-2 mb-2 btn-danger btn-hapus" data-id="' . encrypt_url($id) . '" data-toggle="tooltip" title="Hapus"><i class="far fa-trash-alt"></i></button>';
+			return '<a href="' . site_url('surat/Surat/detail_surat/' . encrypt_url($id)) . '" class="btn btn-sm mr-2 mb-2 btn-primary btn-detail" data-toggle="tooltip" title="Detail"><i class="fas fa-search-plus"></i></a><a href="' . site_url('surat/Surat/edit_surat/internal/' . encrypt_url($id)) . '" class="btn btn-sm mr-2 mb-2 btn-warning btn-edit" data-toggle="tooltip" title="Edit"><i class="far fa-edit"></i></a><button type="button" class="btn btn-sm mr-2 mb-2 btn-danger btn-hapus" data-id="' . encrypt_url($id) . '" data-toggle="tooltip" title="Hapus" onclick="hapus(this)"><i class="far fa-trash-alt"></i></button>';
 		}
 		$this->datatables->select('id, nomor_surat, isi, tanggal_diterima, sifat_surat, asal_surat, tujuan_surat');
 		$this->datatables->where('is_deleted', 0);
@@ -48,14 +48,14 @@ class ModelSurat extends CI_Model {
 		return $this->datatables->generate();
 	}
 
-	public function datatables_disposisi()
+	public function datatables_disposisi($id_surat)
 	{
-		$this->datatables->select('d.id, d.nama_instansi, d.jabatan, d.disposisi, d.tanggal_disposisi');
+		$this->datatables->select('d.id, d.id_surat, d.nama_instansi, d.jabatan, d.disposisi, d.tanggal_disposisi');
 		$this->datatables->from('disposisi as d');
-		$this->datatables->join('surat as s', 'd.id_surat = s.id', 'inner');
+		$this->datatables->join('surat as s', 's.id = d.id_surat');
 		$this->datatables->where('d.is_deleted', 0);
-		$this->datatables->add_column('action', '<button type="button" class="btn btn-sm mr-2 btn-warning btn-edit" data-toggle="tooltip" title="Disposisi"><i class="fas fa-history"></i></button>', 'id');
-
+		$this->datatables->where('s.is_deleted', 0);
+		$this->datatables->where('d.id_surat', $id_surat);
 		return $this->datatables->generate();
 	}
 
@@ -71,6 +71,31 @@ class ModelSurat extends CI_Model {
 		return $this->db->get($this->table)->row();
 	}
 
+	public function getDetailSurat($id){
+		$row_surat = $this->getDataById($id);
+		if ($row_surat->tipe_surat == 'masuk') {
+			$this->db->select('s.id as id_surat, s.tipe_surat, s.nomor_surat, s.tanggal_surat, s.isi, s.tanggal_diterima, s.sifat_surat, s.kecepatan_surat, i.instansi as asal_surat, j.jabatan as tujuan_surat, s.file, s.status_surat, u.nama_lengkap as penerima');
+			$this->db->from('surat as s');
+			$this->db->join('instansi as i', 'i.id = s.asal_surat');
+			$this->db->join('jabatan as j', 'j.id = s.tujuan_surat');
+			$this->db->join('users as u', 'u.id = s.penerima');
+		}elseif ($row_surat->tipe_surat == 'keluar') {
+			$this->db->select('s.id as id_surat, s.tipe_surat, s.nomor_surat, s.tanggal_surat, s.isi, s.tanggal_diterima, s.sifat_surat, s.kecepatan_surat, j.jabatan as asal_surat, i.instansi as tujuan_surat, s.file, s.status_surat, u.nama_lengkap as penerima');
+			$this->db->from('surat as s');
+			$this->db->join('jabatan as j', 'j.id = s.asal_surat');
+			$this->db->join('instansi as i', 'i.id = s.tujuan_surat');
+			$this->db->join('users as u', 'u.id = s.penerima');
+		}else {
+			$this->db->select('s.id as id_surat, s.tipe_surat, s.nomor_surat, s.tanggal_surat, s.isi, s.tanggal_diterima, s.sifat_surat, s.kecepatan_surat, j.jabatan as asal_surat, jb.jabatan as tujuan_surat, s.file, s.status_surat, u.nama_lengkap as penerima');
+			$this->db->from('surat as s');
+			$this->db->join('jabatan as j', 'j.id = s.asal_surat');
+			$this->db->join('jabatan as jb', 'jb.id = s.tujuan_surat');
+			$this->db->join('users as u', 'u.id = s.penerima');
+		}
+		$this->db->where('s.id', $id);
+		return $this->db->get()->row();
+	}
+
 	public function create($data)
 	{
 		$this->db->insert($this->table, $data);
@@ -82,10 +107,10 @@ class ModelSurat extends CI_Model {
 		$this->db->update($this->table, $data);
 	}
 
-	public function delete($id)
+	public function delete($id, $data)
 	{
 		$this->db->where($this->id, $id);
-		$this->db->delete($this->table);
+		$this->db->update($this->table, $data);
 	}
 
 	public function get_surat()
