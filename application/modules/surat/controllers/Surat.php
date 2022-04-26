@@ -177,6 +177,7 @@ class Surat extends CI_Controller
 				$data = [
 					'tipe_surat' => $this->input->post('tipe_surat'),
 					'nomor_surat' => $this->input->post('nomor_surat'),
+					'nomor_agenda' => $this->input->post('nomor_agenda'),
 					'tanggal_surat' => $this->input->post('tanggal_surat') . ' 00:00:00',
 					'isi' => $this->input->post('isi'),
 					'tanggal_diterima' => $this->input->post('tanggal_diterima') . ' 00:00:00',
@@ -228,6 +229,7 @@ class Surat extends CI_Controller
 				$data = [
 					'tipe_surat' => $this->input->post('tipe_surat'),
 					'nomor_surat' => $this->input->post('nomor_surat'),
+					'nomor_agenda' => $this->input->post('nomor_agenda'),
 					'tanggal_surat' => $this->input->post('tanggal_surat') . ' 00:00:00',
 					'isi' => $this->input->post('isi'),
 					'tanggal_diterima' => $this->input->post('tanggal_diterima') . ' 00:00:00',
@@ -255,6 +257,7 @@ class Surat extends CI_Controller
 				$data = [
 					'tipe_surat' => $this->input->post('tipe_surat'),
 					'nomor_surat' => $this->input->post('nomor_surat'),
+					'nomor_agenda' => $this->input->post('nomor_agenda'),
 					'tanggal_surat' => $this->input->post('tanggal_surat') . ' 00:00:00',
 					'isi' => $this->input->post('isi'),
 					'tanggal_diterima' => $this->input->post('tanggal_diterima') . ' 00:00:00',
@@ -311,6 +314,7 @@ class Surat extends CI_Controller
 	private function validation()
 	{
 		$this->form_validation->set_rules('nomor_surat', 'Nomor Surat', 'trim|required');
+		$this->form_validation->set_rules('nomor_agenda', 'Nomor Agenda', 'trim|required');
 		$this->form_validation->set_rules('tanggal_surat', 'Tanggal Surat', 'trim|required');
 		$this->form_validation->set_rules('isi', 'Isi Surat', 'trim|required');
 		$this->form_validation->set_rules('tanggal_diterima', 'Tanggal Diterima', 'trim|required');

@@ -20,6 +20,7 @@ $(document).ready(function () {
 	});
 });
 
+
 function validationJquery() {
 	$(".btn-next1").on("click", function (e) {
 		// validasi form
@@ -54,6 +55,18 @@ function validationJquery() {
 			next_step = false;
 		} else {
 			$("#penerima").removeClass("is-invalid");
+		}
+		if ($("#tujuan_surat").val() == "") {
+			$("#tujuan_surat").addClass("is-invalid");
+			next_step = false;
+		} else {
+			$("#tujuan_surat").removeClass("is-invalid");
+		}
+		if ($("#nomor_agenda").val() == "") {
+			$("#nomor_agenda").addClass("is-invalid");
+			next_step = false;
+		} else {
+			$("#nomor_agenda").removeClass("is-invalid");
 		}
 
 		if (next_step) {
@@ -118,33 +131,6 @@ function validationJquery() {
 		});
 	});
 
-	$(".btn-next3").on("click", function (e) {
-		e.preventDefault();
-		// validasi form
-		var next_step = true;
-
-		if ($("#tujuan_surat").val() == "") {
-			$("#tujuan_surat").addClass("is-invalid");
-			next_step = false;
-		} else {
-			$("#tujuan_surat").removeClass("is-invalid");
-		}
-		if ($("#isi").val() == "") {
-			$("#isi").addClass("is-invalid");
-			next_step = false;
-		} else {
-			$("#isi").removeClass("is-invalid");
-		}
-
-		if (next_step) {
-			$("#jenis-surat").css("display", "none");
-			$("#file-surat").css("display", "block");
-			$("#isi-surat").fadeOut(400, function () {
-				stepper.next();
-			});
-		}
-	});
-
 	$(".btn-prev3").on("click", function (e) {
 		$("#isi-surat").fadeOut(400, function () {
 			$("#identitas-surat").css("display", "none");
@@ -157,15 +143,24 @@ function validationJquery() {
 
 	$(".btn-submit").on("click", function (e) {
 		e.preventDefault();
+		var next_step = true;
+		if ($("#isi").val() == "") {
+			$("#isi").addClass("is-invalid");
+			next_step = false;
+		} else {
+			$("#isi").removeClass("is-invalid");
+		}
 		// if ($("#file")[0].files.length === 0) {
 		// 	$("#show-error-file").addClass("is-invalid");
 		// 	$("#file").addClass("is-invalid");
 		// } else {
 		// 	$("#show-error-file").removeClass("is-invalid");
 		// 	$("#file").removeClass("is-invalid");
-		// 	$("#form-tambah").submit();
 		// }
-		$("#form-tambah").submit();
+
+		if (next_step) {
+			$("#form-tambah").submit();
+		}
 	});
 }
 

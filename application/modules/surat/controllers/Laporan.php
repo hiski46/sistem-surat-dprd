@@ -41,5 +41,14 @@ class Laporan extends CI_Controller
 		echo (json_encode($data));
 	}
 
+	public function generate_pdf()
+	{
+
+	}
+
+	public function generate_excel()
+	{
+		
+	}
 
 }

@@ -8,42 +8,48 @@ class ModelSurat extends CI_Model {
 
 	public function datatables_surat_masuk()
 	{
-		function callback_one($id){
-			return '<a href="' . site_url('surat/Surat/detail_surat/' . encrypt_url($id)) . '" class="btn btn-sm mr-2 mb-2 btn-primary btn-detail" data-toggle="tooltip" title="Detail"><i class="fas fa-search-plus"></i></a><a href="' . site_url('surat/Surat/edit_surat/masuk/' . encrypt_url($id)) . '" class="btn btn-sm mr-2 mb-2 btn-warning btn-edit" data-toggle="tooltip" title="Edit"><i class="far fa-edit"></i></a><button type="button" class="btn btn-sm mr-2 mb-2 btn-danger btn-hapus" data-id="' . encrypt_url($id) . '" data-toggle="tooltip" title="Hapus" onclick="hapus(this)"><i class="far fa-trash-alt"></i></button>';
+		function callback_one($id, $isi){
+			return '<a href="' . site_url('surat/Surat/detail_surat/' . encrypt_url($id)) . '" data-toggle="tooltip" title="Click to Detail">'.$isi.'</a>';
+			// return '<a data-isi="'.$isi.'" href="' . site_url('surat/Surat/detail_surat/' . encrypt_url($id)) . '" class="btn btn-sm mr-2 mb-2 btn-primary btn-detail" data-toggle="tooltip" title="Detail"><i class="fas fa-search-plus"></i></a><a href="' . site_url('surat/Surat/edit_surat/masuk/' . encrypt_url($id)) . '" class="btn btn-sm mr-2 mb-2 btn-warning btn-edit" data-toggle="tooltip" title="Edit"><i class="far fa-edit"></i></a><button type="button" class="btn btn-sm mr-2 mb-2 btn-danger btn-hapus" data-id="' . encrypt_url($id) . '" data-toggle="tooltip" title="Hapus" onclick="hapus(this)"><i class="far fa-trash-alt"></i></button>';
 		}
-		$this->datatables->select('id, nomor_surat, isi, tanggal_diterima, sifat_surat, asal_surat, tujuan_surat');
+		$this->datatables->select('id, nomor_surat, isi, tanggal_diterima, sifat_surat, asal_surat, tujuan_surat, status_surat');
 		$this->datatables->where('is_deleted', 0);
 		$this->datatables->where('tipe_surat', 'masuk');
 		$this->datatables->from($this->table);
-		$this->datatables->add_column('action', '$1', 'callback_one(id)');
+		$this->datatables->add_column('isi', '$1', 'callback_one(id, isi)');
+		// $this->datatables->add_column('action', '$1', 'callback_one(id)');
 
 		return $this->datatables->generate();
 	}
 
 	public function datatables_surat_keluar()
 	{
-		function callback_two($id){
-			return '<a href="' . site_url('surat/Surat/detail_surat/' . encrypt_url($id)) . '" class="btn btn-sm mr-2 mb-2 btn-primary btn-detail" data-toggle="tooltip" title="Detail"><i class="fas fa-search-plus"></i></a><a href="' . site_url('surat/Surat/edit_surat/keluar/' . encrypt_url($id)) . '" class="btn btn-sm mr-2 mb-2 btn-warning btn-edit" data-toggle="tooltip" title="Edit"><i class="far fa-edit"></i></a><button type="button" class="btn btn-sm mr-2 mb-2 btn-danger btn-hapus" data-id="' . encrypt_url($id) . '" data-toggle="tooltip" title="Hapus" onclick="hapus(this)"><i class="far fa-trash-alt"></i></button>';
+		function callback_two($id, $isi){
+			return '<a href="' . site_url('surat/Surat/detail_surat/' . encrypt_url($id)) . '" data-toggle="tooltip" title="Click to Detail">' . $isi . '</a>';
+			// return '<a href="' . site_url('surat/Surat/detail_surat/' . encrypt_url($id)) . '" class="btn btn-sm mr-2 mb-2 btn-primary btn-detail" data-toggle="tooltip" title="Detail"><i class="fas fa-search-plus"></i></a><a href="' . site_url('surat/Surat/edit_surat/keluar/' . encrypt_url($id)) . '" class="btn btn-sm mr-2 mb-2 btn-warning btn-edit" data-toggle="tooltip" title="Edit"><i class="far fa-edit"></i></a><button type="button" class="btn btn-sm mr-2 mb-2 btn-danger btn-hapus" data-id="' . encrypt_url($id) . '" data-toggle="tooltip" title="Hapus" onclick="hapus(this)"><i class="far fa-trash-alt"></i></button>';
 		}
-		$this->datatables->select('id, nomor_surat, isi, tanggal_diterima, sifat_surat, asal_surat, tujuan_surat');
+		$this->datatables->select('id, nomor_surat, isi, tanggal_diterima, sifat_surat, asal_surat, tujuan_surat, status_surat');
 		$this->datatables->where('is_deleted', 0);
 		$this->datatables->where('tipe_surat', 'keluar');
 		$this->datatables->from($this->table);
-		$this->datatables->add_column('action', '$1', 'callback_two(id)');
+		$this->datatables->add_column('isi', '$1', 'callback_two(id, isi)');
+		// $this->datatables->add_column('action', '$1', 'callback_two(id)');
 
 		return $this->datatables->generate();
 	}
 
 	public function datatables_surat_internal()
 	{
-		function callback_three($id){
-			return '<a href="' . site_url('surat/Surat/detail_surat/' . encrypt_url($id)) . '" class="btn btn-sm mr-2 mb-2 btn-primary btn-detail" data-toggle="tooltip" title="Detail"><i class="fas fa-search-plus"></i></a><a href="' . site_url('surat/Surat/edit_surat/internal/' . encrypt_url($id)) . '" class="btn btn-sm mr-2 mb-2 btn-warning btn-edit" data-toggle="tooltip" title="Edit"><i class="far fa-edit"></i></a><button type="button" class="btn btn-sm mr-2 mb-2 btn-danger btn-hapus" data-id="' . encrypt_url($id) . '" data-toggle="tooltip" title="Hapus" onclick="hapus(this)"><i class="far fa-trash-alt"></i></button>';
+		function callback_three($id, $isi){
+			return '<a href="' . site_url('surat/Surat/detail_surat/' . encrypt_url($id)) . '" data-toggle="tooltip" title="Click to Detail">' . $isi . '</a>';
+			// return '<a href="' . site_url('surat/Surat/detail_surat/' . encrypt_url($id)) . '" class="btn btn-sm mr-2 mb-2 btn-primary btn-detail" data-toggle="tooltip" title="Detail"><i class="fas fa-search-plus"></i></a><a href="' . site_url('surat/Surat/edit_surat/internal/' . encrypt_url($id)) . '" class="btn btn-sm mr-2 mb-2 btn-warning btn-edit" data-toggle="tooltip" title="Edit"><i class="far fa-edit"></i></a><button type="button" class="btn btn-sm mr-2 mb-2 btn-danger btn-hapus" data-id="' . encrypt_url($id) . '" data-toggle="tooltip" title="Hapus" onclick="hapus(this)"><i class="far fa-trash-alt"></i></button>';
 		}
-		$this->datatables->select('id, nomor_surat, isi, tanggal_diterima, sifat_surat, asal_surat, tujuan_surat');
+		$this->datatables->select('id, nomor_surat, isi, tanggal_diterima, sifat_surat, asal_surat, tujuan_surat, status_surat');
 		$this->datatables->where('is_deleted', 0);
 		$this->datatables->where('tipe_surat', 'internal');
 		$this->datatables->from($this->table);
-		$this->datatables->add_column('action', '$1', 'callback_three(id)');
+		$this->datatables->add_column('isi', '$1', 'callback_three(id, isi)');
+		// $this->datatables->add_column('action', '$1', 'callback_three(id)');
 
 		return $this->datatables->generate();
 	}

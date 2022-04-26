@@ -88,7 +88,7 @@ if (!function_exists("get_base_css")) {
 			"assets/backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css",
 			"assets/backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css",
 			"assets/backend/plugins/datatables-buttons/css/buttons.bootstrap4.min.css",
-			"assets/backend/plugins/bs-stepper/css/bs-stepper.min.css",
+			"assets/backend/plugins/bs-stepper/css/bs-stepper.css",
 			'assets/backend/plugins/select2/css/select2.min.css',
 			'assets/backend/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css',
 			"assets/css/glyphicons.css",

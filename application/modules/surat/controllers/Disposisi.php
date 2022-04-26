@@ -10,8 +10,7 @@ class Disposisi extends CI_Controller
 		if (logged_in() == false) {
 			redirect(site_url('login'));
 		}
-
-		$this->load->model('ModelDisposisi');
+		$this->load->model(['ModelInstansi', 'ModelJabatan', 'ModelSurat', 'ModelDisposisi']);
 	}
 
 	// public function index()
@@ -47,7 +46,7 @@ class Disposisi extends CI_Controller
 
 	public function disposisi_surat($id)
 	{
-		$this->load->model(['ModelInstansi', 'ModelJabatan', 'ModelSurat']);
+		
 		$id_surat = decrypt_url($id);
 		$data_surat = $this->ModelSurat->surat_disposisi($id_surat);
 
@@ -85,11 +84,25 @@ class Disposisi extends CI_Controller
 			];
 
 			$this->ModelDisposisi->create($data);
+			$this->ModelSurat->update($id_Surat, ['status_surat' => 'diproses']);
 
 			$this->session->set_flashdata('message', 'Data berhasil di simpan!');
 
 			redirect(site_url('surat/Surat/detail_surat/' . encrypt_url($id_Surat)));
 		}
+	}
+
+	public function selesai($id){
+		$id_Surat = decrypt_url($id);
+		$row_surat = $this->ModelSurat->getDataById($id_Surat);
+
+		$data = [
+			'status_surat' => 'selesai',
+		];
+
+		$this->ModelSurat->update($id_Surat, $data);
+
+		redirect(site_url('surat/Disposisi/view/' . $row_surat->tipe_surat));
 	}
 
 	private function validation()

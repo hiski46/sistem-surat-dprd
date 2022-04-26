@@ -95,6 +95,10 @@
     -ms-flex-preferred-size: 20px;
         flex-basis: 20px;
   }
+
+	.bs-stepper-label{
+		font-size: 9px;
+	}
 }
 
 .bs-stepper-circle {

@@ -408,11 +408,14 @@ function loadData() {
 				className: "align-middle",
 			},
 			{
-				data: "nip",
+				data: "jabatan",
 				className: "align-middle",
 			},
 			{
-				data: "jabatan",
+				data: "lasted_login",
+				render: function (data) {
+					return convertTanggal(data, false, true);	
+				},
 				className: "align-middle",
 			},
 			{

@@ -1,9 +1,13 @@
-function convertTanggal(date, hari = false) {
+function convertTanggal(date, param_hari = false, param_waktu = false) {
 	var date = new Date(date);
 	var tahun = date.getFullYear();
 	var bulan = date.getMonth();
 	var tanggal = date.getDate();
 	var hari = date.getDay();
+
+	var jam = date.getHours();
+	var menit = date.getMinutes();
+	var detik = date.getSeconds();
 
 	switch (hari) {
 		case 0:
@@ -68,9 +72,13 @@ function convertTanggal(date, hari = false) {
 			break;
 	}
 
-	if (hari == false) {
-		return hari + ", " + tanggal + " " + bulan + " " + tahun;
-	} else {
+	if (param_hari == false && param_waktu == false) {
 		return tanggal + " " + bulan + " " + tahun;
+	} else if (param_hari == false && param_waktu == true) {
+		return tanggal + " " + bulan + " " + tahun + ' ' + jam + ':' + menit + ':' + detik;
+	} else if (param_hari == true && param_waktu == true) {
+		return hari + ", " +tanggal + " " + bulan + " " + tahun + ' ' + jam + ':' + menit + ':' + detik;
+	}else {
+		 return hari + ", " + tanggal + " " + bulan + " " + tahun;
 	}
 }

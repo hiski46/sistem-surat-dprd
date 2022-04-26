@@ -20,8 +20,8 @@
 							<th class="text-center align-middle" width="3%">#</th>
 							<th class="text-center align-middle" width="25%">Nama Lengkap</th>
 							<th class="text-center align-middle" width="15%">Username</th>
-							<th class="text-center align-middle" width="15%">NIP/NRP/Code</th>
 							<th class="text-center align-middle" width="20%">Jabatan</th>
+							<th class="text-center align-middle" width="15%">Terakhir Login</th>
 							<th class="text-center align-middle" width="7%">Level</th>
 							<th class="text-center align-middle" width="15%"><span class="d-none d-sm-block ml-0">Action</span></th>
 						</tr>

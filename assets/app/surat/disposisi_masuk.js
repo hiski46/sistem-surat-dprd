@@ -87,14 +87,14 @@ function loadDisposisiMasuk() {
 				className: "align-middle",
 			},
 			{
-				data: "status_surat",
+				data: "tipe_disposisi",
 				className: "align-middle",
 			},
-			// {
-			// 	data: "action",
-			// 	orderable: false,
-			// 	className: "text-center align-middle",
-			// },
+			{
+				data: "action",
+				orderable: false,
+				className: "text-center align-middle",
+			},
 		],
 		responsive: true,
 		order: [],

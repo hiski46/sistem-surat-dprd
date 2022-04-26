@@ -28,9 +28,10 @@
 							<th class="text-center align-middle">Diterima</th>
 							<th class="text-center align-middle">Sifat Surat</th>
 							<th class="text-center align-middle">Isi Surat</th>
+							<th class="text-center align-middle">Status</th>
 							<!-- <th class="text-center align-middle">Asal Surat</th>
 							<th class="text-center align-middle">Tujuan Surat</th> -->
-							<th class="text-center align-middle" width="15%">Action</th>
+							<!-- <th class="text-center align-middle" width="15%">Action</th> -->
 						</tr>
 					</thead>
 					<tbody></tbody>

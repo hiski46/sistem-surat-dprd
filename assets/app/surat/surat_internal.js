@@ -141,6 +141,27 @@ function loadSuratInternal() {
 				data: "isi",
 				className: "align-middle",
 			},
+			{
+				data: "status_surat",
+				render: function (data) {
+					var color = '';
+					if (data == 'diproses') {
+						color = 'badge-warning';
+					} else if(data == 'diterima'){
+						color = 'badge-success';
+					}else{
+						color = 'badge-primary';
+					}
+
+					return (
+						'<span class="badge '+color+'">' +
+						data.charAt(0).toUpperCase() +
+						data.slice(1) +
+						"</span>"
+					);	
+				},
+				className: "align-middle",
+			},
 			// {
 			// 	data: "asal_surat",
 			// 	className: "align-middle",
@@ -149,11 +170,11 @@ function loadSuratInternal() {
 			// 	data: "tujuan_surat",
 			// 	className: "align-middle",
 			// },
-			{
-				data: "action",
-				orderable: false,
-				className: "text-center align-middle",
-			},
+			// {
+			// 	data: "action",
+			// 	orderable: false,
+			// 	className: "text-center align-middle",
+			// },
 		],
 		responsive: true,
 		order: [],

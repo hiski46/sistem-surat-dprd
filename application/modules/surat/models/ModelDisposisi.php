@@ -8,39 +8,48 @@ class ModelDisposisi extends CI_Model
 	private $id = 'id';
 
 	public function datatables($tipe_surat){
-		// function callback($id)
-		// {
-		// 	return '<a href="' . site_url('surat/Surat/detail_surat/' . encrypt_url($id)) . '" class="btn btn-sm mr-2 mb-2 btn-primary btn-detail" data-toggle="tooltip" title="Detail"><i class="fas fa-search-plus"></i></a>';
-		// }
+		function callback($id, $status_surat)
+		{
+			$button = '';
+			if ($status_surat != 'selesai') {
+				$button = '<a data-tes="'.$status_surat.'" href="' . site_url('surat/Disposisi/selesai/' . encrypt_url($id)) . '" class="btn btn-xs mr-2 mb-2 btn-danger btn-detail" data-toggle="tooltip" title="Selesaikan">Selesaikan?</a>';
+			}else {
+				$button = '<a class="btn btn-xs mr-2 mb-2 btn-primary btn-detail disabled" data-toggle="tooltip" title="Telah Selesai">Selesai</a>';
+			}
+			return $button;
+		}
 		if ($tipe_surat == 'masuk') {
-			$this->datatables->select('d.id, s.nomor_surat, i.instansi as asal_surat, j.jabatan as tujuan_disposisi, s.tanggal_surat, d.tipe_disposisi, d.disposisi, d.tanggal_disposisi, s.status_surat');
+			$this->datatables->select('d.id, s.nomor_surat, i.instansi as asal_surat, j.jabatan as tujuan_disposisi, s.tanggal_surat, t.tipe_disposisi as tipe_disposisi, d.disposisi, d.tanggal_disposisi, s.status_surat');
 			$this->datatables->from('disposisi as d');
 			$this->datatables->join('surat as s', 'd.id_surat = s.id', 'inner');
 			$this->datatables->join('jabatan j', 'j.id = d.tujuan_disposisi');
 			$this->datatables->join('instansi i', 'i.id = s.asal_surat');
+			$this->datatables->join('tipe_disposisi t', 't.id = d.tipe_disposisi');
 			$this->datatables->where('d.is_deleted', 0);
 			$this->datatables->where('s.tipe_surat', $tipe_surat);
-			// $this->datatables->add_column('action', '$1', 'callback(id)');
+			$this->datatables->add_column('action', '$1', 'callback(id, status_surat)');
 			return $this->datatables->generate();
 		}elseif ($tipe_surat == 'keluar') {
-			$this->datatables->select('d.id, s.nomor_surat, j.jabatan as asal_surat, i.instansi as tujuan_disposisi, s.tanggal_surat, d.tipe_disposisi, d.disposisi, d.tanggal_disposisi, s.status_surat');
+			$this->datatables->select('d.id, s.nomor_surat, j.jabatan as asal_surat, i.instansi as tujuan_disposisi, s.tanggal_surat,  t.tipe_disposisi as tipe_disposisi, d.disposisi, d.tanggal_disposisi, s.status_surat');
 			$this->datatables->from('disposisi as d');
 			$this->datatables->join('surat as s', 'd.id_surat = s.id', 'inner');
 			$this->datatables->join('jabatan j', 'j.id = s.asal_surat');
 			$this->datatables->join('instansi i', 'i.id = d.tujuan_disposisi');
+			$this->datatables->join('tipe_disposisi t', 't.id = d.tipe_disposisi');
 			$this->datatables->where('d.is_deleted', 0);
 			$this->datatables->where('s.tipe_surat', $tipe_surat);
-			// $this->datatables->add_column('action', '$1', 'callback(id)');
+			$this->datatables->add_column('action', '$1', 'callback(id, status_surat)');
 			return $this->datatables->generate();
 		}else {
-			$this->datatables->select('d.id, s.nomor_surat, jb.jabatan as asal_surat, j.jabatan as tujuan_disposisi, s.tanggal_surat, d.tipe_disposisi, d.disposisi, d.tanggal_disposisi, s.status_surat');
+			$this->datatables->select('d.id, s.nomor_surat, jb.jabatan as asal_surat, j.jabatan as tujuan_disposisi, s.tanggal_surat,  t.tipe_disposisi as tipe_disposisi, d.disposisi, d.tanggal_disposisi, s.status_surat');
 			$this->datatables->from('disposisi as d');
 			$this->datatables->join('surat as s', 'd.id_surat = s.id', 'inner');
 			$this->datatables->join('jabatan j', 'j.id = d.tujuan_disposisi');
 			$this->datatables->join('jabatan jb', 'jb.id = s.asal_surat');
+			$this->datatables->join('tipe_disposisi t', 't.id = d.tipe_disposisi');
 			$this->datatables->where('d.is_deleted', 0);
 			$this->datatables->where('s.tipe_surat', $tipe_surat);
-			// $this->datatables->add_column('action', '$1', 'callback(id)');
+			$this->datatables->add_column('action', '$1', 'callback(id, status_surat)');
 			return $this->datatables->generate();
 		}
 	}

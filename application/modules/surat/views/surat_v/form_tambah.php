@@ -1,11 +1,10 @@
-
 <div class="row">
 	<div class="col-md-12">
 		<div class="card card-default">
 			<div class="card-header">
 				<h3 class="card-title"><?= $title; ?></h3>
 			</div>
-			<div class="card-body p-0">
+			<div class="card-body">
 				<div class="bs-stepper">
 					<div class="bs-stepper-header" role="tablist">
 
@@ -29,33 +28,49 @@
 								<span class="bs-stepper-label">Isi Surat</span>
 							</button>
 						</div>
-						<div class="line"></div>
-						<div class="step" data-target="#file-surat">
-							<button type="button" class="step-trigger" role="tab" aria-controls="file-surat" id="file-surat-trigger">
-								<span class="bs-stepper-circle">4</span>
-								<span class="bs-stepper-label">File Surat</span>
-							</button>
-						</div>
 					</div>
 					<div class="bs-stepper-content">
 						<form action="<?= site_url('surat/surat/create'); ?>" method="post" enctype="multipart/form-data" id="form-tambah">
 							<div id="identitas-surat" class="content" role="tabpanel" aria-labelledby="identitas-surat-trigger">
 								<input type="hidden" name="tipe_surat" value="<?= $tipe_surat; ?>">
-								<div class="form-group">
-									<label>Nomor Surat <?= form_error('nomor_surat'); ?></label>
-									<?php
-									echo form_input(array(
-										"id" => "nomor_surat",
-										"name" => "nomor_surat",
-										"type" => "text",
-										"value" => set_value('nomor_surat'),
-										"placeholder" => "Nomor Surat",
-										"class" => "form-control",
-										"required" => "required",
-									));
-									?>
-									<div class="invalid-feedback">
-										Nomor surat harus diisi.
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Nomor Surat <?= form_error('nomor_surat'); ?></label>
+											<?php
+											echo form_input(array(
+												"id" => "nomor_surat",
+												"name" => "nomor_surat",
+												"type" => "text",
+												"value" => set_value('nomor_surat'),
+												"placeholder" => "Nomor Surat",
+												"class" => "form-control",
+												"required" => "required",
+											));
+											?>
+											<div class="invalid-feedback">
+												Nomor surat harus diisi.
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Nomor Agenda <?= form_error('nomor_agenda'); ?></label>
+											<?php
+											echo form_input(array(
+												"id" => "nomor_agenda",
+												"name" => "nomor_agenda",
+												"type" => "text",
+												"value" => set_value('nomor_agenda'),
+												"placeholder" => "Nomor Agenda",
+												"class" => "form-control",
+												"required" => "required",
+											));
+											?>
+											<div class="invalid-feedback">
+												Nomor agenda harus diisi.
+											</div>
+										</div>
 									</div>
 								</div>
 								<div class="row">
@@ -142,7 +157,6 @@
 												$list_tujuan[$val->id] = $val->jabatan;
 											}
 										}
-
 									}
 									echo form_dropdown('tujuan_surat', $list_tujuan, set_value('tujuan_surat'), ['class' => 'form-control', 'id' => 'tujuan_surat']);
 
@@ -158,8 +172,8 @@
 									<label>Sifat Surat <?= form_error('sifat_surat'); ?></label>
 									<select name="sifat_surat" id="sifat_surat" class="form-control">
 										<option value="">Pilih Sifat Surat</option>
-										<option value="biasa" <?= set_select('sifat_surat', 'biasa'); ?>>Surat Biasa</option>
-										<option value="rahasia" <?= set_select('sifat_surat', 'rahasia'); ?>>Surat Rahasia</option>
+										<option value="biasa" <?= set_select('sifat_surat', 'biasa'); ?>>Biasa</option>
+										<option value="rahasia" <?= set_select('sifat_surat', 'rahasia'); ?>>Rahasia</option>
 									</select>
 									<div class="invalid-feedback">
 										Sifat surat harus diisi.
@@ -169,8 +183,8 @@
 									<label>Kecepatan Surat <?= form_error('kecepatan_surat'); ?></label>
 									<select name="kecepatan_surat" id="kecepatan_surat" class="form-control">
 										<option value="">Pilih Kecepatan Surat</option>
-										<option value="biasa" <?= set_select('kecepatan_surat', 'biasa'); ?>>Surat Biasa</option>
-										<option value="segera" <?= set_select('kecepatan_surat', 'segera'); ?>>Surat Segera</option>
+										<option value="biasa" <?= set_select('kecepatan_surat', 'biasa'); ?>>Biasa</option>
+										<option value="segera" <?= set_select('kecepatan_surat', 'segera'); ?>>Segera</option>
 									</select>
 									<div class="invalid-feedback">
 										Kecepatan surat harus diisi.
@@ -198,10 +212,6 @@
 										Isi surat harus diisi.
 									</div>
 								</div>
-								<button type="button" class="btn btn-primary btn-prev2">Previous</button>
-								<button type="button" class="btn btn-primary btn-next3">Next</button>
-							</div>
-							<div id="file-surat" class="content" role="tabpanel" aria-labelledby="file-surat-trigger">
 								<div class="form-group">
 									<label for="file-surat">File Surat <?= form_error('file'); ?></label>
 									<div class="input-group" id="show-error-file">
@@ -215,9 +225,10 @@
 										<?= (isset($error)) ? $error : ''; ?>
 									</div>
 								</div>
-								<button type="button" class="btn btn-primary btn-prev3">Previous</button>
+								<button type="button" class="btn btn-primary btn-prev2">Previous</button>
 								<button type="button" class="btn btn-primary btn-submit">Submit</button>
 							</div>
+
 						</form>
 					</div>
 				</div>
