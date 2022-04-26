@@ -7,6 +7,7 @@ class Track extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model("ModelTrack","ModelTrack");
+		$this->load->model("ModelDisposisi");
 	}
 
 	public function index()
@@ -24,17 +25,13 @@ class Track extends CI_Controller
 	{
 		$nomor_surat = trim($this->input->post('nomor_surat'));
 		$data["surat"] = $this->ModelTrack->get_surat($nomor_surat);
-		$data["nomor_surat"] = $nomor_surat;
-		$response["data"] = $this->load->view("tracking_response",$data,true);
+		if (!is_null($data["surat"]) && (count($data["surat"]) > 0)) {
+			$data["disposisi"] = $this->ModelDisposisi->getDisposisiByIdSurat($data["surat"]["id"]);
+			$response["data"] = $this->load->view("tracking_response",$data,true);
+		} else {
+			$response["data"] = "<h3 class='text-center'>Data tidak ditemukan</h3>";
+		}
 		echo json_encode($response);
 	}
-
-	public function tracking()
-	{
-		$nomor_surat = trim($this->input->post('nomor_surat'));
-		$data["surat"] = $this->ModelTrack->get_surat($nomor_surat);
-		echo json_encode($data["surat"]);
-	}
-
 
 }

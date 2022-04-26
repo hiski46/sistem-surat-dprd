@@ -9,9 +9,6 @@ $(document).ready(function () {
 			data : { nomor_surat: nomor_surat},
 			success: function(response){
 				$("#display-tracking").html(response.data);
-			},
-			error: function(jqXhr, textStatus, errorMessage){
-				$("#display-tracking").html(errorMessage);
 			}
 		});
 	});

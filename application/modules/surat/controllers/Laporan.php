@@ -30,8 +30,14 @@ class Laporan extends CI_Controller
 		$data["recordsTotal"] 	 = $this->ModelLaporan->count_total();
 		$data["recordsFiltered"] = $this->ModelLaporan->count_filtered();
 
-		$data["data"]	= $this->ModelLaporan->get_datatables();
+		$laporan = $this->ModelLaporan->get_datatables();
 
+		$datatable = array();
+		foreach ($laporan as $surat) {
+			$surat["sec_id"] = encrypt_url($surat["id"]);
+			$datatable[] = $surat;
+		}
+		$data["data"]	= $datatable;
 		echo (json_encode($data));
 	}
 

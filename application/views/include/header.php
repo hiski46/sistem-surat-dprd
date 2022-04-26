@@ -7,8 +7,8 @@
 	<title><?php echo "Sistem Manajemen Surat"; ?></title>
 
 	<script type="text/javascript">
-		site_url = "<?php echo site_url(); ?>" ;
-		base_url = "<?php echo base_url(); ?>" ;
+		site_url = "<?php echo site_url(); ?>";
+		base_url = "<?php echo base_url(); ?>";
 	</script>
 
 	<?php load_css(get_base_css()); ?>
@@ -90,7 +90,7 @@
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="<?php echo site_url('surat/surat/disposisi'); ?>" class="nav-link">
+									<a href="<?php echo site_url('surat/Disposisi/view/masuk'); ?>" class="nav-link <?= (isset($active) && $active == 'disposisi_masuk') ? 'active' : ''; ?>">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Disposisi Masuk</p>
 									</a>
@@ -111,7 +111,7 @@
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="./index2.html" class="nav-link">
+									<a href="<?php echo site_url('surat/Disposisi/view/keluar'); ?>" class="nav-link <?= (isset($active) && $active == 'disposisi_keluar') ? 'active' : ''; ?>">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Disposisi Keluar</p>
 									</a>
@@ -132,7 +132,7 @@
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="./index2.html" class="nav-link">
+									<a href="<?php echo site_url('surat/Disposisi/view/internal'); ?>" class="nav-link <?= (isset($active) && $active == 'disposisi_internal') ? 'active' : ''; ?>">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Disposisi Internal</p>
 									</a>
@@ -141,7 +141,7 @@
 						</li>
 
 						<li class="nav-item menu-open">
-							<a href="#" class="nav-link <?= (isset($expand) && $expand == 'surat_internal') ? 'active' : ''; ?>">
+							<a href="#" class="nav-link <?= (isset($expand) && $expand == 'laporan') ? 'active' : ''; ?>">
 								<i class="nav-icon fas fa-envelope"></i>
 								<p>Laporan<i class="right fas fa-angle-right"></i></p>
 							</a>
@@ -156,7 +156,7 @@
 						</li>
 
 						<li class="nav-item menu-open">
-							<a href="#" class="nav-link <?= (isset($expand) && $expand == 'surat_internal') ? 'active' : ''; ?>">
+							<a href="#" class="nav-link <?= (isset($expand) && $expand == 'master_data') ? 'active' : ''; ?>">
 								<i class="nav-icon fas fa-envelope"></i>
 								<p>Master Data<i class="right fas fa-angle-right"></i></p>
 							</a>

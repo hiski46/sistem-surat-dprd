@@ -1,14 +1,9 @@
 $(document).ready(function(){
-	// alert(base_url+'assets/app/sample_ajax_surat.txt');
-
-	// alert(JSON.stringify(dataSet));	
-
 	$('#table-laporan').DataTable({
-		dom: 'lfrtip',
+		// dom: 'lfrtip',
 		responsive 	: true,
 		processing	: true,
         serverSide	: true,
-        // pageLength 	: 5,
         orders : [],
 		ajax : { 
 			url : base_url+"surat/laporan/get_datatables",
@@ -17,7 +12,10 @@ $(document).ready(function(){
 		},
         columns: [
             { 	data: "nomor_surat", 
-            	title: "Nomor Surat"
+            	title: "Nomor Surat",
+                render: function(data,type,row){
+                    return '<div>'+data+'</br>'+ moment(row.tanggal_surat).locale("id").format("d MMMM YYYY")+'</div>';
+                }
             },
             { 	data: "tanggal_diterima", 
             	title: "Tanggal diterima",
@@ -29,7 +27,10 @@ $(document).ready(function(){
             	title: "Sifat Surat"
             },
             { 	data: "isi",
-             	title: "Isi Surat"
+             	title: "Isi Surat",
+                render: function(data, type, row, meta){
+                    return '<a href="'+site_url+'surat/surat/detail_surat/'+row.sec_id+'">' + data + '</a>';
+                }
             },
             { 	data: "status_surat",
              	title: "Status",
@@ -45,6 +46,12 @@ $(document).ready(function(){
              		return '<span class="badge ' + color + '">' + data + '</span>';
              	}
             }
-        ]
+        ],
+        columnDefs: [{
+            targets: '_all',
+            createdCell: function (td, cellData, rowData, row, col) {
+                $(td).css('padding', '5px');
+            }
+        }]
 	});
 });

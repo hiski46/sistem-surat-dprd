@@ -1,8 +1,29 @@
 $(document).ready(function () {
-	loadSuratDisposisi();
+	loadDisposisiMasuk();
+	alert();
 });
 
-function loadSuratDisposisi() {
+function alert() {
+	const flashSuccess = $(".flash-success").data("flashdata");
+	const flashError = $(".flash-error").data("flashdata");
+
+	if (flashSuccess) {
+		Swal.fire({
+			icon: "success",
+			title: "Berhasil",
+			text: flashSuccess,
+		});
+	}
+	if (flashError) {
+		Swal.fire({
+			icon: "error",
+			title: "Gagal",
+			text: flashError,
+		});
+	}
+}
+
+function loadDisposisiMasuk() {
 	$.fn.dataTableExt.oApi.fnPagingInfo = function (oSettings) {
 		return {
 			iStart: oSettings._iDisplayStart,
@@ -16,8 +37,8 @@ function loadSuratDisposisi() {
 			),
 		};
 	};
-	var id_surat = $("#nomor-surat").data("idsurat");
-	$("#surat-disposisi").dataTable({
+
+	$("#datatables").dataTable({
 		initComplete: function () {
 			var api = this.api();
 			$("#mytable_filter input")
@@ -31,44 +52,51 @@ function loadSuratDisposisi() {
 		oLanguage: {
 			sProcessing: "loading...",
 		},
+		bDestroy: true,
 		processing: true,
 		serverSide: true,
 		ajax: {
-			url: site_url + "surat/Surat/datatables_disposisi",
+			url: site_url + "surat/Disposisi/datatables",
 			type: "POST",
-			data: { id_surat: id_surat },
+			data: { tipe_surat: 'masuk' },
 			dataType: 'json',
 		},
 		columns: [
 			{
-				data: "tujuan_disposisi",
+				data: "nomor_surat",
 				orderable: false,
 				className: "text-center align-middle",
 			},
 			{
+				data: "nomor_surat",
+				className: "align-middle",
+			},
+			{
+				data: "tanggal_surat",
+				render: function (data) {
+					return convertTanggal(data);
+				},
+				className: "align-middle",
+			},
+			{
 				data: "tujuan_disposisi",
 				className: "align-middle",
 			},
 			{
-				data: "tipe_disposisi",
+				data: "asal_surat",
 				className: "align-middle",
 			},
 			{
-				data: "tanggal_disposisi",
-				render: function (data) {
-					return convertTanggal(data);
-				},
-				className: "text-center align-middle",
-			},
-			{
-				data: "disposisi",
+				data: "status_surat",
 				className: "align-middle",
 			},
+			// {
+			// 	data: "action",
+			// 	orderable: false,
+			// 	className: "text-center align-middle",
+			// },
 		],
 		responsive: true,
-		searching: false,
-		paging: false,
-		info: false,
 		order: [],
 		rowCallback: function (row, data, iDisplayIndex) {
 			var info = this.fnPagingInfo();

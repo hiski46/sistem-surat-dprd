@@ -17,6 +17,7 @@ class Users extends CI_Controller
 	{
 		$data = [
 			'title' => 'Manajemen Users',
+			'expand' => 'master_data',
 			'active' => 'users',
 			'js' => [
 				'assets/app/users/users.js'

@@ -62,10 +62,10 @@
 					<table id="surat-disposisi" class="table table-sm table-bordered table-hover display nowrap" width="100%">
 						<thead>
 							<th class="text-center align-middle">#</th>
-							<th class="text-center align-middle">Nama Instansi</th>
-							<th class="text-center align-middle">Jabatan</th>
-							<th class="text-center align-middle">Disposisi</th>
+							<th class="text-center align-middle">Tujuan Disposisi</th>
+							<th class="text-center align-middle">Tipe Disposisi</th>
 							<th class="text-center align-middle">Tanggal</th>
+							<th class="text-center align-middle">Disposisi</th>
 						</thead>
 						<tbody>
 						</tbody>

@@ -50,13 +50,43 @@ class ModelSurat extends CI_Model {
 
 	public function datatables_disposisi($id_surat)
 	{
-		$this->datatables->select('d.id, d.id_surat, d.nama_instansi, d.jabatan, d.disposisi, d.tanggal_disposisi');
-		$this->datatables->from('disposisi as d');
-		$this->datatables->join('surat as s', 's.id = d.id_surat');
-		$this->datatables->where('d.is_deleted', 0);
-		$this->datatables->where('s.is_deleted', 0);
-		$this->datatables->where('d.id_surat', $id_surat);
-		return $this->datatables->generate();
+		$row_surat = $this->getDataById($id_surat);
+		if ($row_surat->tipe_surat == 'masuk') {
+			$this->datatables->select('d.id, d.id_surat, j.jabatan as tujuan_disposisi, t.tipe_disposisi, d.disposisi, d.tanggal_disposisi');
+			$this->datatables->from('disposisi as d');
+			$this->datatables->join('surat as s', 's.id = d.id_surat');
+			$this->datatables->join('tipe_disposisi as t', 't.id = d.tipe_disposisi');
+			$this->datatables->join('jabatan as j', 'j.id = d.tujuan_disposisi');
+			$this->datatables->where('d.is_deleted', 0);
+			$this->datatables->where('s.is_deleted', 0);
+			$this->datatables->where('d.id_surat', $id_surat);
+			return $this->datatables->generate();
+		}if ($row_surat->tipe_surat == 'keluar') {
+			$this->datatables->select('d.id, d.id_surat, i.instansi as tujuan_disposisi, t.tipe_disposisi, d.disposisi, d.tanggal_disposisi');
+			$this->datatables->from('disposisi as d');
+			$this->datatables->join('surat as s', 's.id = d.id_surat');
+			$this->datatables->join('tipe_disposisi as t', 't.id = d.tipe_disposisi');
+			$this->datatables->join('instansi as i', 'i.id = d.tujuan_disposisi');
+			$this->datatables->where('d.is_deleted', 0);
+			$this->datatables->where('s.is_deleted', 0);
+			$this->datatables->where('d.id_surat', $id_surat);
+			return $this->datatables->generate();
+		}else {
+			$this->datatables->select('d.id, d.id_surat, j.jabatan as tujuan_disposisi, t.tipe_disposisi, d.disposisi, d.tanggal_disposisi');
+			$this->datatables->from('disposisi as d');
+			$this->datatables->join('surat as s', 's.id = d.id_surat');
+			$this->datatables->join('tipe_disposisi as t', 't.id = d.tipe_disposisi');
+			$this->datatables->join('jabatan as j', 'j.id = d.tujuan_disposisi');
+			$this->datatables->where('d.is_deleted', 0);
+			$this->datatables->where('s.is_deleted', 0);
+			$this->datatables->where('d.id_surat', $id_surat);
+			return $this->datatables->generate();
+		}
+		
+		// $this->datatables->where('d.is_deleted', 0);
+		// $this->datatables->where('s.is_deleted', 0);
+		// $this->datatables->where('d.id_surat', $id_surat);
+		// return $this->datatables->generate();
 	}
 
 	public function getData()
@@ -79,21 +109,51 @@ class ModelSurat extends CI_Model {
 			$this->db->join('instansi as i', 'i.id = s.asal_surat');
 			$this->db->join('jabatan as j', 'j.id = s.tujuan_surat');
 			$this->db->join('users as u', 'u.id = s.penerima');
+			$this->db->where('s.id', $id);
+			return $this->db->get()->row();
 		}elseif ($row_surat->tipe_surat == 'keluar') {
 			$this->db->select('s.id as id_surat, s.tipe_surat, s.nomor_surat, s.tanggal_surat, s.isi, s.tanggal_diterima, s.sifat_surat, s.kecepatan_surat, j.jabatan as asal_surat, i.instansi as tujuan_surat, s.file, s.status_surat, u.nama_lengkap as penerima');
 			$this->db->from('surat as s');
 			$this->db->join('jabatan as j', 'j.id = s.asal_surat');
 			$this->db->join('instansi as i', 'i.id = s.tujuan_surat');
 			$this->db->join('users as u', 'u.id = s.penerima');
+			$this->db->where('s.id', $id);
+			return $this->db->get()->row();
 		}else {
 			$this->db->select('s.id as id_surat, s.tipe_surat, s.nomor_surat, s.tanggal_surat, s.isi, s.tanggal_diterima, s.sifat_surat, s.kecepatan_surat, j.jabatan as asal_surat, jb.jabatan as tujuan_surat, s.file, s.status_surat, u.nama_lengkap as penerima');
 			$this->db->from('surat as s');
 			$this->db->join('jabatan as j', 'j.id = s.asal_surat');
 			$this->db->join('jabatan as jb', 'jb.id = s.tujuan_surat');
 			$this->db->join('users as u', 'u.id = s.penerima');
+			$this->db->where('s.id', $id);
+			return $this->db->get()->row();
 		}
-		$this->db->where('s.id', $id);
-		return $this->db->get()->row();
+	}
+
+	public function surat_disposisi($id_surat)
+	{
+		$row_surat = $this->getDataById($id_surat);
+		if ($row_surat->tipe_surat == 'masuk') {
+			$this->db->select('s.id as id_surat, s.tipe_surat, s.nomor_surat, s.tanggal_surat, s.isi, s.tanggal_diterima, s.sifat_surat, s.kecepatan_surat, i.instansi as asal_surat, j.jabatan as tujuan_surat, s.file, s.status_surat, u.nama_lengkap as penerima');
+			$this->db->from('surat as s');
+			$this->db->join('instansi as i', 'i.id = s.asal_surat');
+			$this->db->join('jabatan as j', 'j.id = s.tujuan_surat');
+			$this->db->join('users as u', 'u.id = s.penerima');
+		} elseif ($row_surat->tipe_surat == 'keluar') {
+			$this->db->select('s.id as id_surat, s.tipe_surat, s.nomor_surat, s.tanggal_surat, s.isi, s.tanggal_diterima, s.sifat_surat, s.kecepatan_surat, j.jabatan as asal_surat, i.instansi as tujuan_surat, s.file, s.status_surat, u.nama_lengkap as penerima');
+			$this->db->from('surat as s');
+			$this->db->join('jabatan as j', 'j.id = s.asal_surat');
+			$this->db->join('instansi as i', 'i.id = s.tujuan_surat');
+			$this->db->join('users as u', 'u.id = s.penerima');
+		} else {
+			$this->db->select('s.id as id_surat, s.tipe_surat, s.nomor_surat, s.tanggal_surat, s.isi, s.tanggal_diterima, s.sifat_surat, s.kecepatan_surat, j.jabatan as asal_surat, jb.jabatan as tujuan_surat, s.file, s.status_surat, u.nama_lengkap as penerima');
+			$this->db->from('surat as s');
+			$this->db->join('jabatan as j', 'j.id = s.asal_surat');
+			$this->db->join('jabatan as jb', 'jb.id = s.tujuan_surat');
+			$this->db->join('users as u', 'u.id = s.penerima');
+		}
+		$this->db->where('s.id', $id_surat);
+		return $this->db->get()->result();
 	}
 
 	public function create($data)

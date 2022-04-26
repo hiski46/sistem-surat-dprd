@@ -8,6 +8,7 @@
 			</div>
 			<div class="card-body" id="container-surat">
 				<form action="<?= site_url('surat/Disposisi/disposisikan_surat'); ?>" method="post" id="form-disposisi">
+					<input type="hidden" name="id_surat" value="<?= encrypt_url($surat->id); ?>">
 					<div class="form-group">
 						<label>Tujuan Disposisi <?= form_error('tujuan_disposisi'); ?> <small class="text-warning">Jika Instansi/Jabatan Tujuan belum ada silahkan tambahkan dengan klik link berikut <a href="<?= site_url('surat/Instansi'); ?>" target="_blank">Instansi</a>/<a href="<?= site_url('surat/Jabatan'); ?>" target="_blank">Jabatan</a></small></label>
 						<?php
@@ -35,7 +36,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label>Tipe Disposisi <?= form_error('tujuan_disposisi'); ?> </label>
+						<label>Tipe Disposisi <?= form_error('tipe_disposisi'); ?> </label>
 						<?php
 						if (isset($tipe_disposisi)) {
 							$list_tipe_disposisi = array('' => 'Pilih Tipe Disposisi');
@@ -85,23 +86,7 @@
 							Disposisi surat harus diisi.
 						</div>
 					</div>
-					<div class="form-group">
-						<label>Catatan <?= form_error('catatan'); ?></label>
-						<?php
-						echo form_textarea(array(
-							"id" => "catatan",
-							"name" => "catatan",
-							"type" => "text",
-							"value" => set_value('catatan'),
-							"rows" => 4,
-							"placeholder" => "Catatan",
-							"class" => "form-control"
-						));
-						?>
-						<div class="invalid-feedback">
-							Catatan surat harus diisi.
-						</div>
-					</div>
+
 					<button type="submit" class="btn btn-primary btn-submit float-right">Submit</button>
 				</form>
 			</div>

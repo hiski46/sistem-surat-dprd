@@ -9,7 +9,8 @@ class ModelTrack extends CI_Model {
 		$this->db->from("surat");
 		$this->db->where("nomor_surat", $nomor_surat);
 		$this->db->where("sifat_surat", "biasa");
-		return $this->db->get()->result_array();
+		$this->db->where("is_deleted", 0);
+		return $this->db->get()->row_array();
 	}
 
 }

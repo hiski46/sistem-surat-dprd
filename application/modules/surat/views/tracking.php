@@ -1,5 +1,5 @@
 <div class="container-fluid">
-	<h2 class="text-center display-4">Pelacakan Surat</h2>
+	<h2 class="text-center display-4">Tracking Surat</h2>
 	<div class="row">
 		<div class="col-md-8 offset-md-2 align-self-center">
 			<form id="form-track" method="POST">
@@ -14,9 +14,12 @@
 			</form>
 		</div>
 	</div>
+	<p></p>
+	<p></p>
+	<div class="clear-fix"></div>
 	<div class="row">
-		<div class="col-md-6 col-md-3">
-			<div id="display-tracking">Display Tracking</div>
+		<div class="col-md-12 col-md-3">
+			<div id="display-tracking"></div>
 		</div>
 	</div>
 </div>

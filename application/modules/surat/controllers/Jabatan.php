@@ -21,6 +21,7 @@ class Jabatan extends CI_Controller
 	{
 		$data = [
 			'title' => 'Jabatan',
+			'expand' => 'master_data',
 			'active' => 'jabatan',
 			'js' => [
 				'assets/app/jabatan.js'
