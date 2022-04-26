@@ -104,6 +104,9 @@ function loadSuratMasuk() {
 				data: "nomor_surat",
 				orderable: false,
 				className: "text-center align-middle",
+				render: function(data){
+					return ("<a href='"+site_url+"'>"+ data +" aaa</a>");
+				}
 			},
 			{
 				data: "nomor_surat",

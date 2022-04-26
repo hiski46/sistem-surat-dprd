@@ -86,13 +86,13 @@
 								<li class="nav-item">
 									<a href="<?php echo site_url('surat/view/masuk'); ?>" class="nav-link <?= (isset($active) && $active == 'surat_masuk') ? 'active' : ''; ?>">
 										<i class="far fa-circle nav-icon"></i>
-										<p>Daftar Surat</p>
+										<p>Surat Masuk</p>
 									</a>
 								</li>
 								<li class="nav-item">
 									<a href="<?php echo site_url('surat/surat/disposisi'); ?>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
-										<p>Disposisi</p>
+										<p>Disposisi Masuk</p>
 									</a>
 								</li>
 							</ul>
@@ -107,13 +107,13 @@
 								<li class="nav-item">
 									<a href="<?= site_url('surat/view/keluar'); ?>" class="nav-link  <?= (isset($active) && $active == 'surat_keluar') ? 'active' : ''; ?>">
 										<i class="far fa-circle nav-icon"></i>
-										<p>Daftar Surat</p>
+										<p>Surat Keluar</p>
 									</a>
 								</li>
 								<li class="nav-item">
 									<a href="./index2.html" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
-										<p>Disposisi</p>
+										<p>Disposisi Keluar</p>
 									</a>
 								</li>
 							</ul>
@@ -128,13 +128,13 @@
 								<li class="nav-item">
 									<a href="<?= site_url('surat/view/internal'); ?>" class="nav-link  <?= (isset($active) && $active == 'surat_internal') ? 'active' : ''; ?>">
 										<i class="far fa-circle nav-icon"></i>
-										<p>Daftar Surat</p>
+										<p>Surat Internal</p>
 									</a>
 								</li>
 								<li class="nav-item">
 									<a href="./index2.html" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
-										<p>Disposisi</p>
+										<p>Disposisi Internal</p>
 									</a>
 								</li>
 							</ul>

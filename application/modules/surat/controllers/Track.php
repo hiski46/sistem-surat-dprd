@@ -6,10 +6,6 @@ class Track extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		if (logged_in() == false) {
-			redirect(site_url('login'));
-		}
-		
 		$this->load->model("ModelTrack","ModelTrack");
 	}
 
@@ -26,8 +22,11 @@ class Track extends CI_Controller
 
 	public function ajax_track()
 	{
-		$data["surat"] = $this->ModelTrack->get_surat();
-		echo json_encode($data);
+		$nomor_surat = trim($this->input->post('nomor_surat'));
+		$data["surat"] = $this->ModelTrack->get_surat($nomor_surat);
+		$data["nomor_surat"] = $nomor_surat;
+		$response["data"] = $this->load->view("tracking_response",$data,true);
+		echo json_encode($response);
 	}
 
 	public function tracking()

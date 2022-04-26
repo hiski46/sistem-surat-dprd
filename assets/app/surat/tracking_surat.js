@@ -1,15 +1,17 @@
 $(document).ready(function () {
 	$("#form-track").submit(function(event){
 		event.preventDefault();
+		var nomor_surat = $("#nomor_surat").val();
 		$.ajax({
+			url: site_url+"surat/track/ajax_track",
 			dataType: "json",
-			url: site_url+"surat/track/tracking",
+			method: "POST",
+			data : { nomor_surat: nomor_surat},
 			success: function(response){
-				$("#display-tracking").html(JSON.stringify(response));
+				$("#display-tracking").html(response.data);
 			},
 			error: function(jqXhr, textStatus, errorMessage){
-				alert(JSON.stringify(errorMessage));
-				// $("#display-tracking").html(errorMessage);
+				$("#display-tracking").html(errorMessage);
 			}
 		});
 	});

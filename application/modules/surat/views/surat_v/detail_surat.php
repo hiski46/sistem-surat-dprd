@@ -53,7 +53,7 @@
 				<div class="d-flex justify-content-between align-items-center">
 					<h4>Disposisi Surat</h4>
 					<a href="<?= site_url('surat/Disposisi/disposisi_surat/' . encrypt_url($surat->id_surat)); ?>" class="btn btn-sm btn-primary">
-						<i class="fas fa-undo"></i> Disposisi Surat
+						<i class="fas fa-plus"></i> Disposisi Surat
 					</a>
 				</div>
 			</div>
