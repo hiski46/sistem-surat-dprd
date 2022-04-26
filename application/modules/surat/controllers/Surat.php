@@ -145,7 +145,7 @@ class Surat extends CI_Controller
 
 	public function detail_surat($id)
 	{
-		$id_surat = $this->secure->decrypt_url($id);
+		$id_surat = decrypt_url($id);
 
 		$data = [
 			'surat' => $this->ModelSurat->getDetailSurat($id_surat),
@@ -284,12 +284,18 @@ class Surat extends CI_Controller
 		}
 	}
 
-	public function ubah_status_surat($id, $status)
+	public function selesai($id)
 	{
+		$id_Surat = decrypt_url($id);
+		$row_surat = $this->ModelSurat->getDataById($id_Surat);
+
 		$data = [
-			'status_surat' => $status,
+			'status_surat' => 'selesai',
 		];
-		$this->ModelSurat->update($id, $data);
+
+		$this->ModelSurat->update($id_Surat, $data);
+
+		redirect(site_url('surat/Surat/detail_surat/' . encrypt_url($row_surat->id)));
 	}
 
 	public function delete()

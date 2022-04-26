@@ -72,9 +72,9 @@ function loadDisposisiKeluar() {
 				className: "align-middle",
 			},
 			{
-				data: "tanggal_surat",
+				data: "tanggal_disposisi",
 				render: function (data) {
-					return convertTanggal(data);
+					return convertTanggal(data, false, true);
 				},
 				className: "align-middle",
 			},
@@ -83,18 +83,18 @@ function loadDisposisiKeluar() {
 				className: "align-middle",
 			},
 			{
-				data: "asal_surat",
-				className: "align-middle",
-			},
-			{
 				data: "tipe_disposisi",
 				className: "align-middle",
 			},
 			{
-				data: "action",
-				orderable: false,
-				className: "text-center align-middle",
+				data: "disposisi",
+				className: "align-middle",
 			},
+			// {
+			// 	data: "action",
+			// 	orderable: false,
+			// 	className: "text-center align-middle",
+			// },
 		],
 		responsive: true,
 		order: [],

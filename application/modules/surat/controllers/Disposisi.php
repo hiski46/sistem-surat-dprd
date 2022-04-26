@@ -92,18 +92,7 @@ class Disposisi extends CI_Controller
 		}
 	}
 
-	public function selesai($id){
-		$id_Surat = decrypt_url($id);
-		$row_surat = $this->ModelSurat->getDataById($id_Surat);
-
-		$data = [
-			'status_surat' => 'selesai',
-		];
-
-		$this->ModelSurat->update($id_Surat, $data);
-
-		redirect(site_url('surat/Disposisi/view/' . $row_surat->tipe_surat));
-	}
+	
 
 	private function validation()
 	{

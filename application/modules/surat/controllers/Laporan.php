@@ -19,6 +19,9 @@ class Laporan extends CI_Controller
 			"assets/app/surat/laporan_surat.js"
 		);
 
+		$data['expand'] = 'laporan';
+		$data['active'] = 'laporan';
+
 		$this->load->view("include/header",$data);
 		$this->load->view("laporan");
 		$this->load->view("include/footer");

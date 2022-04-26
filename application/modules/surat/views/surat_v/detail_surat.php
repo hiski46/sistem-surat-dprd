@@ -52,9 +52,30 @@
 			<div class="card-header">
 				<div class="d-flex justify-content-between align-items-center">
 					<h4>Disposisi Surat</h4>
-					<a href="<?= site_url('surat/Disposisi/disposisi_surat/' . encrypt_url($surat->id_surat)); ?>" class="btn btn-sm btn-primary">
-						<i class="fas fa-plus"></i> Disposisi Surat
-					</a>
+					<div>
+						<?php
+						$disabled = '';
+						$color = '';
+						$text = '';
+						if ($surat->status_surat == 'diterima') {
+							$disabled = 'disabled';
+							$color = 'btn-info';
+							$text = 'Selesaikan';
+						} else if ($surat->status_surat == 'diproses') {
+							$disabled = '';
+							$color = 'btn-info';
+							$text = 'Selesaikan';
+						} else {
+							$disabled = 'disabled';
+							$color = 'btn-primary';
+							$text = 'Selesai';
+						}
+						?>
+						<a href="<?= site_url('surat/Surat/selesai/' . encrypt_url($surat->id_surat)); ?>" class="btn btn-sm mr-2 <?= $color; ?> btn-detail <?= $disabled ?>" data-toggle="tooltip" title="<?= $text; ?>"><i class="fas fa-check"></i> <?= $text; ?></a>
+						<a href="<?= site_url('surat/Disposisi/disposisi_surat/' . encrypt_url($surat->id_surat)); ?>" class="btn btn-sm btn-primary">
+							<i class="fas fa-plus"></i> Disposisi Surat
+						</a>
+					</div>
 				</div>
 			</div>
 			<div class="card-body">

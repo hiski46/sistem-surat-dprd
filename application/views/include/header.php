@@ -147,7 +147,7 @@
 							</a>
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
-									<a href="<?= site_url('surat/laporan'); ?>" class="nav-link  <?= (isset($active) && $active == 'surat_internal') ? 'active' : ''; ?>">
+									<a href="<?= site_url('surat/laporan'); ?>" class="nav-link  <?= (isset($active) && $active == 'laporan') ? 'active' : ''; ?>">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Laporan</p>
 									</a>

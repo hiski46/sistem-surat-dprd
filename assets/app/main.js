@@ -75,10 +75,15 @@ function convertTanggal(date, param_hari = false, param_waktu = false) {
 	if (param_hari == false && param_waktu == false) {
 		return tanggal + " " + bulan + " " + tahun;
 	} else if (param_hari == false && param_waktu == true) {
-		return tanggal + " " + bulan + " " + tahun + ' ' + jam + ':' + menit + ':' + detik;
+		return tanggal + " " + bulan + " " + tahun + ' ' + set(jam) + ':' + set(menit) + ':' + set(detik);
 	} else if (param_hari == true && param_waktu == true) {
-		return hari + ", " +tanggal + " " + bulan + " " + tahun + ' ' + jam + ':' + menit + ':' + detik;
+		return hari + ", " +tanggal + " " + bulan + " " + tahun + ' ' + set(jam) + ':' + set(menit) + ':' + set(detik);
 	}else {
 		 return hari + ", " + tanggal + " " + bulan + " " + tahun;
 	}
+}
+
+function set(e) {
+	e = e < 10 ? "0" + e : e;
+	return e;
 }
