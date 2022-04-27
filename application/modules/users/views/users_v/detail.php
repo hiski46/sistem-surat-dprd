@@ -16,7 +16,7 @@
 						<b>Level</b> <a class="float-right"><?= ($user->level == 'admin') ? '<span class="badge badge-primary">Admin</span>' : '<span class="badge badge-info">Pegawai</span>' ?></a>
 					</li>
 					<li class="list-group-item">
-						<b>Blokir</b> <a class="float-right"><?= ($user->blokir == 0) ? '<span class="badge badge-success">Tidak di blokir</span>' : '<span class="badge badge-danger">Diblokir</span>'; ?></a>
+						<b>Aktif</b> <a class="float-right"><?= ($user->blokir == 0) ? '<span class="badge badge-success">Aktif</span>' : '<span class="badge badge-danger">Tidak Aktif</span>'; ?></a>
 					</li>
 					<li class="list-group-item">
 						<b>Password</b> <a class="float-right"><button type="button" class="btn btn-primary btn-sm btn-ubah-password" data-id="<?= encrypt_url($user->user_id); ?>" onclick="form_ubah_password(this)">Ubah Password</button></a>

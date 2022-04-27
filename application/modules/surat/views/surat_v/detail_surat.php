@@ -59,11 +59,11 @@
 						$text = '';
 						if ($surat->status_surat == 'diterima') {
 							$disabled = 'disabled';
-							$color = 'btn-info';
+							$color = 'btn-danger';
 							$text = 'Selesaikan';
 						} else if ($surat->status_surat == 'diproses') {
 							$disabled = '';
-							$color = 'btn-info';
+							$color = 'btn-danger';
 							$text = 'Selesaikan';
 						} else {
 							$disabled = 'disabled';
@@ -71,8 +71,8 @@
 							$text = 'Selesai';
 						}
 						?>
-						<a href="<?= site_url('surat/Surat/selesai/' . encrypt_url($surat->id_surat)); ?>" class="btn btn-sm mr-2 <?= $color; ?> btn-detail <?= $disabled ?>" data-toggle="tooltip" title="<?= $text; ?>"><i class="fas fa-check"></i> <?= $text; ?></a>
-						<a href="<?= site_url('surat/Disposisi/disposisi_surat/' . encrypt_url($surat->id_surat)); ?>" class="btn btn-sm btn-primary">
+						<a href="<?= site_url('surat/Surat/selesai/' . encrypt_url($surat->id_surat)); ?>" class="btn btn-sm mr-2 <?= $color; ?> btn-detail <?= $disabled ?>" data-toggle="tooltip" title="<?= $text; ?>"><?= $text; ?> ?</a>
+						<a href="<?= site_url('surat/Disposisi/disposisi_surat/' . encrypt_url($surat->id_surat)); ?>" class="btn btn-sm btn-primary <?= ($surat->status_surat == 'selesai') ? 'disabled' : ''; ?>">
 							<i class="fas fa-plus"></i> Disposisi Surat
 						</a>
 					</div>
@@ -113,9 +113,9 @@
 						<?php if (isset($file_parts['extension']) && $file_parts['extension'] == 'pdf') : ?>
 							<div class="text-center">
 
-								<iframe src='<?= base_url('writable/upload/surat/' . $surat->file); ?>' width="500" height="678">
+								<!-- <iframe src='<?//= base_url('writable/upload/surat/' . $surat->file); ?>' width="500" height="678">
 									<p class="text-center">This browser does not support PDF!</p>
-								</iframe>
+								</iframe> -->
 							</div>
 						<?php else : ?>
 							<img width="600px" height="750px" src="<?= base_url('writable/upload/surat/' . $surat->file); ?>" class="rounded mx-auto d-block" alt="Preview surat">

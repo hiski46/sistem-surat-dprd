@@ -1,6 +1,5 @@
 $(document).ready(function(){
 	$('#table-laporan').DataTable({
-		// dom: 'lfrtip',
         dom: 'BfrtpB',
 		responsive 	: true,
 		processing	: true,
@@ -49,24 +48,26 @@ $(document).ready(function(){
             }
         ],
         buttons: [
+            'excel',
+            'pdf'
             // {
             //     extend: 'collection',
             //     text: 'Export',
             //     buttons: [
             //     'excel', 'pdf']
             // },
-            {
-                text: 'Excel',
-                action: function ( e, dt, node, config ) {
-                    alert( 'Export to Excel' );
-                }
-            },
-            {
-                text: 'PDF',
-                action: function ( e, dt, node, config ) {
-                    alert( 'Export to PDF' );
-                }
-            }
+            // {
+            //     text: 'Excel',
+            //     action: function ( e, dt, node, config ) {
+            //         alert( 'Export to Excel' );
+            //     }
+            // },
+            // {
+            //     text: 'PDF',
+            //     action: function ( e, dt, node, config ) {
+            //         alert( 'Export to PDF' );
+            //     }
+            // }
         ]
 	});
 });

@@ -1,4 +1,5 @@
 <?php
+// SELECT d.* FROM disposisi d JOIN surat s ON d.id_surat=s.id GROUP BY d.id_surat ORDER BY d.tanggal_disposisi DESC
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class ModelDisposisi extends CI_Model
@@ -8,18 +9,20 @@ class ModelDisposisi extends CI_Model
 	private $id = 'id';
 
 	public function datatables($tipe_surat){
-		// function callback($id, $status_surat)
-		// {
-		// 	$button = '';
-		// 	if ($status_surat != 'selesai') {
-		// 		$button = '<a data-tes="'.$status_surat.'" href="' . site_url('surat/Disposisi/selesai/' . encrypt_url($id)) . '" class="btn btn-xs mr-2 mb-2 btn-danger btn-detail" data-toggle="tooltip" title="Selesaikan">Selesaikan?</a>';
-		// 	}else {
-		// 		$button = '<a class="btn btn-xs mr-2 mb-2 btn-primary btn-detail disabled" data-toggle="tooltip" title="Telah Selesai">Selesai</a>';
-		// 	}
-		// 	return $button;
-		// }
+		function callback($id, $status_surat)
+		{
+			$button = '';
+			if ($status_surat == 'diterima') {
+				$button = '<a href="#" class="btn btn-xs mr-2 mb-2 btn-danger btn-detail disabled" data-toggle="tooltip" title="Selesaikan">Selesaikan?</a>';
+			}else if ($status_surat == 'diproses') {
+				$button = '<a href="' . site_url('surat/Surat/selesai/' . encrypt_url($id)) . '" class="btn btn-xs mr-2 mb-2 btn-danger btn-detail" data-toggle="tooltip" title="Selesaikan">Selesaikan?</a>';
+			}else {
+				$button = '<a class="btn btn-xs mr-2 mb-2 btn-primary btn-detail disabled" data-toggle="tooltip" title="Telah Selesai">Selesai</a>';
+			}
+			return $button;
+		}
 		if ($tipe_surat == 'masuk') {
-			$this->datatables->select('d.id, s.nomor_surat, i.instansi as asal_surat, j.jabatan as tujuan_disposisi, s.tanggal_surat, t.tipe_disposisi as tipe_disposisi, d.disposisi, d.tanggal_disposisi, s.status_surat');
+			$this->datatables->select('d.id, d.id_surat, s.nomor_surat, i.instansi as asal_surat, j.jabatan as tujuan_disposisi, s.tanggal_surat, t.tipe_disposisi as tipe_disposisi, d.disposisi, max(d.tanggal_disposisi) as tanggal_disposisi, s.status_surat');
 			$this->datatables->from('disposisi as d');
 			$this->datatables->join('surat as s', 'd.id_surat = s.id', 'inner');
 			$this->datatables->join('jabatan j', 'j.id = d.tujuan_disposisi');
@@ -27,10 +30,12 @@ class ModelDisposisi extends CI_Model
 			$this->datatables->join('tipe_disposisi t', 't.id = d.tipe_disposisi');
 			$this->datatables->where('d.is_deleted', 0);
 			$this->datatables->where('s.tipe_surat', $tipe_surat);
-			// $this->datatables->add_column('action', '$1', 'callback(id, status_surat)');
+			$this->datatables->group_by('s.id');
+
+			$this->datatables->add_column('action', '$1', 'callback(id_surat, status_surat)');
 			return $this->datatables->generate();
 		}elseif ($tipe_surat == 'keluar') {
-			$this->datatables->select('d.id, s.nomor_surat, j.jabatan as asal_surat, i.instansi as tujuan_disposisi, s.tanggal_surat,  t.tipe_disposisi as tipe_disposisi, d.disposisi, d.tanggal_disposisi, s.status_surat');
+			$this->datatables->select('d.id, d.id_surat, s.nomor_surat, j.jabatan as asal_surat, i.instansi as tujuan_disposisi, s.tanggal_surat,  t.tipe_disposisi as tipe_disposisi, d.disposisi, max(d.tanggal_disposisi) as tanggal_disposisi, s.status_surat');
 			$this->datatables->from('disposisi as d');
 			$this->datatables->join('surat as s', 'd.id_surat = s.id', 'inner');
 			$this->datatables->join('jabatan j', 'j.id = s.asal_surat');
@@ -38,10 +43,11 @@ class ModelDisposisi extends CI_Model
 			$this->datatables->join('tipe_disposisi t', 't.id = d.tipe_disposisi');
 			$this->datatables->where('d.is_deleted', 0);
 			$this->datatables->where('s.tipe_surat', $tipe_surat);
-			// $this->datatables->add_column('action', '$1', 'callback(id, status_surat)');
+			$this->datatables->group_by('s.id');
+			$this->datatables->add_column('action', '$1', 'callback(id_surat, status_surat)');
 			return $this->datatables->generate();
 		}else {
-			$this->datatables->select('d.id, s.nomor_surat, jb.jabatan as asal_surat, j.jabatan as tujuan_disposisi, s.tanggal_surat,  t.tipe_disposisi as tipe_disposisi, d.disposisi, d.tanggal_disposisi, s.status_surat');
+			$this->datatables->select('d.id, d.id_surat, s.nomor_surat, jb.jabatan as asal_surat, j.jabatan as tujuan_disposisi, s.tanggal_surat,  t.tipe_disposisi as tipe_disposisi, d.disposisi, max(d.tanggal_disposisi) as tanggal_disposisi, s.status_surat');
 			$this->datatables->from('disposisi as d');
 			$this->datatables->join('surat as s', 'd.id_surat = s.id', 'inner');
 			$this->datatables->join('jabatan j', 'j.id = d.tujuan_disposisi');
@@ -49,7 +55,8 @@ class ModelDisposisi extends CI_Model
 			$this->datatables->join('tipe_disposisi t', 't.id = d.tipe_disposisi');
 			$this->datatables->where('d.is_deleted', 0);
 			$this->datatables->where('s.tipe_surat', $tipe_surat);
-			// $this->datatables->add_column('action', '$1', 'callback(id, status_surat)');
+			$this->datatables->group_by('s.id');
+			$this->datatables->add_column('action', '$1', 'callback(id_surat, status_surat)');
 			return $this->datatables->generate();
 		}
 	}

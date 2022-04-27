@@ -79,7 +79,7 @@ class Disposisi extends CI_Controller
 				'id_surat' =>$id_Surat,
 				'tujuan_disposisi' => $this->input->post('tujuan_disposisi'),
 				'tipe_disposisi' => $this->input->post('tipe_disposisi'),
-				'tanggal_disposisi' => $this->input->post('tanggal_disposisi') . ' 00:00:00',
+				// 'tanggal_disposisi' => date('Y-m-d H:i:s'),
 				'disposisi' => $this->input->post('disposisi'),
 			];
 
@@ -92,13 +92,11 @@ class Disposisi extends CI_Controller
 		}
 	}
 
-	
-
 	private function validation()
 	{
 		$this->form_validation->set_rules('tujuan_disposisi', 'tujuan disposisi', 'trim|required');
 		$this->form_validation->set_rules('tipe_disposisi', 'tipe disposisi', 'trim|required');
-		$this->form_validation->set_rules('tanggal_disposisi', 'tanggal disposisi', 'trim|required');
+		// $this->form_validation->set_rules('tanggal_disposisi', 'tanggal disposisi', 'trim|required');
 		$this->form_validation->set_rules('disposisi', 'isi disposisi', 'trim|required');
 		$this->form_validation->set_error_delimiters('<small><span class="text-danger">', '</span></small>');
 	}

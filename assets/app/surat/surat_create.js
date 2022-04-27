@@ -153,6 +153,7 @@ function validationJquery() {
 		if ($("#file")[0].files.length === 0) {
 			$("#show-error-file").addClass("is-invalid");
 			$("#file").addClass("is-invalid");
+			next_step = false;
 		} else {
 			$("#show-error-file").removeClass("is-invalid");
 			$("#file").removeClass("is-invalid");

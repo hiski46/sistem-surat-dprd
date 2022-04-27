@@ -38,7 +38,8 @@
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item dropdown">
 					<a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
-						<i class="far fa-user"></i>
+						<i class="far fa-user"></i> <?= ($this->session->has_userdata('nama_lengkap')) ? $this->session->userdata('nama_lengkap') : ''; ?>
+						
 					</a>
 					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
 						<a href="<?= site_url('users/detail/' . $this->session->userdata('id_user')); ?>" class="dropdown-item">

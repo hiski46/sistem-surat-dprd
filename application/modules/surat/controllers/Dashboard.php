@@ -22,7 +22,7 @@ class Dashboard extends CI_Controller
 		$jml_surat_keluar = 0;
 		$jml_surat_internal = 0;
 		if(!empty($data_surat)){
-			foreach ($data_surat as $key => $value) {
+			foreach ($data_surat as $value) {
 				if ($value->tipe_surat == 'masuk') {
 					$jml_surat_masuk++;
 				} else if ($value->tipe_surat == 'keluar') {

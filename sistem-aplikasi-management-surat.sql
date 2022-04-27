@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `disposisi`;
 CREATE TABLE `disposisi` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_surat` int(13) DEFAULT NULL,
-  `tanggal_disposisi` datetime DEFAULT NULL,
+  `tanggal_disposisi` datetime DEFAULT CURRENT_TIMESTAMP,
   `tujuan_disposisi` varchar(250) DEFAULT NULL,
   `nama_instansi` text,
   `jabatan` varchar(128) DEFAULT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE `disposisi` (
   PRIMARY KEY (`id`),
   KEY `id_surat` (`id_surat`),
   CONSTRAINT `disposisi_ibfk_1` FOREIGN KEY (`id_surat`) REFERENCES `surat` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `disposisi` */
 
@@ -48,7 +48,11 @@ insert  into `disposisi`(`id`,`id_surat`,`tanggal_disposisi`,`tujuan_disposisi`,
 (7,1,'2022-04-22 00:00:00','48',NULL,NULL,2,'gdfgdfg',NULL,0),
 (8,16,'2022-04-22 00:00:00','2',NULL,NULL,3,'Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.',NULL,0),
 (9,2,'2022-04-07 00:00:00','33',NULL,NULL,2,'Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.',NULL,0),
-(10,5,'2022-04-23 00:00:00','33',NULL,NULL,2,'Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.',NULL,0);
+(10,5,'2022-04-23 00:00:00','33',NULL,NULL,2,'Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.',NULL,0),
+(13,7,'2022-04-27 11:29:45','34',NULL,NULL,3,'Donec sollicitudin molestie malesuada.',NULL,0),
+(14,18,'2022-04-27 11:31:25','33',NULL,NULL,3,'Donec sollicitudin molestie malesuada.',NULL,0),
+(15,18,'2022-04-27 11:32:22','36',NULL,NULL,2,'dgdfgd',NULL,0),
+(16,18,'2022-04-27 11:34:00','34',NULL,NULL,3,'bcbcvbcvbb',NULL,0);
 
 /*Table structure for table `groups` */
 
@@ -127,7 +131,7 @@ insert  into `jabatan`(`id`,`jabatan`,`parent`,`is_deleted`,`date_deleted`) valu
 (40,'KaSubBag Pembukuan dan Verifikasi',36,0,NULL),
 (48,'dsfsfs45466',47,0,NULL),
 (54,'Kepala Humas',0,0,NULL),
-(55,'Bagian Nganggur',33,0,NULL);
+(55,'Bagian Nganggur',33,1,'2022-04-27 02:17:26');
 
 /*Table structure for table `login_attempts` */
 
@@ -178,7 +182,7 @@ CREATE TABLE `surat` (
   `is_deleted` tinyint(4) DEFAULT '0',
   `date_deleted` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `surat` */
 
@@ -192,8 +196,10 @@ insert  into `surat`(`id`,`tipe_surat`,`nomor_surat`,`tanggal_surat`,`isi`,`tang
 (8,'internal','rgert345345','2022-04-05 00:00:00','dgfdfgd','2022-04-11 00:00:00','biasa','biasa',33,32,NULL,'7ace378b77a447e52527255189bcc1ce.png','selesai',1,0,NULL),
 (11,'keluar','bchfjghj','2022-04-21 00:00:00','bcbcvb','2022-04-25 00:00:00','biasa','segera',1,33,NULL,'faaaa43bc3903d6ad8225198b02da7d9.png','diterima',1,1,'2022-04-25 06:15:29'),
 (16,'keluar','B-DL.01.01/184/2023','2022-04-19 00:00:00','Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.','2022-04-14 00:00:00','rahasia','biasa',40,3,NULL,'f610e22e15ea913550e3398110f80de8.png','diterima',2,0,NULL),
-(18,'masuk','B-DL.01.01/184/2022','2022-04-06 00:00:00','fgdgdgf','2022-04-07 00:00:00','biasa','biasa',2,33,NULL,'0049e7c16d89a15b0b41c18996c755fc.png','diterima',2,0,NULL),
-(19,'masuk','B-DL.01.01/184/2025','2022-04-06 00:00:00','Curabitur aliquet quam id dui posuere blandit.','2022-04-13 00:00:00','rahasia','biasa',2,37,'fgdg1234','71d37f433a89503d1b4c02d578444a85.png','diterima',2,0,NULL);
+(18,'masuk','B-DL.01.01/184/2022','2022-04-06 00:00:00','fgdgdgf','2022-04-07 00:00:00','biasa','biasa',2,33,NULL,'0049e7c16d89a15b0b41c18996c755fc.png','diproses',2,0,NULL),
+(19,'masuk','B-DL.01.01/184/2025','2022-04-06 00:00:00','Curabitur aliquet quam id dui posuere blandit.','2022-04-13 00:00:00','rahasia','biasa',2,37,'fgdg1234','71d37f433a89503d1b4c02d578444a85.png','diterima',2,0,NULL),
+(20,'masuk','800/8296/UT.01/2022','2022-04-01 00:00:00','Pendaftaran email official ASN di lingkungan Pemprov Lampung','2022-04-27 00:00:00','biasa','biasa',2,37,'6078','0b56c1bba4dece617ec1b01206f6dadf.pdf','diterima',1,0,NULL),
+(21,'masuk','B-DL.01.01/184/2022','2022-03-31 00:00:00','Proin eget tortor risus.','2022-04-06 00:00:00','biasa','biasa',6,34,'fgdg1234','56a8dd12b0b26b1038b5450e3c35377b.png','diterima',2,0,NULL);
 
 /*Table structure for table `tipe_disposisi` */
 
@@ -236,15 +242,16 @@ CREATE TABLE `users` (
   `is_deleted` tinyint(1) DEFAULT '0',
   `date_deleted` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `users` */
 
 insert  into `users`(`id`,`username`,`password`,`nama_lengkap`,`nip`,`id_jabatan`,`level`,`blokir`,`lasted_login`,`is_deleted`,`date_deleted`) values 
-(1,'ade','$2y$10$oriATDnGkazaYdmEchuDCOZ1R4h3gTBh.0dnhZRggqPkDpt2AZtZy','Ade Rahman1','sdad',33,'admin',0,'2022-04-26 15:41:28',0,NULL),
-(2,'jabrik_007','$2y$10$oriATDnGkazaYdmEchuDCOZ1R4h3gTBh.0dnhZRggqPkDpt2AZtZy','Shawn C. Graham','353534535',32,'admin',0,'2022-04-26 15:41:30',0,NULL),
+(1,'ade','$2y$10$xPgY2dw2kCImv2JykoYTSug4/ImjmzZ4AjDD1713TO.1BEtZgFNVK','Ade Rahman, S.Kom.','123456789',33,'admin',0,'2022-04-26 15:41:28',0,NULL),
+(2,'andri','$2y$10$rK1FmRohlTsq40LrLdtEauLrsNC8BcM6UrJNLZykoC6M8kDJ0PDpC','Andri Ahmad Mukarom, S.Kom., M.Ti.','987654321123',32,'admin',0,'2022-04-26 15:41:30',0,NULL),
 (3,'cinda','$2y$10$oriATDnGkazaYdmEchuDCOZ1R4h3gTBh.0dnhZRggqPkDpt2AZtZy','Faeyza Armada','dfdfdf',32,'admin',0,'2022-04-26 15:41:32',1,'2022-04-23 20:28:17'),
-(4,'123','$2y$10$7PVjt7izM0dzh8/rkEDizOzZYb8ImnydNcbiuDSAmctUtauZ9rnBG','sdfsdfs','dsfdsf',39,'admin',0,'2022-04-26 15:41:34',1,'2022-04-25 06:13:34');
+(4,'123','$2y$10$7PVjt7izM0dzh8/rkEDizOzZYb8ImnydNcbiuDSAmctUtauZ9rnBG','sdfsdfs','dsfdsf',39,'admin',0,'2022-04-26 15:41:34',1,'2022-04-25 06:13:34'),
+(5,'admin','$2y$10$8Ssr803BAa9o9mWO4JIHw.hBsXFEUGCX67fhsrBGQ9D7kkzr/Pskq','Admin','123456789',32,'admin',0,NULL,0,NULL);
 
 /*Table structure for table `users_back` */
 

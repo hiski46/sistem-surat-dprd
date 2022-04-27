@@ -18,7 +18,7 @@
 							<th class="text-center align-middle">Disposisi</th>
 							<th class="text-center align-middle">Catatan Disposisi</th>
 							<!-- <th class="text-center align-middle">Tujuan Surat</th> -->
-							<!-- <th class="text-center align-middle" width="15%">Action</th> -->
+							<th class="text-center align-middle" width="15%">Action</th>
 						</tr>
 					</thead>
 					<tbody></tbody>

@@ -1,12 +1,12 @@
 $(document).ready(function () {
 	//Initialize Select2 Elements
 	$("#tujuan_disposisi").select2({
-		placeholder: "Pilih Asal Surat",
+		placeholder: "Pilih Tujuan Disposisi",
 		theme: "bootstrap4",
 		allowClear: true,
 	});
 	$("#tipe_disposisi").select2({
-		placeholder: "Pilih Asal Surat",
+		placeholder: "Pilih Instruksi Disposisi",
 		theme: "bootstrap4",
 		allowClear: true,
 	});

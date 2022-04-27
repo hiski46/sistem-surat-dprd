@@ -165,7 +165,7 @@
 										Tujuan surat harus diisi.
 									</div>
 								</div>
-								<button type="button" class="btn btn-primary btn-next1">Next</button>
+								<button type="button" class="btn btn-primary btn-next1"><i class="fas fa-arrow-right"></i> Next</button>
 							</div>
 							<div id="jenis-surat" class="content" role="tabpanel" aria-labelledby="jenis-surat-trigger">
 								<div class="form-group">
@@ -190,8 +190,8 @@
 										Kecepatan surat harus diisi.
 									</div>
 								</div>
-								<button type="button" class="btn btn-primary btn-prev1">Previous</button>
-								<button type="button" class="btn btn-primary btn-next2">Next</button>
+								<button type="button" class="btn btn-primary btn-prev1"><i class="fas fa-arrow-left"></i> Previous</button>
+								<button type="button" class="btn btn-primary btn-next2"><i class="fas fa-arrow-right"></i> Next</button>
 							</div>
 							<div id="isi-surat" class="content" role="tabpanel" aria-labelledby="isi-surat-trigger">
 
@@ -225,8 +225,8 @@
 										<?= (isset($error)) ? $error : ''; ?>
 									</div>
 								</div>
-								<button type="button" class="btn btn-primary btn-prev2">Previous</button>
-								<button type="button" class="btn btn-primary btn-submit">Submit</button>
+								<button type="button" class="btn btn-primary btn-prev2"><i class="fas fa-arrow-left"></i> Previous</button>
+								<button type="button" class="btn btn-primary btn-submit"><i class="fas fa-save"></i> Simpan</button>
 							</div>
 
 						</form>

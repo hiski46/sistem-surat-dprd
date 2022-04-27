@@ -13,7 +13,7 @@
 						<label>Tujuan Disposisi <?= form_error('tujuan_disposisi'); ?> <small class="text-warning">Jika Instansi/Jabatan Tujuan belum ada silahkan tambahkan dengan klik link berikut <a href="<?= site_url('surat/Instansi'); ?>" target="_blank">Instansi</a>/<a href="<?= site_url('surat/Jabatan'); ?>" target="_blank">Jabatan</a></small></label>
 						<?php
 						if (isset($jabatan) && isset($instansi)) {
-							$list_tujuan = array('' => 'Pilih Tujuan Surat');
+							$list_tujuan = array('' => 'Pilih Tujuan Disposisi');
 							if ($surat->tipe_surat == 'masuk') {
 								foreach ($jabatan as $val) {
 									$list_tujuan[$val->id] = $val->jabatan;
@@ -36,10 +36,10 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label>Tipe Disposisi <?= form_error('tipe_disposisi'); ?> </label>
+						<label>Instruksi Disposisi <?= form_error('tipe_disposisi'); ?> </label>
 						<?php
 						if (isset($tipe_disposisi)) {
-							$list_tipe_disposisi = array('' => 'Pilih Tipe Disposisi');
+							$list_tipe_disposisi = array('' => 'Pilih Instruksi Disposisi');
 
 							foreach ($tipe_disposisi as $val) {
 								$list_tipe_disposisi[$val->id] = $val->tipe_disposisi;
@@ -52,23 +52,23 @@
 							Tipe disposisi harus diisi.
 						</div>
 					</div>
-					<div class="form-group">
-						<label>Tanggal Disposisi <?= form_error('tanggal_disposisi'); ?></label>
+					<!-- <div class="form-group">
+						<label>Tanggal Disposisi <?//= form_error('tanggal_disposisi'); ?></label> -->
 						<?php
-						echo form_input(array(
-							"id" => "tanggal_disposisi",
-							"name" => "tanggal_disposisi",
-							"type" => "date",
-							"value" => set_value('tanggal_disposisi'),
-							"placeholder" => "Tanggal Disposisi",
-							"class" => "form-control",
-							"data-target" => ""
-						));
+						//echo form_input(array(
+							// "id" => "tanggal_disposisi",
+							// "name" => "tanggal_disposisi",
+							// "type" => "date",
+							// "value" => set_value('tanggal_disposisi'),
+							// "placeholder" => "Tanggal Disposisi",
+							// "class" => "form-control",
+							// "data-target" => ""
+						// ));
 						?>
-						<div class="invalid-feedback">
+						<!-- <div class="invalid-feedback">
 							Tanggal disposisi harus diisi.
 						</div>
-					</div>
+					</div> -->
 					<div class="form-group">
 						<label>Isi Disposisi <?= form_error('disposisi'); ?></label>
 						<?php

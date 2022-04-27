@@ -90,11 +90,11 @@ function loadDisposisiInternal() {
 				data: "disposisi",
 				className: "align-middle",
 			},
-			// {
-			// 	data: "action",
-			// 	orderable: false,
-			// 	className: "text-center align-middle",
-			// },
+			{
+				data: "action",
+				orderable: false,
+				className: "text-center align-middle",
+			},
 		],
 		responsive: true,
 		order: [],

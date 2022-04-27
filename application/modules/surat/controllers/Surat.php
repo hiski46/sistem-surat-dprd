@@ -14,16 +14,6 @@ class Surat extends CI_Controller
 		$this->load->library('form_validation');
 	}
 
-	// public function index($tipe)
-	// {
-	// 	$data["title"] = "surat masuk";
-	// 	$data["surat"] = $this->ModelSurat->get_surat();
-	// 	$data['js'] = ["assets/app/surat/surat.js"];
-	// 	$this->load->view('include/header', $data);
-	// 	$this->load->view('surat_masuk/list_surat');
-	// 	$this->load->view('include/footer');
-	// }
-
 	public function view($tipe_surat = 'masuk')
 	{
 		$data["title"] = "Daftar Surat ".$tipe_surat;

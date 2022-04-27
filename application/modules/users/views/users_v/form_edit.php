@@ -81,9 +81,9 @@
 						</div>
 						<div class="col-md-6 col-sm-12">
 							<div class="form-group">
-								<label for="blokir">Blokir</label>
+								<label for="blokir">Aktif</label>
 								<?php
-								$option = ['' => 'Pilih Blokir', '0' => 'Tidak', '1' => 'Blokir'];
+								$option = ['' => 'Pilih', '0' => 'Aktif', '1' => 'Tidak Aktif'];
 								echo form_dropdown('blokir', $option, $user->blokir, ['class' => 'form-control', 'id' => 'blokir']);
 
 								?>

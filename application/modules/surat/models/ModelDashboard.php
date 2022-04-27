@@ -6,6 +6,7 @@ class ModelDashboard extends CI_Model
 
 	public function getAll()
 	{
+		$this->db->where('is_deleted', 0);
 		$query = $this->db->get('surat');
 		return $query->result();
 	}
