@@ -21,10 +21,10 @@ class ModelLaporan extends CI_Model {
                     $this->db->group_start(); // open bracket. query Where with OR clause better with bracket. because maybe can combine with other WHERE with AND.
                     $this->db->like($item, $_POST["search"]["value"]);
                 }
-                // else
-                // {
-                //     $this->db->or_like($item, $this->input->post("search"));
-                // }
+                else
+                {
+                    $this->db->or_like($item, $_POST["search"]["value"]);
+                }
  
                 if(count($this->column_search) - 1 == $i) //last loop
                     $this->db->group_end(); //close bracket
@@ -32,11 +32,6 @@ class ModelLaporan extends CI_Model {
             $i++;
 			
 		}
-
-		// if ($this->input->post("search")) {
-		// 	# code...
-		// }
-
 	}
 
 	public function get_datatables()

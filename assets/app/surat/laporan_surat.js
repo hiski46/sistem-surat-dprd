@@ -1,9 +1,10 @@
 $(document).ready(function(){
-	$('#table-laporan').DataTable({
-        dom: 'BfrtpB',
+	var table = $('#table-laporan').DataTable({
+        dom: 'PBfrtpB',
 		responsive 	: true,
 		processing	: true,
         serverSide	: true,
+        // searchPane  : true,
         orders : [],
 		ajax : { 
 			url : base_url+"surat/laporan/get_datatables",
@@ -48,26 +49,31 @@ $(document).ready(function(){
             }
         ],
         buttons: [
-            'excel',
-            'pdf'
+            // 'excel',
+            // 'pdf'
             // {
             //     extend: 'collection',
             //     text: 'Export',
             //     buttons: [
             //     'excel', 'pdf']
             // },
-            // {
-            //     text: 'Excel',
-            //     action: function ( e, dt, node, config ) {
-            //         alert( 'Export to Excel' );
-            //     }
-            // },
-            // {
-            //     text: 'PDF',
-            //     action: function ( e, dt, node, config ) {
-            //         alert( 'Export to PDF' );
-            //     }
-            // }
-        ]
-	});
+            {
+                text: 'Excel',
+                action: function ( e, dt, node, config ) {
+                    // var tableData = this;
+                    // alert("page : "+ JSON.stringify(tableData.page.len()));
+                }
+            },
+            {
+                text: 'PDF',
+                action: function ( e, dt, node, config ) {
+                    alert( 'Export to PDF' );
+                }
+            }
+        ],
+        searchPanes : {
+            layout : `columns-2`
+        }
+    });
+
 });

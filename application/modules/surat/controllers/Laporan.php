@@ -46,6 +46,14 @@ class Laporan extends CI_Controller
 
 	public function generate_pdf()
 	{
+		// print("Page of Generate PDF Report");
+		$mpdf = new \Mpdf\Mpdf();
+
+		$html = 'Hello World';
+
+		$mpdf->Bookmark('Cetak Laporan');
+		$mpdf->WriteHTML($html);
+		$mpdf->Output();
 
 	}
 

@@ -4,6 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/x-icon" href="<?= base_url(); ?>/favicon.ico">
 	<title><?php echo "Sistem Manajemen Surat"; ?></title>
 
 	<script type="text/javascript">
@@ -38,7 +39,7 @@
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item dropdown">
 					<a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
-						<i class="far fa-user"></i> <?= ($this->session->has_userdata('nama_lengkap')) ? $this->session->userdata('nama_lengkap') : ''; ?>
+						<?= ($this->session->has_userdata('nama_lengkap')) ? $this->session->userdata('nama_lengkap') : ''; ?> <i class="far fa-user"></i>
 
 					</a>
 					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
