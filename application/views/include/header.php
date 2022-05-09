@@ -39,7 +39,7 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
 						<i class="far fa-user"></i> <?= ($this->session->has_userdata('nama_lengkap')) ? $this->session->userdata('nama_lengkap') : ''; ?>
-						
+
 					</a>
 					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
 						<a href="<?= site_url('users/detail/' . $this->session->userdata('id_user')); ?>" class="dropdown-item">
@@ -180,7 +180,7 @@
 								</li>
 
 								<li class="nav-item">
-									<a href="<?= site_url('Users') ?>" class="nav-link <?= (isset($active) && $active == 'users') ? 'active' : ''; ?>">
+									<a href="<?= site_url('users/Users') ?>" class="nav-link <?= (isset($active) && $active == 'users') ? 'active' : ''; ?>">
 										<i class="nav-icon fas fa-users"></i>
 										<p>
 											Manajemen Users
