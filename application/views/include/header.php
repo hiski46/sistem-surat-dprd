@@ -92,7 +92,7 @@
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="<?php echo site_url('surat/Disposisi/view/masuk'); ?>" class="nav-link <?= (isset($active) && $active == 'disposisi_masuk') ? 'active' : ''; ?>">
+									<a href="<?php echo site_url('surat/disposisi/view/masuk'); ?>" class="nav-link <?= (isset($active) && $active == 'disposisi_masuk') ? 'active' : ''; ?>">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Disposisi Masuk</p>
 									</a>
@@ -113,7 +113,7 @@
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="<?php echo site_url('surat/Disposisi/view/keluar'); ?>" class="nav-link <?= (isset($active) && $active == 'disposisi_keluar') ? 'active' : ''; ?>">
+									<a href="<?php echo site_url('surat/disposisi/view/keluar'); ?>" class="nav-link <?= (isset($active) && $active == 'disposisi_keluar') ? 'active' : ''; ?>">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Disposisi Keluar</p>
 									</a>
@@ -134,7 +134,7 @@
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="<?php echo site_url('surat/Disposisi/view/internal'); ?>" class="nav-link <?= (isset($active) && $active == 'disposisi_internal') ? 'active' : ''; ?>">
+									<a href="<?php echo site_url('surat/disposisi/view/internal'); ?>" class="nav-link <?= (isset($active) && $active == 'disposisi_internal') ? 'active' : ''; ?>">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Disposisi Internal</p>
 									</a>
@@ -164,7 +164,7 @@
 							</a>
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
-									<a href="<?= site_url('surat/Jabatan') ?>" class="nav-link <?= (isset($active) && $active == 'jabatan') ? 'active' : ''; ?>">
+									<a href="<?= site_url('surat/jabatan') ?>" class="nav-link <?= (isset($active) && $active == 'jabatan') ? 'active' : ''; ?>">
 										<i class="nav-icon fas fa-id-card"></i>
 										<p>
 											Jabatan
@@ -172,7 +172,7 @@
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="<?= site_url('surat/Instansi') ?>" class="nav-link <?= (isset($active) && $active == 'instansi') ? 'active' : ''; ?>">
+									<a href="<?= site_url('surat/instansi') ?>" class="nav-link <?= (isset($active) && $active == 'instansi') ? 'active' : ''; ?>">
 										<i class="nav-icon fas fa-university"></i>
 										<p>
 											Instansi
@@ -181,7 +181,7 @@
 								</li>
 
 								<li class="nav-item">
-									<a href="<?= site_url('users/Users') ?>" class="nav-link <?= (isset($active) && $active == 'users') ? 'active' : ''; ?>">
+									<a href="<?= site_url('users/users') ?>" class="nav-link <?= (isset($active) && $active == 'users') ? 'active' : ''; ?>">
 										<i class="nav-icon fas fa-users"></i>
 										<p>
 											Manajemen Users

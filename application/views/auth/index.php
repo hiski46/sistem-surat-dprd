@@ -12,12 +12,12 @@
 
 <body>
 
-	<div class="container-fluid" style="padding-top: 100px; padding-bottom: 100px; background-image: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url('<?php echo base_url('assets/images/gedung-dprd.jpg'); ?>'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+	<div class="container-fluid" style="padding-top: 100px; padding-bottom: 100px; background-image: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url('<?= base_url('assets/images/gedung-dprd.jpg'); ?>'); background-repeat: no-repeat; background-size: cover; background-position: center;">
 		<div class="row">
 			<div class="col-md-5 offset-md-3">
 				<div class="card">
 					<div class="card-body">
-						<label>LOGIN</label>
+						<label class="font-weight-bold">LOGIN</label>
 						<hr>
 						<form action="" method="post" id="my-form">
 							<div class="form-group">
@@ -31,7 +31,7 @@
 								<input type="password" name="password" class="form-control" name="password" id="password" placeholder="Masukkan Password">
 								<div class="invalid-feedback" id="error-password"></div>
 							</div>
-							<button type="submit" class="btn btn-block btn-success btn-login">LOGIN</button>
+							<button type="submit" class="btn btn-block btn-success btn-login font-weight-bold">LOGIN</button>
 						</form>
 					</div>
 				</div>

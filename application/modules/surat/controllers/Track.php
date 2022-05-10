@@ -23,6 +23,8 @@ class Track extends CI_Controller
 
 	public function ajax_track()
 	{
+		// $data["surat"] = $this->ModelTrack->get_surat("B-DL.01.01/184/2022");
+
 		$nomor_surat = trim($this->input->post('nomor_surat'));
 		$data["surat"] = $this->ModelTrack->get_surat($nomor_surat);
 		if (!is_null($data["surat"]) && (count($data["surat"]) > 0)) {

@@ -34,12 +34,12 @@
 					<tr>
 						<th>Pengirim</th>
 						<td><?= $surat["asal_surat"]; ?></td>
-						<th>Tujuan Surat</th>
-						<td><?= $surat["tujuan_surat"]; ?></td>
-					</tr>
-					<tr>
 						<th>Kecepatan Surat</th>
 						<td><?= ucwords($surat["kecepatan_surat"]); ?></td>
+					</tr>
+					<tr>
+						<th>Tujuan Surat</th>
+						<td><?= $surat["tujuan_surat"]; ?></td>
 						<th>Status Surat</th>
 						<td><span class="badge <?php echo $status_color; ?>"><?= ucwords($surat["status_surat"]); ?></span></td>
 					</tr>

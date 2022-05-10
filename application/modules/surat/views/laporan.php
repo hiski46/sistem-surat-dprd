@@ -8,7 +8,7 @@
 				<div class="row">
 					<div class="col-md-3 col-xs-12">
 						<div class="form-group">
-							<label>Tanggal Mulai</label>
+							<label>Pilih Dari Tanggal</label>
 							<div class="input-group">
 								<div class="input-group-prepend">
 									<span class="input-group-text">
@@ -22,7 +22,7 @@
 					</div>
 					<div class="col-md-3 col-xs-12">
 						<div class="form-group">
-							<label>Tanggal Akhir</label>
+							<label>Sampai Tanggal</label>
 							<div class="input-group">
 								<div class="input-group-prepend">
 									<span class="input-group-text">
