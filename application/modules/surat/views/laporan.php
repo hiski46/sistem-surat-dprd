@@ -15,7 +15,7 @@
 										<i class="far fa-calendar-alt"></i>
 									</span>
 								</div>
-								<input type="date" class="form-control form-control-sm float-right" id="date_range">
+								<input type="date" class="form-control form-control-sm float-right filter_date" id="start_date">
 							</div>
 
 						</div>
@@ -29,7 +29,7 @@
 										<i class="far fa-calendar-alt"></i>
 									</span>
 								</div>
-								<input type="date" class="form-control form-control-sm float-right" id="date_range">
+								<input type="date" class="form-control form-control-sm float-right filter_date" id="end_date">
 							</div>
 
 						</div>

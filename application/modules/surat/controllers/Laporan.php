@@ -97,6 +97,10 @@ class Laporan extends CI_Controller
 
 	public function generate_excel()
 	{
+		$surat = $this->ModelLaporan->get_datatables();
+		$no = 1;
+		$x = 6;
+
 		$spreadsheet = new Spreadsheet();
 		$sheet = $spreadsheet->getActiveSheet();
 		$sheet->mergeCells('A2:K2');
@@ -106,7 +110,33 @@ class Laporan extends CI_Controller
 		$sheet->getStyle('A2:K2')->getFont()->setSize(14)->setBold(true);
 		$sheet->getStyle('A3:K3')
 			->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+		$sheet->getStyle('A5:K5')
+			->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+		$sheet->getStyle('A5:K5')
+			->getFill()
+			->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+			->getStartColor()
+			->setARGB('95B3D7');
+		$sheet->getStyle('A5:K5')->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN)->getColor()
+		->setARGB('FF000000');
+		$sheet->getStyle('A:K')
+			->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
 		$sheet->getStyle('A3:K3')->getFont()->setSize(14)->setBold(true);
+		$sheet->getStyle('E')->getAlignment()->setWrapText(true);
+		$sheet->getStyle('J')->getAlignment()->setWrapText(true);
+		$sheet->getStyle('K')->getAlignment()->setWrapText(true);
+		$sheet->getRowDimension(5)->setRowHeight(35);
+		$sheet->getColumnDimension('A')->setWidth(5);
+		$sheet->getColumnDimension('B')->setWidth(20);
+		$sheet->getColumnDimension('C')->setWidth(12);
+		$sheet->getColumnDimension('D')->setWidth(10);
+		$sheet->getColumnDimension('E')->setWidth(50);
+		$sheet->getColumnDimension('F')->setWidth(17);
+		$sheet->getColumnDimension('G')->setWidth(15);
+		$sheet->getColumnDimension('H')->setWidth(10);
+		$sheet->getColumnDimension('I')->setWidth(10);
+		$sheet->getColumnDimension('J')->setWidth(30);
+		$sheet->getColumnDimension('K')->setWidth(30);
 		$sheet->setCellValue('A2', 'Laporan Surat');
 		$sheet->setCellValue('A3', 'Unit Pengolah Bidang Pembinaan dan Pengawasan Kearsipan');
 		$sheet->setCellValue('A5', 'No');
@@ -121,11 +151,11 @@ class Laporan extends CI_Controller
 		$sheet->setCellValue('J5', 'Asal Surat');
 		$sheet->setCellValue('K5', 'Tujuan Surat');
 
-		$surat = $this->ModelLaporan->get_datatables();
-		$no = 1;
-		$x = 6;
+
 
 		foreach ($surat as $row) {
+			$sheet->getStyle('A'.$x.':K'.$x)->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN)->getColor()
+			->setARGB('FF000000');
 			$sheet->setCellValue('A' . $x, $no++);
 			$sheet->setCellValue('B' . $x, $row['nomor_surat']);
 			$sheet->setCellValue('C' . $x, convertTanggal(date('Y-m-d', strtotime($row['tanggal_surat'])), false));
@@ -149,6 +179,6 @@ class Laporan extends CI_Controller
 		header('Content-Disposition: attachment;filename="' . $filename . '.xlsx"');
 		header('Cache-Control: max-age=0');
 
-		$writer->save('php://output');
+		return $writer->save('php://output');
 	}
 }

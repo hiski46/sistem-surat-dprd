@@ -10,6 +10,10 @@ $(document).ready(function() {
             url: base_url + "surat/laporan/get_datatables",
             dataType: "json",
             type: "POST",
+			data: function (data) {
+				data.start_date = $('#start_date').val();
+				data.end_date = $('#end_date').val();
+			}
         },
         columns: [{
                 data: "nomor_surat",
@@ -78,6 +82,18 @@ $(document).ready(function() {
                     // var tableData = this;
                     // alert("Export to EXCEL");
                     window.location.href = (site_url + 'surat/laporan/generate_excel');
+					// $.ajax({
+					// 	url: site_url + "surat/laporan/generate_excel",
+					// 	dataType: "json",
+					// 	type: "POST",
+					// 	data: function (data) {
+					// 		data.start_date = $("#start_date").val();
+					// 		data.end_date = $("#end_date").val();
+					// 	},
+					// 	success: function (data) {
+					// 		console.log(data);
+					// 	}
+					// });
                 },
             },
             {
@@ -101,4 +117,10 @@ $(document).ready(function() {
             layout: `columns-2`,
         },
     });
+
+	// filder di jalankan ketika form filter tanggal di isi
+	$('.filter_date').change(function (e) {
+		table.ajax.reload();
+	});
+
 });

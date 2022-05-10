@@ -8,6 +8,11 @@ class ModelLaporan extends CI_Model
 
 	public function get_datatables_query()
 	{
+		// filter tanggal diterimanya surat
+		if ($this->input->post('start_date') && $this->input->post('end_date')) {
+			$this->db->where("DATE(tanggal_diterima) BETWEEN '" . $this->input->post('start_date') . "' AND '" . $this->input->post('end_date') . "'");
+		}
+
 		$i = 0;
 		$this->db->from("surat");
 		$this->db->where("surat.is_deleted", 0);
