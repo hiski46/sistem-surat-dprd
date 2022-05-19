@@ -195,6 +195,24 @@ class Surat extends CI_Controller
 		}
 	}
 
+	public function check_nomor_surat(){
+		$this->form_validation->set_rules('nomor_surat', 'Nomor Surat', 'is_unique[surat.nomor_surat]');
+
+		if ($this->form_validation->run() == false) {
+			$msg = [
+				'status' => 'error',
+				'message' => 'Nomor surat ini sudah ada didalam sistem',
+			];
+		}else {
+			$msg = [
+				'status' => 'success',
+				'message' => 'success'
+			];
+		}
+
+		echo json_encode($msg);
+	}
+
 	public function update()
 	{
 		$tipe_surat = $this->input->post('tipe_surat');

@@ -9,9 +9,20 @@ class ModelLaporan extends CI_Model
 	public function get_datatables_query()
 	{
 		// filter tanggal diterimanya surat
-		if ($this->input->post('start_date') && $this->input->post('end_date')) {
-			$this->db->where("DATE(tanggal_diterima) BETWEEN '" . $this->input->post('start_date') . "' AND '" . $this->input->post('end_date') . "'");
+		if ($this->input->post("start_date") && $this->input->post("end_date")) {
+			$this->db->where("DATE(tanggal_diterima) >=", $this->input->post('start_date'));
+			$this->db->where("DATE(tanggal_diterima) <=", $this->input->post('end_date'));
+			// $this->db->where("DATE(tanggal_diterima) BETWEEN '" . $this->input->post("start_date") . "' AND '" . $this->input->post("end_date") . "'");
 		}
+		if ($this->input->post('tipe_surat')) {
+			$this->db->where('tipe_surat', $this->input->post('tipe_surat'));
+		}
+		if ($this->input->post('status_surat')) {
+			$this->db->where('status_surat', $this->input->post('status_surat'));
+		}
+		// if ($_POST['start_date'] && $_POST['end_date']) {
+		// 	$this->db->where("DATE(tanggal_diterima) BETWEEN '" . $_POST['start_date'] . "' AND '" . $_POST['end_date'] . "'");
+		// }
 
 		$i = 0;
 		$this->db->from("surat");

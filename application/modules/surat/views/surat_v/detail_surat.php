@@ -71,7 +71,7 @@
 							$text = 'Selesai';
 						}
 						?>
-						<a href="<?= site_url('surat/Surat/selesai/' . encrypt_url($surat->id_surat)); ?>" class="btn btn-sm mr-2 <?= $color; ?> btn-detail <?= $disabled ?>" data-toggle="tooltip" title="<?= $text; ?>"><?= $text; ?> ?</a>
+						<a href="<?= site_url('surat/Surat/selesai/' . encrypt_url($surat->id_surat)); ?>" class="btn btn-sm mr-2 <?= $color; ?> btn-detail <?= $disabled ?>" id="btn-selesai" data-toggle="tooltip" title="<?= $text; ?>"><?= $text; ?> ?</a>
 						<a href="<?= site_url('surat/Disposisi/disposisi_surat/' . encrypt_url($surat->id_surat)); ?>" class="btn btn-sm btn-primary <?= ($surat->status_surat == 'selesai') ? 'disabled' : ''; ?>">
 							<i class="fas fa-plus"></i> Disposisi Surat
 						</a>
@@ -83,6 +83,7 @@
 					<table id="surat-disposisi" class="table table-sm table-bordered table-hover display nowrap" width="100%">
 						<thead>
 							<th class="text-center align-middle">#</th>
+							<th class="text-center align-middle">Asal Disposisi</th>
 							<th class="text-center align-middle">Tujuan Disposisi</th>
 							<th class="text-center align-middle">Tipe Disposisi</th>
 							<th class="text-center align-middle">Tanggal</th>

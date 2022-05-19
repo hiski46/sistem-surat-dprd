@@ -1,7 +1,7 @@
 var stepper = new Stepper($(".bs-stepper")[0]);
+var next_step = true;
 $(document).ready(function () {
 	validationJquery();
-
 	//Initialize Select2 Elements
 	$("#asal_surat").select2({
 		placeholder: "Pilih Asal Surat",
@@ -18,12 +18,39 @@ $(document).ready(function () {
 	$(document).on("select2:open", () => {
 		document.querySelector(".select2-search__field").focus();
 	});
+
+	$("#nomor_surat").on("blur", function (e) {
+		check_nomor_surat();
+	});
 });
+
+function check_nomor_surat() {
+	// check unique nomor surat
+	var nomor_surat = $('#nomor_surat').val();
+	$.ajax({
+		url: site_url + "surat/Surat/check_nomor_surat",
+		method: "post",
+		data: { nomor_surat: nomor_surat },
+		dataType: "json",
+		success: function (response) {
+			if (response.status == "error") {
+				$("#nomor_surat").addClass("is-invalid");
+				$("#error_nomor_surat").html(response.message);
+				next_step = false;
+			} else {
+				$("#nomor_surat").removeClass("is-invalid");
+				$("#error_nomor_surat").html("Nomor surat harus diisi.");
+				next_step = true;
+			}
+		},
+	});
+	
+}
 
 function validationJquery() {
 	$(".btn-next1").on("click", function (e) {
 		// validasi form
-		var next_step = true;
+		check_nomor_surat();
 
 		if ($("#nomor_surat").val() == "") {
 			$("#nomor_surat").addClass("is-invalid");

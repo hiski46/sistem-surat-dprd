@@ -48,7 +48,7 @@
 												"required" => "required",
 											));
 											?>
-											<div class="invalid-feedback">
+											<div class="invalid-feedback" id="error_nomor_surat">
 												Nomor surat harus diisi.
 											</div>
 										</div>

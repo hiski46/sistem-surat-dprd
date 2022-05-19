@@ -77,6 +77,7 @@ class ModelDisposisi extends CI_Model
 	{
 		$this->db->where('id_surat', $id);
 		$this->db->join('tipe_disposisi', 'tipe_disposisi.id = disposisi.tipe_disposisi');
+		$this->db->order_by('disposisi.id', 'DESC');
 		return $this->db->get($this->table)->result();
 	}
 

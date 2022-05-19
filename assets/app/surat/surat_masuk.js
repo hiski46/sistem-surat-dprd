@@ -182,7 +182,7 @@ function loadSuratMasuk() {
 			// },
 		],
 		responsive: true,
-		order: [],
+		order: [[2, 'desc']],
 		rowCallback: function (row, data, iDisplayIndex) {
 			var info = this.fnPagingInfo();
 			var page = info.iPage;

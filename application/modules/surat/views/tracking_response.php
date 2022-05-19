@@ -102,36 +102,7 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="col-12">
-		<div class="card">
-			<div class="card-header" class="text-center">
-				<div class="d-flex justify-content-between align-items-center">
-					<h4>Preview Surat</h4>
-				</div>
-			</div>
-			<div class="card-body" id="container-surat">
-				<div class="priview-surat border-dark">
-					<?php if (!empty($surat->file)) : ?>
-						<?php $file_parts = pathinfo($surat->file); ?>
-						<?php if (isset($file_parts['extension']) && $file_parts['extension'] == 'pdf') : ?>
-							<div class="text-center">
 
-								<iframe src='<?= base_url('writable/upload/surat/' . $surat->file); ?>' width="500" height="678">
-									<p class="text-center">This browser does not support PDF!</p>
-								</iframe>
-							</div>
-						<?php else : ?>
-							<img width="600px" height="750px" src="<?= base_url('writable/upload/surat/' . $surat->file); ?>" class="rounded mx-auto d-block" alt="Preview surat">
-						<?php endif; ?>
-					<?php else : ?>
-						<p class="text-center">Tidak ada file surat!</p>
-					<?php endif; ?>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 <?php } else { ?>
 	<div>
 		<div class="col-md-12 text-center">

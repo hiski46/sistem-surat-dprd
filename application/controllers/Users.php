@@ -8,7 +8,14 @@ class Users extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		if (logged_in() == false) {
+			redirect(site_url('login'));
+		}
 
+		if (is_admin() == false) {
+			redirect(site_url('dashboard'));
+		}
+		
 		$this->load->model('ModelUsers');
 	}
 
@@ -24,7 +31,7 @@ class Users extends CI_Controller
 		];
 
 		$this->load->view('include/header', $data);
-		$this->load->view('users_v/index');
+		$this->load->view('users/index');
 		$this->load->view('include/footer');
 	}
 
@@ -44,7 +51,7 @@ class Users extends CI_Controller
 		];
 
 		$msg = [
-			'message' => $this->load->view('users_v/form_tambah', $data, true),
+			'message' => $this->load->view('users/form_tambah', $data, true),
 		];
 
 		echo json_encode($msg);
@@ -62,7 +69,7 @@ class Users extends CI_Controller
 		];
 
 		$msg = [
-			'message' => $this->load->view('users_v/form_edit', $data, true),
+			'message' => $this->load->view('users/form_edit', $data, true),
 		];
 
 		echo json_encode($msg);
@@ -79,7 +86,7 @@ class Users extends CI_Controller
 		];
 
 		$msg = [
-			'message' => $this->load->view('users_v/form_detail', $data, true),
+			'message' => $this->load->view('users/form_detail', $data, true),
 		];
 
 		echo json_encode($msg);
@@ -94,7 +101,7 @@ class Users extends CI_Controller
 		];
 
 		$msg = [
-			'message' => $this->load->view('users_v/form_ubah_password', $data, true),
+			'message' => $this->load->view('users/form_ubah_password', $data, true),
 		];
 
 		echo json_encode($msg);
@@ -154,7 +161,7 @@ class Users extends CI_Controller
 		];
 
 		$this->load->view('include/header', $data);
-		$this->load->view('users_v/detail');
+		$this->load->view('users/detail');
 		$this->load->view('include/footer');
 	}
 

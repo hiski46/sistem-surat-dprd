@@ -46,20 +46,26 @@ class Disposisi extends CI_Controller
 
 	public function disposisi_surat($id)
 	{
-		
 		$id_surat = decrypt_url($id);
-		$data_surat = $this->ModelSurat->surat_disposisi($id_surat);
+		$data_disposisi = $this->ModelDisposisi->getDisposisiByIdSurat($id_surat);
+
+		$tujuan = array();
+		foreach ($data_disposisi as $val) {
+			// array_push($tujuan, $val->tujuan_disposisi);
+			$tujuan[] = $val->tujuan_disposisi;
+		}
+
+		// echo '<pre>';
+		// var_dump($tujuan);die;
 
 		$data = [
 			'title' => 'Disposisi Surat',
-			'disposisi' => $data_surat,
 			'js' => ["assets/app/surat/disposisi_surat.js"],
-			'jabatan' => $this->ModelJabatan->getAll(),
-			'instansi' => $this->ModelInstansi->getAll(),
+			'jabatan' => $this->ModelJabatan->getNotIn($tujuan),
+			'instansi' => $this->ModelInstansi->getNotIn($tujuan),
 			'surat' => $this->ModelSurat->getDataById($id_surat),
 			'tipe_disposisi' => $this->ModelDisposisi->get_tipe_disposisi(),
 		];
-		// echo json_encode($data);die;
 
 		$this->load->view('include/header', $data);
 		$this->load->view('surat_v/disposisi_surat');
@@ -68,15 +74,26 @@ class Disposisi extends CI_Controller
 
 	public function disposisikan_surat()
 	{
-		$id_Surat = decrypt_url($this->input->post('id_surat'));
+		$this->load->model('ModelUsers');
+		$id_surat = decrypt_url($this->input->post('id_surat'));
+		$data_disposisi = $this->ModelDisposisi->getDisposisiByIdSurat($id_surat);
+		$data_user_login = $this->ModelUsers->getDataById(decrypt_url($this->session->userdata('id_user')));
+		
+		if (!empty($data_disposisi)) {
+			$asal_disposisi = $data_disposisi[0]->tujuan_disposisi;
+		}else {
+			$asal_disposisi = $data_user_login->id_jabatan;
+		}
+
 		$this->validation();
 
 		if ($this->form_validation->run() == false) {
-			$this->disposisi_surat(encrypt_url($id_Surat));
+			$this->disposisi_surat(encrypt_url($id_surat));
 		} else {
 
 			$data = [
-				'id_surat' =>$id_Surat,
+				'id_surat' =>$id_surat,
+				'asal_disposisi' => $asal_disposisi,
 				'tujuan_disposisi' => $this->input->post('tujuan_disposisi'),
 				'tipe_disposisi' => $this->input->post('tipe_disposisi'),
 				// 'tanggal_disposisi' => date('Y-m-d H:i:s'),
@@ -84,11 +101,11 @@ class Disposisi extends CI_Controller
 			];
 
 			$this->ModelDisposisi->create($data);
-			$this->ModelSurat->update($id_Surat, ['status_surat' => 'diproses']);
+			$this->ModelSurat->update($id_surat, ['status_surat' => 'diproses']);
 
 			$this->session->set_flashdata('message', 'Data berhasil di simpan!');
 
-			redirect(site_url('surat/Surat/detail_surat/' . encrypt_url($id_Surat)));
+			redirect(site_url('surat/Surat/detail_surat/' . encrypt_url($id_surat)));
 		}
 	}
 

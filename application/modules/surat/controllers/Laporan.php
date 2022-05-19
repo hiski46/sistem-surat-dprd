@@ -20,6 +20,7 @@ class Laporan extends CI_Controller
 	{
 		$data['js'] = array(
 			"https://raw.githubusercontent.com/mgalante/jquery.redirect/master/jquery.redirect.js",
+			"assets/js/download.js",
 			"assets/app/surat/laporan_surat.js"
 		);
 
@@ -54,8 +55,12 @@ class Laporan extends CI_Controller
 		$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L']);
 
 		$html = "";
-		$html .= "<h3 style ='text-align: center'>Laporan Surat";
-		$html .= "<p>Unit Pengolah Bidang Pembinaan dan Pengawasan Kearsipan</p></h3>";
+		$html .= "<table>";
+		$html .= "<tr style='margin-bottom: 10px;'>";
+		$html .= "<td width='30%'><img width='60px' style='margin-bottom: 10px; margin-left:20px' src='" . base_url() . "/assets/images/logo-dprd-prov.png'/></td>";
+		$html .= "<td width='70%' style='text-align: center'><h3>Laporan Surat <p>Unit Pengolah Bidang Pembinaan dan Pengawasan Kearsipan</p></h3></td>";
+		$html .= "</tr>";
+		$html .= "</table>";
 		$laporan = $this->ModelLaporan->get_datatables();
 		$html .= "<table border='1'>";
 		$html .= "<tr>";
@@ -90,17 +95,36 @@ class Laporan extends CI_Controller
 		}
 
 		$html .= "</table>";
+		$html .= "<div style='margin-right:95px; margin-top:15px;'><p style='text-align:right;'>Bandar Lampung, ".convertTanggal(date('Y-m-d'))."</p></div>";
+		$html .= "<table>";
+		$html .= "<tr style='margin-top: 5px;'>";
+		$html .= "<td width='40%'>";
+		$html .= "<p>Diketahui Oleh:</p>";
+		$html .= "<p>Kepala Bidang Pembinaan dan Pengawasan Kearsipan </p><br><br><br><br>";
+		$html .= "<p style='text-decoration: underline;'>Mamiyani, SE., MM.</p>";
+		$html .= "<p>Pembina";
+		$html .= "<p>NIP. 19730502 199603 2 003";
+		$html .= "</td>";
+		$html .= "<td width='35%'></td>";
+		$html .= "<td width='25%' style='margin-left:150px'>";
+		$html .= "<p>Dibuat Oleh:</p>";
+		$html .= "<p>Arsiparis Terampil </p><br><br><br><br>";
+		$html .= "<p style='text-decoration: underline;'>Retno Widayanti, A.Md.</p>";
+		$html .= "<p>Penata";
+		$html .= "<p>NIP. 19780324 201001 2 004";
+		$html .= "</td>";
+		$html .= "</tr>";
+		$html .= "</table>";
 
+		$mpdf->SetFooter('Laporan Surat | | {PAGENO}');
 		$mpdf->WriteHTML($html);
+
 		redirect($mpdf->Output('Cetak Laporan ' . date('d-m-Y') . '.pdf', 'I'));
+		
 	}
 
 	public function generate_excel()
 	{
-		$surat = $this->ModelLaporan->get_datatables();
-		$no = 1;
-		$x = 6;
-
 		$spreadsheet = new Spreadsheet();
 		$sheet = $spreadsheet->getActiveSheet();
 		$sheet->mergeCells('A2:K2');
@@ -125,7 +149,7 @@ class Laporan extends CI_Controller
 		$sheet->getStyle('E')->getAlignment()->setWrapText(true);
 		$sheet->getStyle('J')->getAlignment()->setWrapText(true);
 		$sheet->getStyle('K')->getAlignment()->setWrapText(true);
-		$sheet->getRowDimension(5)->setRowHeight(35);
+		$sheet->getRowDimension(5)->setRowHeight(30);
 		$sheet->getColumnDimension('A')->setWidth(5);
 		$sheet->getColumnDimension('B')->setWidth(20);
 		$sheet->getColumnDimension('C')->setWidth(12);
@@ -151,14 +175,16 @@ class Laporan extends CI_Controller
 		$sheet->setCellValue('J5', 'Asal Surat');
 		$sheet->setCellValue('K5', 'Tujuan Surat');
 
-
+		$surat = $this->ModelLaporan->get_datatables();
+		$no = 1;
+		$x = 6;
 
 		foreach ($surat as $row) {
 			$sheet->getStyle('A'.$x.':K'.$x)->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN)->getColor()
 			->setARGB('FF000000');
 			$sheet->setCellValue('A' . $x, $no++);
 			$sheet->setCellValue('B' . $x, $row['nomor_surat']);
-			$sheet->setCellValue('C' . $x, convertTanggal(date('Y-m-d', strtotime($row['tanggal_surat'])), false));
+			$sheet->setCellValue('C' . $x, convertTanggal(date('Y-m-d', strtotime($row['tanggal_surat']))));
 			$sheet->setCellValue('D' . $x, $row['tipe_surat']);
 			$sheet->setCellValue('E' . $x, $row['isi']);
 			$sheet->setCellValue('F' . $x, convertTanggal(date('Y-m-d', strtotime($row['tanggal_diterima'])), false));
@@ -178,7 +204,20 @@ class Laporan extends CI_Controller
 		header('Content-Type: application/vnd.ms-excel');
 		header('Content-Disposition: attachment;filename="' . $filename . '.xlsx"');
 		header('Cache-Control: max-age=0');
+		$writer->save('php://output');
+		// ob_start();
+		// $writer->save('php://output');
+		// $xlsx = ob_get_contents();
+		// ob_end_clean();
 
-		return $writer->save('php://output');
+		// $response =  array(
+		// 	'status' => 'success',
+		// 	'file' => "data:application/vnd.ms-excel;base64," . base64_encode($xlsx)
+		// );
+
+		// echo json_encode($response);
+		
+		// exit();
+		// redirect();
 	}
 }

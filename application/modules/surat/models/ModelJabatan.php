@@ -11,6 +11,14 @@ class ModelJabatan extends CI_Model {
 		return $query->result();
 	}
 
+	public function getNotIn($data = null){
+		if (!empty($data)) {
+			$this->db->where_not_in('id', $data);
+		}
+		$query = $this->db->get($this->table);
+		return $query->result();
+	}
+
 	public function getDataById($id){
 		$query = $this->db->get_where($this->table, [$this->id => $id]);
 		return $query->row();

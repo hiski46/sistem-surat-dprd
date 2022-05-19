@@ -3,7 +3,7 @@ $(document).ready(function () {
 });
 function form_tambah() {
 	$.ajax({
-		url: site_url + "users/Users/form_tambah",
+		url: site_url + "Users/form_tambah",
 		method: "post",
 		dataType: "json",
 		success: function (response) {
@@ -17,7 +17,7 @@ function form_edit(event) {
 	var id = $(event).data("id");
 
 	$.ajax({
-		url: site_url + "users/Users/form_edit",
+		url: site_url + "Users/form_edit",
 		method: "post",
 		data: { id: id },
 		dataType: "json",
@@ -32,7 +32,7 @@ function form_detail(event) {
 	var id = $(event).data("id");
 
 	$.ajax({
-		url: site_url + "users/Users/form_detail",
+		url: site_url + "Users/form_detail",
 		method: "post",
 		data: { id: id },
 		dataType: "json",
@@ -49,7 +49,7 @@ function form_ubah_password(event) {
 	$("#modal-form").modal("hide");
 
 	$.ajax({
-		url: site_url + "users/Users/form_ubah_password",
+		url: site_url + "Users/form_ubah_password",
 		method: "post",
 		data: { id: id },
 		dataType: "json",
@@ -64,7 +64,7 @@ function ubah_password() {
 	var data = $("#my-form").serialize();
 
 	$.ajax({
-		url: site_url + "users/Users/ubah_password",
+		url: site_url + "Users/ubah_password",
 		method: "post",
 		data: data,
 		dataType: "json",
@@ -127,7 +127,7 @@ function create() {
 	var data = $("#my-form").serialize();
 
 	$.ajax({
-		url: site_url + "users/Users/create",
+		url: site_url + "Users/create",
 		method: "post",
 		data: data,
 		dataType: "json",
@@ -225,7 +225,7 @@ function update() {
 	var data = $("#my-form").serialize();
 
 	$.ajax({
-		url: site_url + "users/Users/update",
+		url: site_url + "Users/update",
 		method: "post",
 		data: data,
 		dataType: "json",
@@ -332,7 +332,7 @@ function hapus(event) {
 	}).then((result) => {
 		if (result.isConfirmed) {
 			$.ajax({
-				url: site_url + "users/Users/delete",
+				url: site_url + "Users/delete",
 				method: "post",
 				data: { id: id },
 				dataType: "json",
@@ -390,7 +390,7 @@ function loadData() {
 		processing: true,
 		serverSide: true,
 		ajax: {
-			url: site_url + "users/Users/datatables",
+			url: site_url + "Users/datatables",
 			type: "POST",
 		},
 		columns: [
@@ -414,7 +414,11 @@ function loadData() {
 			{
 				data: "lasted_login",
 				render: function (data) {
-					return convertTanggal(data, false, true);	
+					if (data == null) {
+						return '-';
+					} else {
+						return convertTanggal(data, false, true);
+					}
 				},
 				className: "align-middle",
 			},

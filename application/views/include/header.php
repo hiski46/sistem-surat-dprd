@@ -156,7 +156,7 @@
 								</li>
 							</ul>
 						</li>
-
+						<?php if(is_admin()) : ?>
 						<li class="nav-item menu-open">
 							<a href="#" class="nav-link <?= (isset($expand) && $expand == 'master_data') ? 'active' : ''; ?>">
 								<i class="nav-icon fas fa-envelope"></i>
@@ -181,7 +181,7 @@
 								</li>
 
 								<li class="nav-item">
-									<a href="<?= site_url('users/users') ?>" class="nav-link <?= (isset($active) && $active == 'users') ? 'active' : ''; ?>">
+									<a href="<?= site_url('Users') ?>" class="nav-link <?= (isset($active) && $active == 'users') ? 'active' : ''; ?>">
 										<i class="nav-icon fas fa-users"></i>
 										<p>
 											Manajemen Users
@@ -190,7 +190,7 @@
 								</li>
 							</ul>
 						</li>
-
+						<?php endif; ?>
 					</ul>
 				</nav>
 				<!-- /.sidebar-menu -->

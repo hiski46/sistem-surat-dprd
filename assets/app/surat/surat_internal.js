@@ -144,21 +144,23 @@ function loadSuratInternal() {
 			{
 				data: "status_surat",
 				render: function (data) {
-					var color = '';
-					if (data == 'diproses') {
-						color = 'badge-warning';
-					} else if(data == 'diterima'){
-						color = 'badge-success';
-					}else{
-						color = 'badge-primary';
+					var color = "";
+					if (data == "diproses") {
+						color = "badge-warning";
+					} else if (data == "diterima") {
+						color = "badge-success";
+					} else {
+						color = "badge-primary";
 					}
 
 					return (
-						'<span class="badge '+color+'">' +
+						'<span class="badge ' +
+						color +
+						'">' +
 						data.charAt(0).toUpperCase() +
 						data.slice(1) +
 						"</span>"
-					);	
+					);
 				},
 				className: "align-middle",
 			},
@@ -177,7 +179,7 @@ function loadSuratInternal() {
 			// },
 		],
 		responsive: true,
-		order: [],
+		order: [[2, "desc"]],
 		rowCallback: function (row, data, iDisplayIndex) {
 			var info = this.fnPagingInfo();
 			var page = info.iPage;

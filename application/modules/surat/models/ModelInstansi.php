@@ -32,6 +32,15 @@ class ModelInstansi extends CI_Model
 		return $query->row();
 	}
 
+	public function getNotIn($data = null)
+	{
+		if (!empty($data)) {
+			$this->db->where_not_in('id', $data);
+		}
+		$query = $this->db->get($this->table);
+		return $query->result();
+	}
+
 	public function create($data)
 	{
 		$this->db->insert($this->table, $data);

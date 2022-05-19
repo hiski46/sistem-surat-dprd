@@ -13,6 +13,10 @@ class Jabatan extends CI_Controller
 			redirect(site_url('login'));
 		}
 
+		if (is_admin() == false) {
+			redirect(site_url('dashboard'));
+		}
+
 		$this->load->model('ModelJabatan');
 	}
 

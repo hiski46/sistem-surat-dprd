@@ -27,6 +27,7 @@ class Track extends CI_Controller
 
 		$nomor_surat = trim($this->input->post('nomor_surat'));
 		$data["surat"] = $this->ModelTrack->get_surat($nomor_surat);
+		
 		if (!is_null($data["surat"]) && (count($data["surat"]) > 0)) {
 			$data["disposisi"] = $this->ModelDisposisi->getDisposisiByIdSurat($data["surat"]["id"]);
 			$response["data"] = $this->load->view("tracking_response",$data,true);

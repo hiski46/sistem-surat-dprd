@@ -1,5 +1,22 @@
 $(document).ready(function () {
 	loadSuratDisposisi();
+
+	$('#btn-selesai').click(function (e) {
+		e.preventDefault();
+		Swal.fire({
+			title: "Apakah anda yakin?",
+			text: "Proses ini akan menyelesaikan disposisi surat!",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			confirmButtonText: "Ya, selesai!",
+		}).then((result) => {
+			if (result.isConfirmed) {
+				window.location.href = $(this).attr('href');
+			}
+		});
+	});
 });
 
 function loadSuratDisposisi() {
@@ -41,9 +58,13 @@ function loadSuratDisposisi() {
 		},
 		columns: [
 			{
-				data: "tujuan_disposisi",
+				data: "asal_disposisi",
 				orderable: false,
 				className: "text-center align-middle",
+			},
+			{
+				data: "asal_disposisi",
+				className: "align-middle",
 			},
 			{
 				data: "tujuan_disposisi",
