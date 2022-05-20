@@ -3,7 +3,6 @@ $(document).ready(function () {
 	getChart();
 	$("#tahun").change(function (e) {
 		getChart();
-		// $("#box-chart").load(window.location.href + " #box-chart");
 	});
 
 });

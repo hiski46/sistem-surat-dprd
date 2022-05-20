@@ -53,7 +53,7 @@ class Dashboard extends CI_Controller
 	}
 
 	public function getAjax(){
-		// if ($this->input->is_ajax_request()) {
+		if ($this->input->is_ajax_request()) {
 			date_default_timezone_set("Asia/Jakarta");
 			$tahun = $this->input->post('tahun');
 			$data_surat = $this->ModelDashboard->getAll();
@@ -87,7 +87,7 @@ class Dashboard extends CI_Controller
 			];
 
 			echo json_encode($data);
-		// }
+		}
 	}
 }
 
