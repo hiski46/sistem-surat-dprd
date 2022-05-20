@@ -61,10 +61,11 @@
 												"id" => "nomor_agenda",
 												"name" => "nomor_agenda",
 												"type" => "text",
-												"value" => set_value('nomor_agenda'),
+												"value" => set_value('nomor_agenda', get_kode('surat', 'nomor_agenda', 'AGN')),
 												"placeholder" => "Nomor Agenda",
 												"class" => "form-control",
 												"required" => "required",
+												"readonly" => "readonly",
 											));
 											?>
 											<div class="invalid-feedback">

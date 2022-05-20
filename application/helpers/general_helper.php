@@ -117,6 +117,22 @@ if (!function_exists("is_admin")) {
 	}
 }
 
+function get_kode($table, $primaryKey, $prefix)
+{
+	$ci = &get_instance();
+
+	$query = $ci->db->query("SELECT MAX($primaryKey) as max_kode FROM $table")->row_array();
+
+	if ($query <> 0) {
+		$urutan_kode = (int) substr($query['max_kode'], -5) + 1;
+	} else {
+		$urutan_kode = 1;
+	}
+
+	$kode = $prefix . '-' . sprintf('%05s', $urutan_kode);
+	return $kode;
+}
+
 function encrypt_url($data){
 	$ci = &get_instance();
 	$ci->load->library('secure');

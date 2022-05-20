@@ -73,6 +73,7 @@
 												"placeholder" => "Nomor Agenda",
 												"class" => "form-control",
 												"required" => "required",
+												"readonly" => "readonly",
 											));
 											?>
 											<div class="invalid-feedback">

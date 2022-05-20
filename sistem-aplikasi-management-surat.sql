@@ -38,12 +38,6 @@ CREATE TABLE `disposisi` (
 
 insert  into `disposisi`(`id`,`id_surat`,`tanggal_disposisi`,`asal_disposisi`,`tujuan_disposisi`,`tipe_disposisi`,`disposisi`,`is_deleted`) values 
 (1,1,'2022-05-10 10:30:13','40','33',3,'segera dikoordinasikan',0),
-(3,8,'2022-05-14 09:25:49','40','33',2,'Nulla porttitor accumsan tincidunt. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.',0),
-(5,8,'2022-05-14 09:44:19','40','34',6,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.',0),
-(6,9,'2022-05-17 10:48:42','40','32',2,'Donec sollicitudin molestie malesuada. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.',0),
-(8,8,'2022-05-17 14:04:29','40','32',2,'Cras ultricies ligula sed magna dictum porta. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.',0),
-(9,8,'2022-05-17 19:54:43','40','35',6,'Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Proin eget tortor risus.',0),
-(10,10,'2022-05-18 09:33:34','40','33',2,'Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus.',0),
 (12,7,'2022-05-18 10:46:22','33','33',2,'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla porttitor accumsan tincidunt.',0),
 (13,7,'2022-05-18 10:46:51','33','35',2,'Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Sed porttitor lectus nibh.',0),
 (14,7,'2022-05-18 10:47:11','35','36',2,'Pellentesque in ipsum id orci porta dapibus. Pellentesque in ipsum id orci porta dapibus.',0),
@@ -177,24 +171,19 @@ CREATE TABLE `surat` (
   `is_deleted` tinyint(4) DEFAULT '0',
   `date_deleted` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `surat` */
 
 insert  into `surat`(`id`,`tipe_surat`,`nomor_surat`,`tanggal_surat`,`isi`,`tanggal_diterima`,`sifat_surat`,`kecepatan_surat`,`asal_surat`,`tujuan_surat`,`nomor_agenda`,`file`,`status_surat`,`penerima`,`is_deleted`,`date_deleted`) values 
-(1,'masuk','B-DL.01.01/184/2022','2022-04-14 00:00:00','Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada feugiat. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.','2022-04-19 00:00:00','biasa','biasa',2,37,'AGN-00001','9780cb93417be3332015e64fec6d53ed.jpg','selesai',1,0,NULL),
-(2,'keluar','B-KL.02.01/007/2022','2022-04-27 00:00:00','Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Proin eget tortor risus.','2022-04-27 00:00:00','biasa','biasa',34,2,'AGN-00002','aea886a9a849d968dcbd2dedce7b040a.jpg','diterima',1,0,NULL),
-(3,'internal','B-IL.01.01/009/2022','2022-04-27 00:00:00','Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Cras ultricies ligula sed magna dictum porta.','2022-04-27 00:00:00','biasa','segera',39,36,'AGN-00003','5608743506550b69e1529559f67cbc2e.jpg','diterima',1,0,NULL),
-(4,'internal','B-IL.01.01/009/2022','2022-04-27 00:00:00','Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Cras ultricies ligula sed magna dictum porta.','2022-04-27 00:00:00','biasa','segera',39,36,'AGN-00003','5608743506550b69e1529559f67cbc2e.jpg','diterima',1,0,NULL),
-(5,'internal','B-IL.01.01/009/2022','2022-04-27 00:00:00','Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Cras ultricies ligula sed magna dictum porta.','2022-04-27 00:00:00','biasa','segera',39,36,'AGN-00003','5608743506550b69e1529559f67cbc2e.jpg','diterima',1,0,NULL),
-(6,'internal','B-IL.01.01/009/2022','2022-04-27 00:00:00','Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Cras ultricies ligula sed magna dictum porta.','2022-04-27 00:00:00','biasa','segera',39,36,'AGN-00003','5608743506550b69e1529559f67cbc2e.jpg','diterima',1,0,NULL),
-(7,'masuk','B-DL.01.01/184/2022','2022-04-14 00:00:00','Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada feugiat. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.','2022-04-19 00:00:00','biasa','biasa',1,37,'AGN-00001','9780cb93417be3332015e64fec6d53ed.jpg','selesai',1,0,NULL),
-(8,'masuk','B-DL.01.01/184/2022','2022-04-14 00:00:00','Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada feugiat. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.','2022-04-19 00:00:00','biasa','biasa',1,37,'AGN-00001','9780cb93417be3332015e64fec6d53ed.jpg','selesai',1,0,NULL),
-(9,'masuk','B-DL.01.01/184/2022','2022-04-14 00:00:00','Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada feugiat. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.','2022-04-19 00:00:00','biasa','biasa',1,37,'AGN-00001','9780cb93417be3332015e64fec6d53ed.jpg','selesai',1,0,NULL),
-(10,'masuk','B-DL.01.01/184/2022','2022-04-14 00:00:00','Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada feugiat. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.','2022-04-19 00:00:00','biasa','biasa',1,37,'AGN-00001','9780cb93417be3332015e64fec6d53ed.jpg','diproses',1,0,NULL),
+(1,'masuk','B-DL.01.01/184/2022','2022-04-14 00:00:00','Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada feugiat. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.','2021-02-01 00:00:00','biasa','biasa',2,37,'AGN-00001','9780cb93417be3332015e64fec6d53ed.jpg','selesai',1,0,NULL),
+(2,'keluar','B-KL.02.01/007/2022','2022-04-27 00:00:00','Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Proin eget tortor risus.','2022-02-08 00:00:00','biasa','biasa',34,2,'AGN-00002','aea886a9a849d968dcbd2dedce7b040a.jpg','diterima',1,0,NULL),
+(3,'internal','B-IL.01.01/009/2022','2022-04-27 00:00:00','Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Cras ultricies ligula sed magna dictum porta.','2021-04-01 00:00:00','biasa','segera',39,36,'AGN-00003','5608743506550b69e1529559f67cbc2e.jpg','diterima',1,0,NULL),
+(7,'masuk','B-DL.01.01/184/2022','2022-04-14 00:00:00','Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada feugiat. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.','2022-08-18 00:00:00','biasa','biasa',1,37,'AGN-00001','9780cb93417be3332015e64fec6d53ed.jpg','selesai',1,0,NULL),
 (11,'internal','B-IL.01.01/009/2022','2022-04-27 00:00:00','Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Cras ultricies ligula sed magna dictum porta.','2022-04-27 00:00:00','biasa','segera',39,36,'AGN-00003','5608743506550b69e1529559f67cbc2e.jpg','diterima',1,0,NULL),
 (12,'masuk','B-DL.01.05/184/2023','2022-06-02 00:00:00','Curabitur aliquet quam id dui posuere blandit. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.','2022-05-24 00:00:00','biasa','biasa',6,37,'AGN-00008','4c001e4537a912c6d316d644b92e364c.jpg','diproses',1,0,NULL),
-(13,'masuk','rgert34534578','2022-05-18 00:00:00','Donec rutrum congue leo eget malesuada. Sed porttitor lectus nibh.','2022-05-18 00:00:00','biasa','segera',2,37,'AGN-00001','000b98b17f64c1de131981f2172d4d63.jpg','diproses',1,0,NULL);
+(13,'masuk','rgert34534578','2022-05-18 00:00:00','Donec rutrum congue leo eget malesuada. Sed porttitor lectus nibh.','2022-12-10 00:00:00','biasa','segera',2,37,'AGN-00001','000b98b17f64c1de131981f2172d4d63.jpg','diproses',1,0,NULL),
+(14,'masuk','B-DL.01.01/184/202245','2022-05-12 00:00:00','Cras ultricies ligula sed magna dictum porta. Cras ultricies ligula sed magna dictum porta.','2022-05-08 00:00:00','biasa','biasa',2,33,'AGN-00001','5bcd5c5a387d13f33b0fa76be31ffea7.pdf','diterima',1,0,NULL);
 
 /*Table structure for table `tipe_disposisi` */
 
