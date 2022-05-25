@@ -24,7 +24,7 @@
 		<!-- Preloader -->
 		<div class="preloader flex-column justify-content-center align-items-center">
 			<img src="<?php echo base_url("assets/images/logo-dprd-prov.png"); ?>" alt="DPRD PROVINSI LAMPUNG" height="80" width="80">
-			<span>SISTEM MANAJEMEN SURAT</span>
+			<span >SISTEM MANAJEMEN SURAT</span>
 		</div>
 		<!-- Navbar -->
 		<nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -38,6 +38,26 @@
 			<!-- Right navbar links -->
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item dropdown">
+					<a class="nav-link" data-toggle="dropdown" href="#">
+						<i class="far fa-bell"></i>
+						<span class="badge badge-warning navbar-badge" id="badge_total_notif"></span>
+					</a>
+					<div class="dropdown-menu dropdown-menu-xl dropdown-menu-right">
+						<span class="dropdown-item dropdown-header" id="total_notif"></span>
+						<div class="dropdown-divider" id="line_total_notif_dispo_masuk"></div>
+						<div id="body_notif">
+
+						</div>
+						<div class="dropdown-divider"></div>
+						<span class="dropdown-item dropdown-footer">Notifikasi Disposisi Surat</span>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-widget="fullscreen" href="#" role="button">
+						<i class="fas fa-expand-arrows-alt"></i>
+					</a>
+				</li>
+				<li>
 					<a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
 						<?= ($this->session->has_userdata('nama_lengkap')) ? $this->session->userdata('nama_lengkap') : ''; ?> <i class="far fa-user"></i>
 
@@ -61,7 +81,7 @@
 			<!-- Brand Logo -->
 			<a href="<?php echo site_url("surat"); ?>" class="brand-link">
 				<img src="<?php echo base_url("assets/images/logo-dprd-prov.png"); ?>" alt="DPRD PROVINSI LAMPUNG" class="brand-image img-circle elevation-3" style="opacity: .8">
-				<span class="">MANAJEMEN SURAT</span>
+				<span class="brand-text font-weight-light">MANAJEMEN SURAT</span>
 			</a>
 
 			<!-- Sidebar -->
@@ -156,40 +176,40 @@
 								</li>
 							</ul>
 						</li>
-						<?php if(is_admin()) : ?>
-						<li class="nav-item menu-open">
-							<a href="#" class="nav-link <?= (isset($expand) && $expand == 'master_data') ? 'active' : ''; ?>">
-								<i class="nav-icon fas fa-envelope"></i>
-								<p>Master Data<i class="right fas fa-angle-right"></i></p>
-							</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item">
-									<a href="<?= site_url('surat/jabatan') ?>" class="nav-link <?= (isset($active) && $active == 'jabatan') ? 'active' : ''; ?>">
-										<i class="nav-icon fas fa-id-card"></i>
-										<p>
-											Jabatan
-										</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="<?= site_url('surat/instansi') ?>" class="nav-link <?= (isset($active) && $active == 'instansi') ? 'active' : ''; ?>">
-										<i class="nav-icon fas fa-university"></i>
-										<p>
-											Instansi
-										</p>
-									</a>
-								</li>
+						<?php if (is_admin()) : ?>
+							<li class="nav-item menu-open">
+								<a href="#" class="nav-link <?= (isset($expand) && $expand == 'master_data') ? 'active' : ''; ?>">
+									<i class="nav-icon fas fa-envelope"></i>
+									<p>Master Data<i class="right fas fa-angle-right"></i></p>
+								</a>
+								<ul class="nav nav-treeview">
+									<li class="nav-item">
+										<a href="<?= site_url('surat/jabatan') ?>" class="nav-link <?= (isset($active) && $active == 'jabatan') ? 'active' : ''; ?>">
+											<i class="nav-icon fas fa-id-card"></i>
+											<p>
+												Jabatan
+											</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="<?= site_url('surat/instansi') ?>" class="nav-link <?= (isset($active) && $active == 'instansi') ? 'active' : ''; ?>">
+											<i class="nav-icon fas fa-university"></i>
+											<p>
+												Instansi
+											</p>
+										</a>
+									</li>
 
-								<li class="nav-item">
-									<a href="<?= site_url('Users') ?>" class="nav-link <?= (isset($active) && $active == 'users') ? 'active' : ''; ?>">
-										<i class="nav-icon fas fa-users"></i>
-										<p>
-											Manajemen Users
-										</p>
-									</a>
-								</li>
-							</ul>
-						</li>
+									<li class="nav-item">
+										<a href="<?= site_url('Users') ?>" class="nav-link <?= (isset($active) && $active == 'users') ? 'active' : ''; ?>">
+											<i class="nav-icon fas fa-users"></i>
+											<p>
+												Manajemen Users
+											</p>
+										</a>
+									</li>
+								</ul>
+							</li>
 						<?php endif; ?>
 					</ul>
 				</nav>

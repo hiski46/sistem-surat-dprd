@@ -141,6 +141,7 @@ class Surat extends CI_Controller
 			'surat' => $this->ModelSurat->getDetailSurat($id_surat),
 			'js' => ["assets/app/surat/surat_detail.js"],
 		];
+		
 		// var_dump($data);die;
 		$this->load->view('include/header', $data);
 		$this->load->view('surat_v/detail_surat');

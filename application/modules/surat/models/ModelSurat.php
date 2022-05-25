@@ -58,7 +58,7 @@ class ModelSurat extends CI_Model {
 	{
 		$row_surat = $this->getDataById($id_surat);
 		if ($row_surat->tipe_surat == 'masuk') {
-			$this->datatables->select('d.id, d.id_surat, jb.jabatan as asal_disposisi, j.jabatan as tujuan_disposisi, t.tipe_disposisi, d.disposisi, d.tanggal_disposisi');
+			$this->datatables->select('d.id, d.id_surat, jb.jabatan as asal_disposisi, j.jabatan as tujuan_disposisi, d.sifat_disposisi, t.tipe_disposisi, d.disposisi, d.tanggal_disposisi');
 			$this->datatables->from('disposisi as d');
 			$this->datatables->join('surat as s', 's.id = d.id_surat');
 			$this->datatables->join('tipe_disposisi as t', 't.id = d.tipe_disposisi');
@@ -69,7 +69,7 @@ class ModelSurat extends CI_Model {
 			$this->datatables->where('d.id_surat', $id_surat);
 			return $this->datatables->generate();
 		}if ($row_surat->tipe_surat == 'keluar') {
-			$this->datatables->select('d.id, d.id_surat, jb.jabatan as asal_disposisi, i.instansi as tujuan_disposisi, t.tipe_disposisi, d.disposisi, d.tanggal_disposisi');
+			$this->datatables->select('d.id, d.id_surat, jb.jabatan as asal_disposisi, i.instansi as tujuan_disposisi, d.sifat_disposisi, t.tipe_disposisi, d.disposisi, d.tanggal_disposisi');
 			$this->datatables->from('disposisi as d');
 			$this->datatables->join('surat as s', 's.id = d.id_surat');
 			$this->datatables->join('tipe_disposisi as t', 't.id = d.tipe_disposisi');
@@ -80,7 +80,7 @@ class ModelSurat extends CI_Model {
 			$this->datatables->where('d.id_surat', $id_surat);
 			return $this->datatables->generate();
 		}else {
-			$this->datatables->select('d.id, d.id_surat, jb.jabatan as asal_disposisi, j.jabatan as tujuan_disposisi, t.tipe_disposisi, d.disposisi, d.tanggal_disposisi');
+			$this->datatables->select('d.id, d.id_surat, jb.jabatan as asal_disposisi, j.jabatan as tujuan_disposisi, d.sifat_disposisi, t.tipe_disposisi, d.disposisi, d.tanggal_disposisi');
 			$this->datatables->from('disposisi as d');
 			$this->datatables->join('surat as s', 's.id = d.id_surat');
 			$this->datatables->join('tipe_disposisi as t', 't.id = d.tipe_disposisi');

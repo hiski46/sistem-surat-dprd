@@ -36,6 +36,18 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label>Sifat Disposisi <?= form_error('sifat_disposisi'); ?></label>
+						<select name="sifat_disposisi" id="sifat_disposisi" class="form-control">
+							<option value="">Pilih Sifat Disposisi</option>
+							<option value="rutin" <?= set_select('sifat_disposisi', 'rutin'); ?>>Rutin</option>
+							<option value="penting" <?= set_select('sifat_disposisi', 'penting'); ?>>Penting</option>
+							<option value="rahasia" <?= set_select('sifat_disposisi', 'rahasia'); ?>>Rahasia</option>
+						</select>
+						<div class="invalid-feedback">
+							Sifat disposisi harus diisi.
+						</div>
+					</div>
+					<div class="form-group">
 						<label>Instruksi Disposisi <?= form_error('tipe_disposisi'); ?> </label>
 						<?php
 						if (isset($tipe_disposisi)) {
@@ -53,19 +65,20 @@
 						</div>
 					</div>
 					<!-- <div class="form-group">
-						<label>Tanggal Disposisi <?//= form_error('tanggal_disposisi'); ?></label> -->
-						<?php
-						//echo form_input(array(
-							// "id" => "tanggal_disposisi",
-							// "name" => "tanggal_disposisi",
-							// "type" => "date",
-							// "value" => set_value('tanggal_disposisi'),
-							// "placeholder" => "Tanggal Disposisi",
-							// "class" => "form-control",
-							// "data-target" => ""
-						// ));
-						?>
-						<!-- <div class="invalid-feedback">
+						<label>Tanggal Disposisi <? //= form_error('tanggal_disposisi'); 
+													?></label> -->
+					<?php
+					//echo form_input(array(
+					// "id" => "tanggal_disposisi",
+					// "name" => "tanggal_disposisi",
+					// "type" => "date",
+					// "value" => set_value('tanggal_disposisi'),
+					// "placeholder" => "Tanggal Disposisi",
+					// "class" => "form-control",
+					// "data-target" => ""
+					// ));
+					?>
+					<!-- <div class="invalid-feedback">
 							Tanggal disposisi harus diisi.
 						</div>
 					</div> -->

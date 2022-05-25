@@ -76,14 +76,20 @@ class Disposisi extends CI_Controller
 	{
 		$this->load->model('ModelUsers');
 		$id_surat = decrypt_url($this->input->post('id_surat'));
+		$data_surat = $this->ModelSurat->getDataById($id_surat);
 		$data_disposisi = $this->ModelDisposisi->getDisposisiByIdSurat($id_surat);
 		$data_user_login = $this->ModelUsers->getDataById(decrypt_url($this->session->userdata('id_user')));
 		
-		if (!empty($data_disposisi)) {
-			$asal_disposisi = $data_disposisi[0]->tujuan_disposisi;
-		}else {
+		if ($data_surat->tipe_surat == 'keluar') {
 			$asal_disposisi = $data_user_login->id_jabatan;
+		}else {
+			if (!empty($data_disposisi)) {
+				$asal_disposisi = $data_disposisi[0]->tujuan_disposisi;
+			} else {
+				$asal_disposisi = $data_user_login->id_jabatan;
+			}
 		}
+		
 
 		$this->validation();
 
@@ -95,6 +101,7 @@ class Disposisi extends CI_Controller
 				'id_surat' =>$id_surat,
 				'asal_disposisi' => $asal_disposisi,
 				'tujuan_disposisi' => $this->input->post('tujuan_disposisi'),
+				'sifat_disposisi' => $this->input->post('sifat_disposisi'),
 				'tipe_disposisi' => $this->input->post('tipe_disposisi'),
 				// 'tanggal_disposisi' => date('Y-m-d H:i:s'),
 				'disposisi' => $this->input->post('disposisi'),
@@ -102,6 +109,12 @@ class Disposisi extends CI_Controller
 
 			$this->ModelDisposisi->create($data);
 			$this->ModelSurat->update($id_surat, ['status_surat' => 'diproses']);
+
+			$this->db->insert('notifikasi', [
+				'from' => $asal_disposisi,
+				'to' => $this->input->post('tujuan_disposisi'),
+				'id_surat' => $id_surat,
+			]);
 
 			$this->session->set_flashdata('message', 'Data berhasil di simpan!');
 
@@ -112,6 +125,7 @@ class Disposisi extends CI_Controller
 	private function validation()
 	{
 		$this->form_validation->set_rules('tujuan_disposisi', 'tujuan disposisi', 'trim|required');
+		$this->form_validation->set_rules('sifat_disposisi', 'sifat disposisi', 'trim|required');
 		$this->form_validation->set_rules('tipe_disposisi', 'tipe disposisi', 'trim|required');
 		// $this->form_validation->set_rules('tanggal_disposisi', 'tanggal disposisi', 'trim|required');
 		$this->form_validation->set_rules('disposisi', 'isi disposisi', 'trim|required');

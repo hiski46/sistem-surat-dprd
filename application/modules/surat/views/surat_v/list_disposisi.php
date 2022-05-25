@@ -15,10 +15,10 @@
 							<th class="text-center align-middle">Nomor Surat</th>
 							<th class="text-center align-middle">Tanggal Disposisi</th>
 							<th class="text-center align-middle">Tujuan Disposisi</th>
+							<th class="text-center align-middle">Sifat Disposisi</th>
 							<th class="text-center align-middle">Disposisi</th>
 							<th class="text-center align-middle">Catatan Disposisi</th>
-							<!-- <th class="text-center align-middle">Tujuan Surat</th> -->
-							<th class="text-center align-middle" width="15%">Action</th>
+							<th class="text-center align-middle" width="7%">Action</th>
 						</tr>
 					</thead>
 					<tbody></tbody>

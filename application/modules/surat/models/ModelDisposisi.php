@@ -22,7 +22,7 @@ class ModelDisposisi extends CI_Model
 			return $button;
 		}
 		if ($tipe_surat == 'masuk') {
-			$this->datatables->select('d.id, d.id_surat, s.nomor_surat, i.instansi as asal_surat, j.jabatan as tujuan_disposisi, s.tanggal_surat, t.tipe_disposisi as tipe_disposisi, d.disposisi, max(d.tanggal_disposisi) as tanggal_disposisi, s.status_surat');
+			$this->datatables->select('d.id, d.id_surat, s.nomor_surat, i.instansi as asal_surat, j.jabatan as tujuan_disposisi, s.tanggal_surat, d.sifat_disposisi, t.tipe_disposisi as tipe_disposisi, d.disposisi, max(d.tanggal_disposisi) as tanggal_disposisi, s.status_surat');
 			$this->datatables->from('disposisi as d');
 			$this->datatables->join('surat as s', 'd.id_surat = s.id', 'inner');
 			$this->datatables->join('jabatan j', 'j.id = d.tujuan_disposisi');
@@ -35,7 +35,7 @@ class ModelDisposisi extends CI_Model
 			$this->datatables->add_column('action', '$1', 'callback(id_surat, status_surat)');
 			return $this->datatables->generate();
 		}elseif ($tipe_surat == 'keluar') {
-			$this->datatables->select('d.id, d.id_surat, s.nomor_surat, j.jabatan as asal_surat, i.instansi as tujuan_disposisi, s.tanggal_surat,  t.tipe_disposisi as tipe_disposisi, d.disposisi, max(d.tanggal_disposisi) as tanggal_disposisi, s.status_surat');
+			$this->datatables->select('d.id, d.id_surat, s.nomor_surat, j.jabatan as asal_surat, i.instansi as tujuan_disposisi, s.tanggal_surat, d.sifat_disposisi,  t.tipe_disposisi as tipe_disposisi, d.disposisi, max(d.tanggal_disposisi) as tanggal_disposisi, s.status_surat');
 			$this->datatables->from('disposisi as d');
 			$this->datatables->join('surat as s', 'd.id_surat = s.id', 'inner');
 			$this->datatables->join('jabatan j', 'j.id = s.asal_surat');
@@ -47,7 +47,7 @@ class ModelDisposisi extends CI_Model
 			$this->datatables->add_column('action', '$1', 'callback(id_surat, status_surat)');
 			return $this->datatables->generate();
 		}else {
-			$this->datatables->select('d.id, d.id_surat, s.nomor_surat, jb.jabatan as asal_surat, j.jabatan as tujuan_disposisi, s.tanggal_surat,  t.tipe_disposisi as tipe_disposisi, d.disposisi, max(d.tanggal_disposisi) as tanggal_disposisi, s.status_surat');
+			$this->datatables->select('d.id, d.id_surat, s.nomor_surat, jb.jabatan as asal_surat, j.jabatan as tujuan_disposisi, s.tanggal_surat, d.sifat_disposisi,  t.tipe_disposisi as tipe_disposisi, d.disposisi, max(d.tanggal_disposisi) as tanggal_disposisi, s.status_surat');
 			$this->datatables->from('disposisi as d');
 			$this->datatables->join('surat as s', 'd.id_surat = s.id', 'inner');
 			$this->datatables->join('jabatan j', 'j.id = d.tujuan_disposisi');

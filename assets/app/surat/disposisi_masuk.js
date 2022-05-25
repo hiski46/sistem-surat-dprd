@@ -83,6 +83,34 @@ function loadDisposisiMasuk() {
 				className: "align-middle",
 			},
 			{
+				data: "sifat_disposisi",
+				render: function (data) {
+					if (data == "rahasia") {
+						return (
+							'<span class="badge badge-danger">' +
+							data.charAt(0).toUpperCase() +
+							data.slice(1) +
+							"</span>"
+						);
+					} else if (data == "penting") {
+						return (
+							'<span class="badge badge-warning">' +
+							data.charAt(0).toUpperCase() +
+							data.slice(1) +
+							"</span>"
+						);
+					} else {
+						return (
+							'<span class="badge badge-info">' +
+							data.charAt(0).toUpperCase() +
+							data.slice(1) +
+							"</span>"
+						);
+					}
+				},
+				className: "align-middle",
+			},
+			{
 				data: "tipe_disposisi",
 				className: "align-middle",
 			},

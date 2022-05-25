@@ -27,23 +27,25 @@ $(document).ready(function () {
 function check_nomor_surat() {
 	// check unique nomor surat
 	var nomor_surat = $('#nomor_surat').val();
-	$.ajax({
-		url: site_url + "surat/Surat/check_nomor_surat",
-		method: "post",
-		data: { nomor_surat: nomor_surat },
-		dataType: "json",
-		success: function (response) {
-			if (response.status == "error") {
-				$("#nomor_surat").addClass("is-invalid");
-				$("#error_nomor_surat").html(response.message);
-				next_step = false;
-			} else {
-				$("#nomor_surat").removeClass("is-invalid");
-				$("#error_nomor_surat").html("Nomor surat harus diisi.");
-				next_step = true;
-			}
-		},
-	});
+	if ($("#nomor_surat").val() != "") {
+		$.ajax({
+			url: site_url + "surat/Surat/check_nomor_surat",
+			method: "post",
+			data: { nomor_surat: nomor_surat },
+			dataType: "json",
+			success: function (response) {
+				if (response.status == "error") {
+					$("#nomor_surat").addClass("is-invalid");
+					$("#error_nomor_surat").html(response.message);
+					next_step = false;
+				} else {
+					$("#nomor_surat").removeClass("is-invalid");
+					$("#error_nomor_surat").html("Nomor surat harus diisi.");
+					next_step = true;
+				}
+			},
+		});
+	}
 	
 }
 

@@ -27,13 +27,13 @@ class Dashboard extends CI_Controller
 		$jml_surat_masuk = 0;
 		$jml_surat_keluar = 0;
 		$jml_surat_internal = 0;
-		if(!empty($data_surat)){
+		if (!empty($data_surat)) {
 			foreach ($data_surat as $value) {
 				if ($value->tipe_surat == 'masuk') {
 					$jml_surat_masuk++;
 				} else if ($value->tipe_surat == 'keluar') {
 					$jml_surat_keluar++;
-				}else {
+				} else {
 					$jml_surat_internal++;
 				}
 			}
@@ -52,11 +52,12 @@ class Dashboard extends CI_Controller
 		$this->load->view('include/footer');
 	}
 
-	public function getAjax(){
+	public function getAjax()
+	{
 		if ($this->input->is_ajax_request()) {
 			date_default_timezone_set("Asia/Jakarta");
 			$tahun = $this->input->post('tahun');
-			$data_surat = $this->ModelDashboard->getAll();
+			$data_surat = $this->ModelDashboard->getAllPerYear($tahun);
 			$data_perbulan_surat_masuk = $this->ModelDashboard->getAjax($tahun, 'masuk');
 			$data_perbulan_surat_keluar = $this->ModelDashboard->getAjax($tahun, 'keluar');
 			$data_perbulan_surat_internal = $this->ModelDashboard->getAjax($tahun, 'internal');
@@ -88,6 +89,39 @@ class Dashboard extends CI_Controller
 
 			echo json_encode($data);
 		}
+	}
+
+	public function getNotification()
+	{
+		// if ($this->input->is_ajax_request()) {
+			$notifikasi = $this->ModelDashboard->getNotification();
+
+			$total_notif = count($notifikasi);
+			$data_notif = array();
+			foreach ($notifikasi as $notif) {
+				$notif["sec_id_surat"] = encrypt_url($notif["id_surat"]);
+				unset($notif['id_surat']);
+				$data_notif[] = $notif;
+			}
+			$data = [
+				'total_notif' => $total_notif,
+				'notifikasi' => $data_notif,
+			];
+
+			echo json_encode($data);
+
+
+		// } else {
+		// 	echo "Not permited for this page!";
+		// }
+	}
+
+	public function readNotifikasi()
+	{
+		// $id = decrypt_url($this->input->post('id'));
+		$id = $this->input->post('id');
+		$this->db->where('id', $id);
+		$this->db->update('notifikasi', ['read_status' => 0]);
 	}
 }
 

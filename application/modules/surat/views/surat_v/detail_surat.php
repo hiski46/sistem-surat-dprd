@@ -85,7 +85,8 @@
 							<th class="text-center align-middle">#</th>
 							<th class="text-center align-middle">Asal Disposisi</th>
 							<th class="text-center align-middle">Tujuan Disposisi</th>
-							<th class="text-center align-middle">Tipe Disposisi</th>
+							<th class="text-center align-middle">Sifat Disposisi</th>
+							<th class="text-center align-middle">Instruksi Disposisi</th>
 							<th class="text-center align-middle">Tanggal</th>
 							<th class="text-center align-middle">Disposisi</th>
 						</thead>
