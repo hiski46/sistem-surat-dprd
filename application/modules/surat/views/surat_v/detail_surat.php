@@ -71,7 +71,12 @@
 							$text = 'Selesai';
 						}
 						?>
-						<a href="<?= site_url('surat/Surat/selesai/' . encrypt_url($surat->id_surat)); ?>" class="btn btn-sm mr-2 <?= $color; ?> btn-detail <?= $disabled ?>" id="btn-selesai" data-toggle="tooltip" title="<?= $text; ?>"><?= $text; ?> ?</a>
+
+
+						<a href="<?= site_url('surat/Surat/selesai/' . encrypt_url($surat->id_surat)); ?>" class="btn btn-sm mr-2 <?= $color; ?> btn-detail <?= $disabled ?>" id="btn-selesai" data-toggle="tooltip" title="<?= $text; ?>"><i class="fa fa-check"></i> <?= $text; ?> ?</a>
+
+						<a href="<?= site_url('surat/Forum?s=' . encrypt_url($surat->id_surat)); ?>" class="btn btn-sm mr-2 btn-info" id="btn-selesai" data-toggle="tooltip" title="Forum Diskusi"><i class="fa fa-rss"></i> Forum Diskusi</a>
+
 						<a href="<?= site_url('surat/Disposisi/disposisi_surat/' . encrypt_url($surat->id_surat)); ?>" class="btn btn-sm btn-primary <?= ($surat->status_surat == 'selesai') ? 'disabled' : ''; ?>">
 							<i class="fas fa-plus"></i> Disposisi Surat
 						</a>
@@ -115,9 +120,9 @@
 						<?php if (isset($file_parts['extension']) && $file_parts['extension'] == 'pdf') : ?>
 							<div class="text-center">
 
-								<!-- <iframe src='<?//= base_url('writable/upload/surat/' . $surat->file); ?>' width="500" height="678">
+								<iframe src='<?= base_url('writable/upload/surat/' . $surat->file); ?>' width="600" height="678">
 									<p class="text-center">This browser does not support PDF!</p>
-								</iframe> -->
+								</iframe>
 							</div>
 						<?php else : ?>
 							<img width="600px" height="750px" src="<?= base_url('writable/upload/surat/' . $surat->file); ?>" class="rounded mx-auto d-block" alt="Preview surat">

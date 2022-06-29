@@ -19,9 +19,13 @@
 									$list_tujuan[$val->id] = $val->jabatan;
 								}
 							} elseif ($surat->tipe_surat == 'keluar') {
-								foreach ($instansi as $val) {
-									$list_tujuan[$val->id] = $val->instansi;
+								foreach ($jabatan as $val) {
+									$list_tujuan[$val->id] = $val->jabatan;
 								}
+								// foreach ($instansi as $val) {
+								// 	$list_tujuan[$val->id] = $val->instansi;
+								// 	// $list_tujuan[$val->id] = $val->jabatan;
+								// }
 							} else {
 								foreach ($jabatan as $val) {
 									$list_tujuan[$val->id] = $val->jabatan;

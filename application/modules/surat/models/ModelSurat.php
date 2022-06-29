@@ -16,6 +16,7 @@ class ModelSurat extends CI_Model {
 		$this->datatables->where('is_deleted', 0);
 		$this->datatables->where('tipe_surat', 'masuk');
 		$this->datatables->from($this->table);
+		$this->db->order_by('id', 'desc');
 		$this->datatables->add_column('isi', '$1', 'callback_one(id, isi)');
 		// $this->datatables->add_column('action', '$1', 'callback_one(id)');
 
@@ -32,6 +33,7 @@ class ModelSurat extends CI_Model {
 		$this->datatables->where('is_deleted', 0);
 		$this->datatables->where('tipe_surat', 'keluar');
 		$this->datatables->from($this->table);
+		$this->db->order_by('id', 'desc');
 		$this->datatables->add_column('isi', '$1', 'callback_two(id, isi)');
 		// $this->datatables->add_column('action', '$1', 'callback_two(id)');
 
@@ -48,6 +50,7 @@ class ModelSurat extends CI_Model {
 		$this->datatables->where('is_deleted', 0);
 		$this->datatables->where('tipe_surat', 'internal');
 		$this->datatables->from($this->table);
+		$this->db->order_by('id', 'desc');
 		$this->datatables->add_column('isi', '$1', 'callback_three(id, isi)');
 		// $this->datatables->add_column('action', '$1', 'callback_three(id)');
 
@@ -69,11 +72,21 @@ class ModelSurat extends CI_Model {
 			$this->datatables->where('d.id_surat', $id_surat);
 			return $this->datatables->generate();
 		}if ($row_surat->tipe_surat == 'keluar') {
-			$this->datatables->select('d.id, d.id_surat, jb.jabatan as asal_disposisi, i.instansi as tujuan_disposisi, d.sifat_disposisi, t.tipe_disposisi, d.disposisi, d.tanggal_disposisi');
+			// $this->datatables->select('d.id, d.id_surat, jb.jabatan as asal_disposisi, i.instansi as tujuan_disposisi, d.sifat_disposisi, t.tipe_disposisi, d.disposisi, d.tanggal_disposisi');
+			// $this->datatables->from('disposisi as d');
+			// $this->datatables->join('surat as s', 's.id = d.id_surat');
+			// $this->datatables->join('tipe_disposisi as t', 't.id = d.tipe_disposisi');
+			// $this->datatables->join('instansi as i', 'i.id = d.tujuan_disposisi');
+			// $this->datatables->join('jabatan as jb', 'jb.id = d.asal_disposisi');
+			// $this->datatables->where('d.is_deleted', 0);
+			// $this->datatables->where('s.is_deleted', 0);
+			// $this->datatables->where('d.id_surat', $id_surat);
+			// return $this->datatables->generate();
+			$this->datatables->select('d.id, d.id_surat, jb.jabatan as asal_disposisi, j.jabatan as tujuan_disposisi, d.sifat_disposisi, t.tipe_disposisi, d.disposisi, d.tanggal_disposisi');
 			$this->datatables->from('disposisi as d');
 			$this->datatables->join('surat as s', 's.id = d.id_surat');
 			$this->datatables->join('tipe_disposisi as t', 't.id = d.tipe_disposisi');
-			$this->datatables->join('instansi as i', 'i.id = d.tujuan_disposisi');
+			$this->datatables->join('jabatan as j', 'j.id = d.tujuan_disposisi');
 			$this->datatables->join('jabatan as jb', 'jb.id = d.asal_disposisi');
 			$this->datatables->where('d.is_deleted', 0);
 			$this->datatables->where('s.is_deleted', 0);
