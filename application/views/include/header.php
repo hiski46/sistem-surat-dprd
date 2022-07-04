@@ -24,7 +24,7 @@
 		<!-- Preloader -->
 		<div class="preloader flex-column justify-content-center align-items-center">
 			<img src="<?php echo base_url("assets/images/logo-dprd-prov.png"); ?>" alt="DPRD PROVINSI LAMPUNG" height="80" width="80">
-			<span >SISTEM MANAJEMEN SURAT</span>
+			<span>SISTEM MANAJEMEN SURAT</span>
 		</div>
 		<!-- Navbar -->
 		<nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -174,6 +174,27 @@
 										<p>Laporan</p>
 									</a>
 								</li>
+							</ul>
+						</li>
+						<li class="nav-item menu-open">
+							<a href="#" class="nav-link <?= (isset($expand) && $expand == 'agenda') ? 'active' : ''; ?>">
+								<i class="nav-icon fas fa-envelope"></i>
+								<p>Agenda<i class="right fas fa-angle-right"></i></p>
+							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a href="<?= site_url('surat/agenda/view/1'); ?>" class="nav-link  <?= (isset($active) && $active == 'agenda') ? 'active' : ''; ?>">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Agenda Rapat</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="<?= site_url('surat/agenda/view/0'); ?>" class="nav-link  <?= (isset($active) && $active == 'agenda') ? 'active' : ''; ?>">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Agenda Kegiatan</p>
+									</a>
+								</li>
+
 							</ul>
 						</li>
 						<?php if (is_admin()) : ?>

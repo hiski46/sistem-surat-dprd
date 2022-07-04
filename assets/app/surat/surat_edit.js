@@ -166,7 +166,7 @@ function validationJquery() {
 
 function create() {
 	$.ajax({
-		url: site_url + "Surat/create",
+		url: site_url + "surat/Surat/create",
 		dataType: "json",
 		success: function (response) {},
 		error: function (xhr, ajaxOptions, thrownerror) {

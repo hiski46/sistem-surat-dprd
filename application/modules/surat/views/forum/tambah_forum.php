@@ -12,10 +12,15 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<form action="<?= site_url('surat/Forum/action_add'); ?>" method="post" id="form-forum">
+				<form action="<?= site_url('surat/Forum/action_add'); ?>" method="post" id="form-create">
 					<div class="form-group">
 						<input type="hidden" name="id_surat" id="id_surat" value="<?= $id_surat; ?>">
-						<label>Jenis Forum</label>
+						<label>Topik Forum</label>
+						<input type="text" class="form-control form-control-sm" id="topik_forum" name="topik_forum" placeholder="Topik Forum Diskusi">
+						<div class="invalid-feedback" id="error-topik_forum"></div>
+					</div>
+					<div class="form-group">
+						<label for="jenis_forum">Jenis Forum</label>
 						<select name="jenis_forum" id="jenis_forum" class="form-control form-control-sm">
 							<option value="">Pilih Jenis Forum</option>
 							<option value="group">Group</option>
@@ -32,9 +37,13 @@
 								$list_users[$user->id] = $user->nama_lengkap;
 							}
 						}
-						echo form_dropdown('anggota_forum[]', $list_users, set_value('anggota_forum'), ['class' => 'form-control', 'id' => 'anggota_forum', 'multiple' => 'multiple']);
+						echo form_dropdown('anggota_forum[]', $list_users, set_value('anggota_forum'), ['class' => 'form-control form-control-sm', 'id' => 'anggota_forum', 'multiple' => 'multiple']);
 						?>
 						<div class="invalid-feedback" id="error-anggota_forum"></div>
+					</div>
+					<div class="form-group">
+						<label for="pembahasan_forum">Pembahsan Forum</label>
+						<textarea name="pembahasan_forum" id="pembahasan_forum" rows="5" class="form-control form-control-sm" placeholder="Pembahasan forum"></textarea>
 					</div>
 
 					<button type="submit" class="btn btn-sm btn-primary float-right btn-simpan"><i class="fa fa-rss"></i> Buat Forum</button>

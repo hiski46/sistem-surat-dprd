@@ -186,11 +186,11 @@ class Surat extends CI_Controller
 				$this->session->set_flashdata('message', 'Data berhasil di simpan!');
 
 				if ($this->input->post('tipe_surat') == 'masuk') {
-					redirect(site_url('Surat/view/masuk'));
+					redirect(site_url('surat/Surat/view/masuk'));
 				} elseif ($this->input->post('tipe_surat') == 'keluar') {
-					redirect(site_url('Surat/view/keluar'));
+					redirect(site_url('surat/Surat/view/keluar'));
 				} else {
-					redirect(site_url('Surat/view/internal'));
+					redirect(site_url('surat/Surat/view/internal'));
 				}
 			}
 		}
@@ -256,11 +256,11 @@ class Surat extends CI_Controller
 				$this->session->set_flashdata('message', 'Data berhasil di simpan!');
 
 				if ($this->input->post('tipe_surat') == 'masuk') {
-					redirect(site_url('Surat/view/masuk'));
+					redirect(site_url('surat/Surat/view/masuk'));
 				} elseif ($this->input->post('tipe_surat') == 'keluar') {
-					redirect(site_url('Surat/view/keluar'));
+					redirect(site_url('surat/Surat/view/keluar'));
 				} else {
-					redirect(site_url('Surat/view/internal'));
+					redirect(site_url('surat/Surat/view/internal'));
 				}
 			}else {
 				$data = [
@@ -283,11 +283,11 @@ class Surat extends CI_Controller
 				$this->session->set_flashdata('message', 'Data berhasil di simpan!');
 
 				if ($this->input->post('tipe_surat') == 'masuk') {
-					redirect(site_url('Surat/view/masuk'));
+					redirect(site_url('surat/Surat/view/masuk'));
 				} elseif ($this->input->post('tipe_surat') == 'keluar') {
-					redirect(site_url('Surat/view/keluar'));
+					redirect(site_url('surat/Surat/view/keluar'));
 				} else {
-					redirect(site_url('Surat/view/internal'));
+					redirect(site_url('surat/Surat/view/internal'));
 				}
 			}
 		}

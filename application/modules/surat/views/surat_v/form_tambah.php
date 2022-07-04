@@ -30,7 +30,7 @@
 						</div>
 					</div>
 					<div class="bs-stepper-content">
-						<form action="<?= site_url('surat/surat/create'); ?>" method="post" enctype="multipart/form-data" id="form-tambah">
+						<form action="<?= site_url('surat/Surat/create'); ?>" method="post" enctype="multipart/form-data" id="form-tambah">
 							<div id="identitas-surat" class="content" role="tabpanel" aria-labelledby="identitas-surat-trigger">
 								<input type="hidden" name="tipe_surat" value="<?= $tipe_surat; ?>">
 								<div class="row">
