@@ -16,11 +16,11 @@
                 <table id="datatables" class="table table-bordered table-hover display" width="100%">
                     <thead>
                         <tr>
-                            <th class="text-center align-middle">#</th>
-                            <th class="text-center align-middle">Tanggal</th>
-                            <th class="text-center align-middle">Agenda</th>
-                            <th class="text-center align-middle">Detail</th>
-                            <th class="text-center align-middle">Aksi</th>
+                            <th width="2%" class="text-center align-middle">#</th>
+                            <th width="10%" class="text-center align-middle">Tanggal</th>
+                            <th width="35%" class="text-center align-middle">Agenda</th>
+                            <th width="40%" class="text-center align-middle">Detail</th>
+                            <th width="13%" class="text-center align-middle">Aksi</th>
 
                             <!-- <th class="text-center align-middle">Tujuan Surat</th> -->
                             <!-- <th class="text-center align-middle" width="15%">Action</th> -->
