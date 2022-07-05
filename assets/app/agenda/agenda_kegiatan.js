@@ -37,7 +37,7 @@ function hapus(event) {
 	}).then((result) => {
 		if (result.isConfirmed) {
 			$.ajax({
-				url: site_url + "surat/surat/delete",
+				url: site_url + "agenda/Agenda/delete",
 				method: "post",
 				data: { id: id },
 				dataType: "json",
@@ -48,7 +48,7 @@ function hapus(event) {
 							title: "Berhasil",
 							text: response.message,
 						});
-						loadSuratMasuk();
+						loadAgenda();
 					} else {
 						Swal.fire({
 							icon: "error",
@@ -62,6 +62,20 @@ function hapus(event) {
 	});
 }
 
+function form_edit(event) {
+	var id = $(event).data("id");
+	$.ajax({
+		url: site_url + "agenda/Agenda/form_edit",
+		method: "post",
+		data: { id: id ,
+		type:0},
+		dataType: "json",
+		success: function (response) {
+			$(".view-modal").html(response.message).show();
+			$("#modal-form").modal("show");
+		},
+	});
+}
 
 function loadAgenda() {
 	$.fn.dataTableExt.oApi.fnPagingInfo = function (oSettings) {
@@ -96,7 +110,7 @@ function loadAgenda() {
 		processing: true,
 		serverSide: true,
 		ajax: {
-			url: site_url + "surat/agenda/datatables_agenda/0",
+			url: site_url + "agenda/agenda/datatables_agenda/0",
 			type: "POST",
 		},
 		columns: [{
@@ -116,15 +130,20 @@ function loadAgenda() {
 			{
 				data: "detail",
 				className: "align-middle",
-			}
+			},
+			{
+				data: "action",
+				orderable: false,
+				className: "text-center align-middle",
+			},
 			
 			
 			// {
-			// 	data: "asal_surat",
+			// 	data: "asal_agenda",
 			// 	className: "align-middle",
 			// },
 			// {
-			// 	data: "tujuan_surat",
+			// 	data: "tujuan_agenda",
 			// 	className: "align-middle",
 			// },
 			// {

@@ -6,7 +6,7 @@
             </div>
             <div class="card-body">
                 <div class="bs-stepper-content">
-                    <form action="<?= site_url('surat/agenda/create'); ?>" method="post" enctype="multipart/form-data" id="form-tambah-agenda">
+                    <form action="<?= site_url('agenda/agenda/create'); ?>" method="post" enctype="multipart/form-data" id="form-tambah-agenda">
                         <div id="data-agenda" class="content" role="tabpanel" aria-labelledby="data-agenda-trigger">
                             <input type="hidden" name="tipe_agenda" value="<?= $type ?>">
                             <div class="row">

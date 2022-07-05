@@ -7,7 +7,8 @@ class ModelInstansi extends CI_Model
 	private $table = 'instansi';
 	private $id = 'id';
 
-	public function datatables(){
+	public function datatables()
+	{
 		function callback($id)
 		{
 			return '<button type="button" class="btn btn-sm mr-2 btn-warning btn-edit" data-toggle="tooltip" title="Edit" data-id="' . encrypt_url($id) . '" onclick="form_edit(this)"><i class="fas fa-edit"></i></button><button type="button" class="btn btn-sm mr-2 btn-danger btn-hapus" data-toggle="tooltip" title="Hapus" data-id="' . encrypt_url($id) . '" onclick="hapus(this)"><i class="fas fa-trash-alt"></i></button>';
@@ -57,7 +58,6 @@ class ModelInstansi extends CI_Model
 		$this->db->where($this->id, $id);
 		$this->db->update($this->table, $data);
 	}
-
 }
 
 /* End of file ModelJabatan.php */

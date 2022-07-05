@@ -24,6 +24,80 @@ function alert() {
 	}
 }
 
+function form_edit(event) {
+	var id = $(event).data("id");
+
+	$.ajax({
+		url: site_url + "agenda/Agenda/form_edit",
+		method: "post",
+		data: { id: id ,
+		type:1},
+		dataType: "json",
+		success: function (response) {
+			$(".view-modal").html(response.message).show();
+			$("#modal-form").modal("show");
+		},
+	});
+}
+
+function update() {
+	var data = $("#form-edit-agenda").serialize();
+
+	$.ajax({
+		url: site_url + "agenda/Agenda/update",
+		method: "post",
+		data: {data:data},
+		dataType: "json",
+		beforeSend: function () {
+			$(".btn-submit").html('<i class="fa fa-spin fa-spinner"></i> loading');
+			$(".btn-cencel").hide(100);
+			$(".btn-submit").attr("disabled", true);
+		},
+		complete: function () {
+			$(".btn-submit").removeAttr("disabled");
+			$(".btn-cencel").show(100);
+			$(".btn-submit").html("Simpan");
+		},
+		error: function (xhr, ajaxOptions, thrownerror) {
+			alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownerror);
+		},
+		success: function (response) {
+			if (response.error) {
+				if (response.error.agenda) {
+					$("#agenda").addClass("is-invalid");
+					$("#error-agenda").html(response.error.agenda);
+				} else {
+					$("#agenda").removeClass("is-invalid");
+					$("#error-agenda").html("");
+				}
+				if (response.error.detail) {
+					$("#detail").addClass("is-invalid");
+					$("#error-detail").html(response.error.detail);
+				} else {
+					$("#detail").removeClass("is-invalid");
+					$("#error-detail").html("");
+				}
+			} else if (response.status == "success") {
+				$("#modal-form").modal("hide");
+				loadAgenda();
+				Swal.fire({
+					icon: "success",
+					title: "Berhasil",
+					text: response.message,
+				});
+				
+			} else {
+				Swal.fire({
+					icon: "error",
+					title: "Gagal",
+					text: "Kesalahan Server Silahkan Hubungi Admin",
+				});
+			}
+		},
+	});
+}
+
+
 function hapus(event) {
 	var id = $(event).data("id");
 	Swal.fire({
@@ -37,7 +111,7 @@ function hapus(event) {
 	}).then((result) => {
 		if (result.isConfirmed) {
 			$.ajax({
-				url: site_url + "surat/surat/delete",
+				url: site_url + "agenda/Agenda/delete",
 				method: "post",
 				data: { id: id },
 				dataType: "json",
@@ -48,7 +122,7 @@ function hapus(event) {
 							title: "Berhasil",
 							text: response.message,
 						});
-						loadSuratMasuk();
+						loadAgenda();
 					} else {
 						Swal.fire({
 							icon: "error",
@@ -96,7 +170,7 @@ function loadAgenda() {
 		processing: true,
 		serverSide: true,
 		ajax: {
-			url: site_url + "surat/agenda/datatables_agenda/1",
+			url: site_url + "agenda/agenda/datatables_agenda/1",
 			type: "POST",
 		},
 		columns: [{
@@ -116,15 +190,20 @@ function loadAgenda() {
 			{
 				data: "detail",
 				className: "align-middle",
-			}
+			},
+			{
+				data: "action",
+				orderable: false,
+				className: "text-center align-middle",
+			},
 			
 			
 			// {
-			// 	data: "asal_surat",
+			// 	data: "asal_agenda",
 			// 	className: "align-middle",
 			// },
 			// {
-			// 	data: "tujuan_surat",
+			// 	data: "tujuan_agenda",
 			// 	className: "align-middle",
 			// },
 			// {

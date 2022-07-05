@@ -183,15 +183,30 @@
 							</a>
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
-									<a href="<?= site_url('surat/agenda/view/1'); ?>" class="nav-link  <?= (isset($active) && $active == 'agenda') ? 'active' : ''; ?>">
+									<a href="<?= site_url('agenda/agenda/view/1'); ?>" class="nav-link  <?= (isset($active) && $active == 'agenda') ? 'active' : ''; ?>">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Agenda Rapat</p>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="<?= site_url('surat/agenda/view/0'); ?>" class="nav-link  <?= (isset($active) && $active == 'agenda') ? 'active' : ''; ?>">
+									<a href="<?= site_url('agenda/agenda/view/0'); ?>" class="nav-link  <?= (isset($active) && $active == 'agenda') ? 'active' : ''; ?>">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Agenda Kegiatan</p>
+									</a>
+								</li>
+
+							</ul>
+						</li>
+						<li class="nav-item menu-open">
+							<a href="#" class="nav-link <?= (isset($expand) && $expand == 'absen') ? 'active' : ''; ?>">
+								<i class="nav-icon fas fa-envelope"></i>
+								<p>Absensi<i class="right fas fa-angle-right"></i></p>
+							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a href="<?= site_url('absen/absen/view'); ?>" class="nav-link  <?= (isset($active) && $active == 'absen') ? 'active' : ''; ?>">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Absen</p>
 									</a>
 								</li>
 
